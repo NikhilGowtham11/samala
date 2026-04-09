@@ -9,7 +9,7 @@
 :root{--w:#FFFFFF;--off:#FDFAF5;--ink:#1A0A00;--ink2:#4A2C10;--red:#D42B2B;--teal:#007A6E;--teal2:#00B3A4;--tur:#E8A000;--tur2:#FFB800;--rose:#D4006A;--rose2:#FF2D87;--ind:#2B1FD4;--grn:#006B3C;--grn2:#00A85A;--bdr:#E8E0D4;}
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--w);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+body{background:var(--w);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;max-width:100vw;}
 .cur,.cur-ring{display:none;}
 @media(pointer:fine){
   body{cursor:none;}
@@ -85,7 +85,6 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .strip{flex:1;position:relative;overflow:hidden;transition:flex .55s cubic-bezier(.25,.46,.45,.94);}
 .strip:hover{flex:2.5;}
 .strip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s,transform .6s ease;opacity:1;z-index:1;}
-.strip:hover video{transform:scale(1.04);}
 .strip-fallback{position:absolute;inset:0;width:100%;height:100%;z-index:0;transition:opacity .35s;opacity:0;}
 .strip-lbl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%) rotate(-90deg);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;transition:all .3s;font-family:'DM Sans',sans-serif;font-weight:500;z-index:3;pointer-events:none;}
 .strip:hover .strip-lbl{color:#fff;}
@@ -101,6 +100,8 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .sec-eye::after{content:'';flex:1;height:2px;background:var(--red);max-width:48px;}
 .sec-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,4.5vw,4.8rem);line-height:.95;letter-spacing:.02em;color:var(--ink);margin-bottom:44px;}
 .sec-h2 span{color:var(--teal);}
+
+/* ── COLLECTIONS ── */
 #coll{padding:72px 56px;}
 .coll-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;}
 .coll-hdr .sec-h2{margin-bottom:0;}
@@ -108,16 +109,12 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .cc{position:relative;overflow:hidden;border:2px solid transparent;transition:border-color .3s;cursor:pointer;}
 .cc:hover{border-color:var(--ink);}
 .cc:first-child{grid-row:span 2;}
-
-/* ═══ ENHANCED: Category cards with video/image support ═══ */
 .cc-bg{width:100%;height:100%;transition:transform .5s ease;position:relative;}
 .cc-bg-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
 .cc-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:1;transition:opacity .4s;z-index:1;}
 .cc-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .4s;z-index:2;}
-.cc:hover .cc-bg-img,
-.cc:hover .cc-bg-video{opacity:1;}
+.cc:hover .cc-bg-img,.cc:hover .cc-bg-video{opacity:1;}
 .cc:hover .cc-bg{transform:scale(1.04);}
-
 .cc-info{position:absolute;bottom:0;left:0;right:0;padding:24px 20px 20px;background:linear-gradient(to top,rgba(26,10,0,.78),transparent);z-index:3;}
 .cc-tag{font-size:.52rem;letter-spacing:.32em;text-transform:uppercase;font-weight:600;margin-bottom:5px;}
 .cc-name{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.05em;color:#fff;line-height:1;}
@@ -125,21 +122,18 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .cc-hbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:#fff;color:var(--ink);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:11px 22px;white-space:nowrap;transition:transform .3s cubic-bezier(.34,1.56,.64,1);text-decoration:none;display:block;z-index:4;}
 .cc:hover .cc-hbtn{transform:translate(-50%,-50%) scale(1);}
 
+/* ── LOOKBOOK ── */
 #look{background:var(--off);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);}
 .lb-wrap{display:flex;height:60vw;max-height:620px;min-height:320px;}
 .lb{flex:1;position:relative;overflow:hidden;border-right:2px solid var(--ink);transition:flex .55s cubic-bezier(.25,.46,.45,.94);}
 .lb:last-child{border-right:none;}
 .lb:hover{flex:3;}
-
-/* ═══ ENHANCED: Lookbook with video/image support ═══ */
 .lb-bg{width:100%;height:100%;transition:transform .6s ease;position:relative;}
 .lb-bg-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
 .lb-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity .4s;z-index:1;}
 .lb-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
-.lb:hover .lb-bg-img,
-.lb:hover .lb-bg-video{opacity:1;}
+.lb:hover .lb-bg-img,.lb:hover .lb-bg-video{opacity:1;}
 .lb:hover .lb-bg{transform:scale(1.05);}
-
 .lb-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 20px;background:linear-gradient(to top,rgba(26,10,0,.82),transparent 58%);opacity:0;transition:opacity .3s;z-index:3;}
 .lb:hover .lb-ov{opacity:1;}
 .lb-nm{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.5rem);font-style:italic;color:#fff;line-height:1.25;}
@@ -147,6 +141,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .lb-n{position:absolute;top:16px;left:16px;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.05em;color:rgba(255,255,255,.18);line-height:1;transition:color .3s;z-index:3;}
 .lb:hover .lb-n{color:rgba(255,255,255,.42);}
 
+/* ── OUR CRAFT ── */
 #hl{padding:72px 56px;background:var(--w);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
 .hl-l .sec-h2{margin-bottom:32px;}
 .ci{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--bdr);transition:padding-left .3s;}
@@ -160,21 +155,18 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .cb h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:5px;color:var(--ink);}
 .cb p{font-size:.82rem;color:var(--ink2);line-height:1.75;font-weight:300;}
 .hl-r{position:relative;height:560px;}
-
-/* ═══ ENHANCED: Featured card with video/image support ═══ */
 .hl-card{width:100%;height:100%;position:relative;overflow:hidden;border:3px solid var(--ink);}
 .hl-card-bg{position:relative;width:100%;height:100%;}
 .hl-card-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
 .hl-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .4s;z-index:1;}
 .hl-card-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
-.hl-card:hover .hl-card-img,
-.hl-card:hover .hl-card-video{opacity:1;}
-
+.hl-card:hover .hl-card-img,.hl-card:hover .hl-card-video{opacity:1;}
 .hl-c{position:absolute;top:0;left:0;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.1em;padding:9px 18px;z-index:3;}
 .hl-bb{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;z-index:3;}
 .hl-bb h4{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;}
 .hl-bb span{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.05em;color:var(--tur2);}
 
+/* ── STORY ── */
 #story{background:var(--ink);color:#fff;padding:100px 56px;position:relative;overflow:hidden;}
 .s-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:20vw;letter-spacing:.05em;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;user-select:none;}
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
@@ -199,6 +191,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .ss:nth-child(4) .ss-n{color:var(--rose2);}
 .ss-l{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.48);}
 
+/* ── PRODUCTS ── */
 #prod{padding:72px 56px;background:var(--off);}
 .pt{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
 .pt .sec-h2{margin-bottom:0;}
@@ -213,17 +206,11 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .pc.hidden{display:none;}
 .pc:hover{border-color:var(--ink);}
 .pi{height:320px;position:relative;overflow:hidden;}
-
-/* ═══ ENHANCED: Product cards with video/image support ═══ */
 .pi-in{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s ease;z-index:0;}
 .pi-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .4s;z-index:1;}
 .pi-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
-.pc:hover .pi-in,
-.pc:hover .pi-img,
-.pc:hover .pi-video{transform:scale(1.06);}
-.pc:hover .pi-img,
-.pc:hover .pi-video{opacity:1;}
-
+.pc:hover .pi-in,.pc:hover .pi-img,.pc:hover .pi-video{transform:scale(1.06);}
+.pc:hover .pi-img,.pc:hover .pi-video{opacity:1;}
 .pb{position:absolute;top:10px;left:10px;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 9px;z-index:3;}
 .pn{background:var(--teal);color:#fff;}
 .ps{background:var(--red);color:#fff;}
@@ -238,6 +225,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .pw.liked{border-color:var(--red);color:var(--red);background:rgba(212,43,43,.08);}
 .pw:hover{border-color:var(--red);color:var(--red);}
 
+/* ── INSTAGRAM ── */
 #insta{padding:72px 56px;background:var(--w);border-top:3px solid var(--ink);}
 .it{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px;}
 .ig2{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
@@ -249,6 +237,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .ig-hov svg{width:22px;color:var(--ink);}
 .ig-hov span{font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
 
+/* ── CONTACT ── */
 #contact{display:grid;grid-template-columns:1fr 1fr;border-top:3px solid var(--ink);}
 .cl{padding:72px 56px;background:var(--tur2);display:flex;flex-direction:column;justify-content:center;}
 .cl .sec-eye{color:var(--ink);}
@@ -264,6 +253,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .cmap iframe{width:100%;height:100%;min-height:460px;border:none;display:block;}
 .map-lbl{position:absolute;top:16px;left:16px;z-index:10;background:var(--ink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.1em;padding:9px 18px;}
 
+/* ── FOOTER ── */
 footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px solid var(--tur2);}
 .ft{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
 .ft-brand .logo{color:var(--tur2);font-size:1.8rem;display:block;margin-bottom:14px;}
@@ -276,6 +266,7 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 .fb{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .fb p{font-size:.62rem;color:rgba(255,255,255,.32);letter-spacing:.08em;}
 
+/* ── ANIMATIONS ── */
 .rv{opacity:0;transform:translateY(44px);transition:opacity .7s,transform .7s;}
 .rv.go{opacity:1;transform:none;}
 .rv-l{opacity:0;transform:translateX(-44px);transition:opacity .7s,transform .7s;}
@@ -283,6 +274,7 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 .rv-r{opacity:0;transform:translateX(44px);transition:opacity .7s,transform .7s;}
 .rv-r.go{opacity:1;transform:none;}
 
+/* ── PRODUCT MODAL ── */
 .prod-modal{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .3s;}
 .prod-modal.open{opacity:1;visibility:visible;}
 .pm-bg{position:absolute;inset:0;background:rgba(26,10,0,.7);backdrop-filter:blur(6px);}
@@ -313,22 +305,30 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 .toast{position:fixed;bottom:90px;right:28px;z-index:9500;background:var(--ink);color:#fff;padding:12px 20px;font-size:.72rem;font-weight:500;letter-spacing:.06em;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;max-width:240px;}
 .toast.show{opacity:1;transform:none;}
 
+/* ══════════════════════════════════════
+   MOBILE FIXES - all spacing corrected
+══════════════════════════════════════ */
 @media(max-width:768px){
+  /* nav */
   .nav-links,.wa-btn,.nav-login-btn{display:none;}
   .ham{display:flex;}
-  nav{padding:16px 20px;}
-  nav.solid{padding:12px 20px;}
+  nav{padding:16px 16px;}
+  nav.solid{padding:12px 16px;}
+
+  /* hero */
   #hero{grid-template-columns:1fr;min-height:auto;}
-  .hero-l{padding:90px 24px 40px;order:1;}
+  .hero-l{padding:80px 16px 36px;order:1;}
   .hero-h1{font-size:clamp(3.2rem,14vw,5.5rem);}
   .hero-sub{font-size:.95rem;max-width:100%;}
-  .hero-stats{gap:20px;}
+  .hero-stats{gap:16px;}
   .hero-r{order:2;height:56vw;min-height:200px;}
   .strip{flex:1;}
   .strip video{opacity:1;}
   .strip-fallback{opacity:0;}
   .strip-lbl{display:none;}
-  #coll{padding:48px 20px;}
+
+  /* collections */
+  #coll{padding:40px 16px;}
   .coll-hdr{flex-direction:column;align-items:flex-start;gap:16px;}
   .cg{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:8px;}
   .cc:first-child{grid-row:span 1;grid-column:span 2;}
@@ -336,52 +336,80 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   .cc .cc-bg{height:40vw;min-height:150px;}
   .cc-hbtn{display:none;}
   .cc-bg-img,.cc-bg-video{opacity:1;}
+
+  /* lookbook */
   .lb-wrap{flex-direction:column;height:auto;max-height:none;}
   .lb{flex:none;height:60vw;border-right:none;border-bottom:2px solid var(--ink);}
   .lb:last-child{border-bottom:none;}
   .lb-ov{opacity:1;}
   .lb-bg-img,.lb-bg-video{opacity:1;}
-  #hl{grid-template-columns:1fr;gap:40px;padding:48px 20px;}
+
+  /* our craft */
+  #hl{grid-template-columns:1fr;gap:32px;padding:40px 16px;}
   .hl-r{height:auto;}
   .hl-card{height:72vw;min-height:260px;}
   .hl-card-img,.hl-card-video{opacity:1;}
-  #story{padding:56px 20px;}
+
+  /* story */
+  #story{padding:48px 16px;}
   .sg{grid-template-columns:1fr;gap:40px;}
   .s-bg,.s-bn{display:none;}
   .ssg{grid-template-columns:1fr 1fr;}
-  .ss{padding:22px 18px;}
-  #prod{padding:48px 20px;}
+  .ss{padding:22px 16px;}
+
+  /* products */
+  #prod{padding:40px 16px;}
   .pt{flex-direction:column;align-items:flex-start;}
   .pg{grid-template-columns:1fr 1fr;gap:2px;}
   .pi{height:44vw;min-height:160px;}
   .pi-img,.pi-video{opacity:1;}
-  #insta{padding:48px 20px;}
+
+  /* instagram */
+  #insta{padding:40px 16px;}
   .ig2{grid-template-columns:repeat(3,1fr);gap:3px;}
   .it{flex-direction:column;align-items:flex-start;}
+
+  /* contact */
   #contact{grid-template-columns:1fr;}
-  .cl{padding:48px 20px;}
-  .cmap{min-height:320px;}
-  .cmap iframe{min-height:320px;}
-  footer{padding:40px 20px 24px;}
-  .ft{grid-template-columns:1fr 1fr;gap:28px;}
+  .cl{padding:40px 16px;}
+  .cmap{min-height:280px;}
+  .cmap iframe{min-height:280px;}
+
+  /* footer */
+  footer{padding:36px 16px 20px;}
+  .ft{grid-template-columns:1fr 1fr;gap:24px;}
   .ft-brand{grid-column:span 2;}
   .fb{flex-direction:column;text-align:center;gap:6px;}
+
+  /* modal */
   .pm-box{grid-template-columns:1fr;max-width:96vw;}
-  .pm-img{min-height:280px;}
-  .pm-img-bg{min-height:280px;}
-  .pm-info{padding:24px 20px;}
+  .pm-img{min-height:260px;}
+  .pm-img-bg{min-height:260px;}
+  .pm-info{padding:20px 16px;}
 }
+
 @media(max-width:420px){
+  nav{padding:14px 12px;}
+  nav.solid{padding:10px 12px;}
+  .hero-l{padding:76px 12px 32px;}
   .hero-h1{font-size:clamp(2.8rem,16vw,4rem);}
-  .pg{grid-template-columns:1fr;}
-  .pi{height:68vw;}
-  .ig2{grid-template-columns:repeat(2,1fr);}
-  .ft{grid-template-columns:1fr;}
-  .ft-brand{grid-column:span 1;}
-  .ssg{grid-template-columns:1fr;}
+  #coll{padding:32px 12px;}
   .cg{grid-template-columns:1fr;}
   .cc:first-child{grid-column:span 1;}
   .cc .cc-bg,.cc:first-child .cc-bg{height:58vw;}
+  #prod{padding:32px 12px;}
+  .pg{grid-template-columns:1fr;}
+  .pi{height:68vw;}
+  #insta{padding:32px 12px;}
+  .ig2{grid-template-columns:repeat(2,1fr);}
+  #story{padding:40px 12px;}
+  .ssg{grid-template-columns:1fr;}
+  #hl{padding:32px 12px;}
+  #contact .cl{padding:32px 12px;}
+  footer{padding:32px 12px 16px;}
+  .ft{grid-template-columns:1fr;}
+  .ft-brand{grid-column:span 1;}
+  .pm-info{padding:16px 12px;}
 }
 </style>
 </head>
@@ -496,26 +524,17 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   </div>
 </div>
 
-<!-- ══════════════ POINT 1: COLLECTIONS with VIDEO/IMAGE support ══════════════ -->
 <section id="coll">
   <div class="coll-hdr rv">
     <div><div class="sec-eye">Curated Collections</div><div class="sec-h2">SHOP BY<br><span>CATEGORY</span></div></div>
   </div>
   <div class="cg rv">
-
-    <!-- CATEGORY 1: Bridal Silks -->
     <div class="cc" data-cat="bridal">
       <div class="cc-bg" style="height:100%;">
-        <!-- Color fallback (shows if no image/video) -->
         <div class="cc-bg-color" style="background:linear-gradient(160deg,#5A0F1C,#D42B2B,#FF8C8C);display:flex;align-items:center;justify-content:center;">
           <svg width="180" height="260" viewBox="0 0 180 260" fill="none"><path d="M30 240 C30 240 55 175 60 120 C65 65 75 25 90 8 C105 25 115 65 120 120 C125 175 150 240 150 240" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/><ellipse cx="90" cy="130" rx="32" ry="52" fill="rgba(255,255,255,0.07)"/><g fill="rgba(255,255,255,0.8)"><path d="M90 52 L95 66 L110 66 L98 75 L102 89 L90 80 L78 89 L82 75 L70 66 L85 66Z"/></g><rect x="26" y="230" width="128" height="4" fill="rgba(255,255,255,0.55)"/></svg>
         </div>
-        
-        <!-- // PUT IMAGE URL HERE - will show on hover (desktop) or always (mobile) -->
         <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18192-414-PINK1_22-07-2025-09-58:650x900?&dpr=on,2" alt="Bridal Silks" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE (.mp4, .webm, etc) - will play on hover (desktop) or always (mobile) -->
-         
         <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SB18192-414-PINK_17-07-2025-14-43-0x900-1500k" type="video/mp4">
         </video>
@@ -523,18 +542,12 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="cc-info"><div class="cc-tag" style="color:#FFB3B3;">Bestselling Range</div><div class="cc-name">Bridal Silks</div><div class="cc-cnt">48 exclusive pieces</div></div>
       <a href="shop.html?cat=bridal" class="cc-hbtn">Shop Now →</a>
     </div>
-
-    <!-- CATEGORY 2: Cotton Weaves -->
     <div class="cc" data-cat="cotton">
       <div class="cc-bg" style="height:100%;">
         <div class="cc-bg-color" style="background:linear-gradient(160deg,#004A42,#007A6E,#00E5D0);display:flex;align-items:center;justify-content:center;">
           <svg width="110" height="110" viewBox="0 0 110 110" fill="none" style="opacity:.6"><circle cx="55" cy="55" r="44" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-dasharray="5 4"/><circle cx="55" cy="55" r="28" stroke="rgba(255,255,255,.4)" stroke-width="1.5" fill="rgba(255,255,255,.05)"/><circle cx="55" cy="55" r="11" fill="rgba(255,255,255,.25)"/></svg>
         </div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/LB9342-412-PEACH-101_27-10-2025-06-37:650x900?&dpr=on,2" alt="Cotton Weaves" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/LB9342-412-PEACH_08-11-2025-06-06-0x900-1500k" type="video/mp4">
         </video>
@@ -542,18 +555,12 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="cc-info"><div class="cc-tag" style="color:#7FFFEF;">Fresh Arrivals</div><div class="cc-name">Cotton Weaves</div><div class="cc-cnt">36 pieces</div></div>
       <a href="shop.html?cat=cotton" class="cc-hbtn">Shop Now →</a>
     </div>
-
-    <!-- CATEGORY 3: Pure Zari -->
     <div class="cc" data-cat="zari">
       <div class="cc-bg" style="height:100%;">
         <div class="cc-bg-color" style="background:linear-gradient(160deg,#7A5200,#E8A000,#FFE08C);display:flex;align-items:center;justify-content:center;">
           <svg width="110" height="110" viewBox="0 0 110 110" fill="none" style="opacity:.6"><polygon points="55,8 68,40 102,40 76,60 86,92 55,72 24,92 34,60 8,40 42,40" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/></svg>
         </div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SAS8113_413-PURPLE_101.16112_09-02-2025-21-21:650x900?&dpr=on,2" alt="Pure Zari" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SAS8113_413-PURPLE_201_20-02-2025-10-53-0x900-1500k" type="video/mp4">
         </video>
@@ -561,18 +568,12 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="cc-info"><div class="cc-tag" style="color:#FFE08C;">Heritage Range</div><div class="cc-name">Pure Zari</div><div class="cc-cnt">24 pieces</div></div>
       <a href="shop.html?cat=zari" class="cc-hbtn">Shop Now →</a>
     </div>
-
-    <!-- CATEGORY 4: Occasion Wear -->
     <div class="cc" data-cat="occasion">
       <div class="cc-bg" style="height:100%;">
         <div class="cc-bg-color" style="background:linear-gradient(160deg,#6B0035,#D4006A,#FF80BC);display:flex;align-items:center;justify-content:center;">
           <svg width="110" height="90" viewBox="0 0 110 90" fill="none" style="opacity:.6"><path d="M12 72 Q55 24 98 72" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="55" cy="36" r="11" fill="rgba(255,255,255,.2)"/></svg>
         </div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SKT5088-426-T.BLUE-101._01-02-2021-17-27-1:650x900?&dpr=on,2" alt="Occasion Wear" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SKT5088-426-T.BLUE_13-10-2025-08-55-0x900-1500k" type="video/mp4">
         </video>
@@ -580,23 +581,15 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="cc-info"><div class="cc-tag" style="color:#FFB3D6;">Festive Edit</div><div class="cc-name">Occasion Wear</div><div class="cc-cnt">52 pieces</div></div>
       <a href="shop.html?cat=occasion" class="cc-hbtn">Shop Now →</a>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════ POINT 2: LOOKBOOK with VIDEO/IMAGE support ══════════════ -->
 <section id="look">
   <div class="lb-wrap">
-    
-    <!-- LOOKBOOK 1 -->
     <div class="lb" data-look="1">
       <div class="lb-bg">
         <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFE5E5,#D42B2B);position:absolute;inset:0;"></div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/I02_0R5A4453+copy_20-10-2021-20-04:650x900?&dpr=on,2" alt="The Crimson Bride" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="" type="video/mp4">
         </video>
@@ -604,16 +597,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="lb-n">01</div>
       <div class="lb-ov"><span class="lb-tp" style="color:#FFB3B3;">Bridal Edit</span><div class="lb-nm">The Crimson<br>Bride</div></div>
     </div>
-
-    <!-- LOOKBOOK 2 -->
     <div class="lb" data-look="2">
       <div class="lb-bg">
         <div class="lb-bg-color" style="background:linear-gradient(180deg,#E5FFF8,#007A6E);position:absolute;inset:0;"></div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18767-435-BOTTLE+GREEN-1-101_05-02-2026-06-22:650x900?&dpr=on,2" alt="Monsoon Greens" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SB18767-435-BOTTLE%20GREEN_11-02-2026-04-53-0x900-1500k" type="video/mp4">
         </video>
@@ -621,16 +608,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="lb-n">02</div>
       <div class="lb-ov"><span class="lb-tp" style="color:#7FFFEF;">Festive Cotton</span><div class="lb-nm">Monsoon<br>Greens</div></div>
     </div>
-
-    <!-- LOOKBOOK 3 -->
     <div class="lb" data-look="3">
       <div class="lb-bg">
         <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFFAE5,#E8A000);position:absolute;inset:0;"></div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB17075_420-423-MUSTARD+YELLOW-LIGHT+YELLOW.22642_18-04-2024-15-50:650x900?&dpr=on,2" alt="Golden Harvest" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SB17075_420-423-MUSTARD%20YELLOW-LIGHT%20YELLOW_25-04-2024-11-33-0x900-1500k" type="video/mp4">
         </video>
@@ -638,16 +619,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="lb-n">03</div>
       <div class="lb-ov"><span class="lb-tp" style="color:#FFE08C;">Zari Heritage</span><div class="lb-nm">Golden<br>Harvest</div></div>
     </div>
-
-    <!-- LOOKBOOK 4 -->
     <div class="lb" data-look="4">
       <div class="lb-bg">
         <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFE5F5,#D4006A);position:absolute;inset:0;"></div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SKT4874_418-ORANGE_101.4329_23-12-2024-16-52:650x900?&dpr=on,2" alt="Rose & Jasmine" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SKT4874_418-ORANGE_201_30-12-2024-05-39-0x900-1500k" type="video/mp4">
         </video>
@@ -655,16 +630,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="lb-n">04</div>
       <div class="lb-ov"><span class="lb-tp" style="color:#FFB3D6;">Sangeet Special</span><div class="lb-nm">Rose &amp; Jasmine</div></div>
     </div>
-
-    <!-- LOOKBOOK 5 -->
     <div class="lb" data-look="5">
       <div class="lb-bg">
         <div class="lb-bg-color" style="background:linear-gradient(180deg,#F0F0FF,#2B1FD4);position:absolute;inset:0;"></div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18442-434-LIGHT+BLUE1_22-07-2025-13-55:650x900?&dpr=on,2" alt="Midnight Indigo" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="https://manyavar.scene7.com/is/content/manyavar/SB18442-434-LIGHT%20BLUE_19-07-2025-14-26-0x900-1500k" type="video/mp4">
         </video>
@@ -672,11 +641,9 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
       <div class="lb-n">05</div>
       <div class="lb-ov"><span class="lb-tp" style="color:#C8C5FF;">Patola Silk</span><div class="lb-nm">Midnight<br>Indigo</div></div>
     </div>
-
   </div>
 </section>
 
-<!-- ══════════════ POINT 3: OUR CRAFT with VIDEO/IMAGE support ══════════════ -->
 <section id="hl">
   <div class="hl-l rv-l">
     <div class="sec-eye">Why We're Different</div>
@@ -691,15 +658,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   <div class="hl-r rv-r">
     <div class="hl-card">
       <div class="hl-card-bg">
-        <!-- Color fallback -->
         <div class="hl-card-color" style="background:linear-gradient(160deg,#FFF5E5,#FFD580,#E8A000,#8B5E00);display:flex;align-items:center;justify-content:center;">
           <svg width="260" height="340" viewBox="0 0 260 340" fill="none"><circle cx="130" cy="170" r="110" fill="none" stroke="rgba(26,10,0,.06)" stroke-width="2"/><circle cx="130" cy="170" r="85" fill="none" stroke="rgba(26,10,0,.08)" stroke-width="1.5"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D42B2B" opacity=".75"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D42B2B" opacity=".75" transform="rotate(45 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#007A6E" opacity=".75" transform="rotate(90 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#007A6E" opacity=".75" transform="rotate(135 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#E8A000" opacity=".75" transform="rotate(180 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#E8A000" opacity=".75" transform="rotate(225 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D4006A" opacity=".75" transform="rotate(270 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D4006A" opacity=".75" transform="rotate(315 130 170)"/><circle cx="130" cy="170" r="26" fill="white"/><circle cx="130" cy="170" r="17" fill="#E8A000"/><circle cx="130" cy="170" r="8" fill="white"/><circle cx="130" cy="170" r="4" fill="#D42B2B"/></svg>
         </div>
-        
-        <!-- // PUT IMAGE URL HERE -->
         <img class="hl-card-img" src="" alt="Featured Saree" onerror="this.style.display='none'">
-        
-        <!-- // PUT VIDEO URL HERE -->
         <video class="hl-card-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
           <source src="" type="video/mp4">
         </video>
@@ -733,8 +695,6 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   </div>
 </section>
 
-<!-- ══════════════ POINT 4: PRODUCTS with VIDEO/IMAGE support ══════════════ -->
-<!-- Products are rendered via JavaScript - see PRODUCTS array below -->
 <section id="prod">
   <div class="pt rv">
     <div><div class="sec-eye">Our Store</div><div class="sec-h2">SHOP <span>SAREES</span></div></div>
@@ -820,563 +780,214 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 <div class="toast" id="toast"></div>
 
 <script>
-// ══════════════════════════════════════════════════════════════════
-// PRODUCTS DATA - add img and video URLs here
-// ══════════════════════════════════════════════════════════════════
 var PRODUCTS = [
-  {
-    id: 1,
-    name: 'Venkatagiri Silk',
-    type: 'Pure Handloom · Crimson',
-    cat: 'bridal silk',
-    badge: 'Bridal',
-    badgeClass: 'pbr',
-    price: '₹4,500',
-    desc: 'A stunning crimson Venkatagiri silk saree with intricate zari border. Perfect for weddings and grand occasions.',
-    bg: 'linear-gradient(150deg,#5A0F1C,#D42B2B,#FF9999)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/LB9405_407-MAROON_28-02-2026-14-23:650x900?&dpr=on,2',
-    video: 'https://manyavar.scene7.com/is/content/manyavar/LB9405-407-MAROON%20(1)_27-01-2025-08-49-0x900-1500k'
-  },
-  {
-    id: 2,
-    name: 'Teal Cotton Weave',
-    type: 'Handloom Cotton · Teal',
-    cat: 'cotton',
-    badge: 'New',
-    badgeClass: 'pn',
-    price: '₹2,800',
-    desc: 'Fresh handloom cotton saree in soothing teal. Ideal for daily wear and casual occasions.',
-    bg: 'linear-gradient(150deg,#003D36,#007A6E,#80FFEF)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/UL5110V-407-MAROON1_22-07-2025-13-30:650x900?&dpr=on,2',
-    video: 'https://manyavar.scene7.com/is/content/manyavar/UL5110V-407-MAROON_19-07-2025-16-16-0x900-1500k'
-  },
-  {
-    id: 3,
-    name: 'Golden Zari Weave',
-    type: 'Pure Zari · Amber Gold',
-    cat: 'zari',
-    badge: 'Bestseller',
-    badgeClass: 'ph',
-    price: '₹12,000',
-    desc: 'Premium pure zari saree in radiant amber gold. The hallmark of traditional craftsmanship.',
-    bg: 'linear-gradient(150deg,#7A5200,#E8A000,#FFDB80)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/UL5003VD_443-415-DUSTY+PINK_101.19559_03-09-2024-23-25:650x900?&dpr=on,2',
-    video: ''
-  },
-  {
-    id: 4,
-    name: 'Rose Kanjivaram',
-    type: 'Pure Silk · Deep Rose',
-    cat: 'bridal silk',
-    badge: 'Bridal',
-    badgeClass: 'pbr',
-    price: '₹18,500',
-    desc: 'Exquisite Kanjivaram silk in deep rose with gold zari motifs. The ultimate bridal choice.',
-    bg: 'linear-gradient(150deg,#6B0035,#D4006A,#FFB3D6)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/I03_1_27-12-2022-10-08:650x900?&dpr=on,2',
-    video: ''
-  },
-  {
-    id: 5,
-    name: 'Midnight Patola',
-    type: 'Double Ikat · Indigo',
-    cat: 'silk',
-    badge: 'Sale',
-    badgeClass: 'ps',
-    price: '₹15,000',
-    desc: "Rare double ikat Patola saree in midnight indigo. A collector's piece from master weavers.",
-    bg: 'linear-gradient(150deg,#150D6B,#2B1FD4,#A8A3FF)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/SB19121-433-RAMA+GREEN-1-101_04-02-2026-08-09:650x900?&dpr=on,2',
-    video: ''
-  },
-  {
-    id: 6,
-    name: 'Emerald Tissue',
-    type: 'Tissue Silk · Forest Green',
-    cat: 'silk cotton',
-    badge: 'New',
-    badgeClass: 'pn',
-    price: '₹6,500',
-    desc: 'Lightweight tissue silk in forest green with subtle shimmer. Elegant for festive occasions.',
-    bg: 'linear-gradient(150deg,#003020,#006B3C,#80FFB3)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/SB18675-436-404-SEA+GREEN-FAWN-101_28-10-2025-07-43:650x900?&dpr=on,2',
-    video: ''
-  },
-  {
-    id: 7,
-    name: 'Rust Kanchi',
-    type: 'Kanjivaram · Rust Orange',
-    cat: 'bridal silk',
-    badge: 'Bestseller',
-    badgeClass: 'ph',
-    price: '₹9,800',
-    desc: 'Rich rust orange Kanjivaram with traditional temple border. Timeless and magnificent.',
-    bg: 'linear-gradient(150deg,#4A1A00,#B84000,#FFAA80)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/SB16818_427-GREEN_101.21368_04-09-2024-20-59:650x900?&dpr=on,2',
-    video: ''
-  },
-  {
-    id: 8,
-    name: 'Lime Banarasi',
-    type: 'Banarasi · Lime Gold',
-    cat: 'zari silk',
-    badge: 'Sale',
-    badgeClass: 'ps',
-    price: '₹7,200',
-    desc: 'Contemporary Banarasi weave in lime gold with modern geometric patterns.',
-    bg: 'linear-gradient(150deg,#1A1A00,#4A4A00,#DDDD80)',
-    img: 'https://manyavar.scene7.com/is/image/manyavar/SB15967_436-SEA+GREEN_101.7457_26-12-2024-16-36:650x900?&dpr=on,2',
-    video: ''
-  }
+  {id:1,name:'Venkatagiri Silk',type:'Pure Handloom · Crimson',cat:'bridal silk',badge:'Bridal',badgeClass:'pbr',price:'₹4,500',desc:'A stunning crimson Venkatagiri silk saree with intricate zari border. Perfect for weddings and grand occasions.',bg:'linear-gradient(150deg,#5A0F1C,#D42B2B,#FF9999)',img:'https://manyavar.scene7.com/is/image/manyavar/LB9405_407-MAROON_28-02-2026-14-23:650x900?&dpr=on,2',video:'https://manyavar.scene7.com/is/content/manyavar/LB9405-407-MAROON%20(1)_27-01-2025-08-49-0x900-1500k'},
+  {id:2,name:'Teal Cotton Weave',type:'Handloom Cotton · Teal',cat:'cotton',badge:'New',badgeClass:'pn',price:'₹2,800',desc:'Fresh handloom cotton saree in soothing teal. Ideal for daily wear and casual occasions.',bg:'linear-gradient(150deg,#003D36,#007A6E,#80FFEF)',img:'https://manyavar.scene7.com/is/image/manyavar/UL5110V-407-MAROON1_22-07-2025-13-30:650x900?&dpr=on,2',video:'https://manyavar.scene7.com/is/content/manyavar/UL5110V-407-MAROON_19-07-2025-16-16-0x900-1500k'},
+  {id:3,name:'Golden Zari Weave',type:'Pure Zari · Amber Gold',cat:'zari',badge:'Bestseller',badgeClass:'ph',price:'₹12,000',desc:'Premium pure zari saree in radiant amber gold. The hallmark of traditional craftsmanship.',bg:'linear-gradient(150deg,#7A5200,#E8A000,#FFDB80)',img:'https://manyavar.scene7.com/is/image/manyavar/UL5003VD_443-415-DUSTY+PINK_101.19559_03-09-2024-23-25:650x900?&dpr=on,2',video:''},
+  {id:4,name:'Rose Kanjivaram',type:'Pure Silk · Deep Rose',cat:'bridal silk',badge:'Bridal',badgeClass:'pbr',price:'₹18,500',desc:'Exquisite Kanjivaram silk in deep rose with gold zari motifs. The ultimate bridal choice.',bg:'linear-gradient(150deg,#6B0035,#D4006A,#FFB3D6)',img:'https://manyavar.scene7.com/is/image/manyavar/I03_1_27-12-2022-10-08:650x900?&dpr=on,2',video:''},
+  {id:5,name:'Midnight Patola',type:'Double Ikat · Indigo',cat:'silk',badge:'Sale',badgeClass:'ps',price:'₹15,000',desc:"Rare double ikat Patola saree in midnight indigo. A collector's piece from master weavers.",bg:'linear-gradient(150deg,#150D6B,#2B1FD4,#A8A3FF)',img:'https://manyavar.scene7.com/is/image/manyavar/SB19121-433-RAMA+GREEN-1-101_04-02-2026-08-09:650x900?&dpr=on,2',video:''},
+  {id:6,name:'Emerald Tissue',type:'Tissue Silk · Forest Green',cat:'silk cotton',badge:'New',badgeClass:'pn',price:'₹6,500',desc:'Lightweight tissue silk in forest green with subtle shimmer. Elegant for festive occasions.',bg:'linear-gradient(150deg,#003020,#006B3C,#80FFB3)',img:'https://manyavar.scene7.com/is/image/manyavar/SB18675-436-404-SEA+GREEN-FAWN-101_28-10-2025-07-43:650x900?&dpr=on,2',video:''},
+  {id:7,name:'Rust Kanchi',type:'Kanjivaram · Rust Orange',cat:'bridal silk',badge:'Bestseller',badgeClass:'ph',price:'₹9,800',desc:'Rich rust orange Kanjivaram with traditional temple border. Timeless and magnificent.',bg:'linear-gradient(150deg,#4A1A00,#B84000,#FFAA80)',img:'https://manyavar.scene7.com/is/image/manyavar/SB16818_427-GREEN_101.21368_04-09-2024-20-59:650x900?&dpr=on,2',video:''},
+  {id:8,name:'Lime Banarasi',type:'Banarasi · Lime Gold',cat:'zari silk',badge:'Sale',badgeClass:'ps',price:'₹7,200',desc:'Contemporary Banarasi weave in lime gold with modern geometric patterns.',bg:'linear-gradient(150deg,#1A1A00,#4A4A00,#DDDD80)',img:'https://manyavar.scene7.com/is/image/manyavar/SB15967_436-SEA+GREEN_101.7457_26-12-2024-16-36:650x900?&dpr=on,2',video:''}
 ];
 
-var wishlist = [];
-try { wishlist = JSON.parse(localStorage.getItem('samala_wish') || '[]'); } catch(e) {}
-var cart = [];
-try { cart = JSON.parse(localStorage.getItem('samala_cart') || '[]'); } catch(e) {}
-var currentProduct = null;
+var wishlist=[];try{wishlist=JSON.parse(localStorage.getItem('samala_wish')||'[]');}catch(e){}
+var cart=[];try{cart=JSON.parse(localStorage.getItem('samala_cart')||'[]');}catch(e){}
+var currentProduct=null;
 
-function renderProducts(filter) {
-  var grid = document.getElementById('prodGrid');
-  grid.innerHTML = '';
-  var shown = 0;
-  
-  PRODUCTS.forEach(function(p) {
-    if (filter && filter !== 'all' && p.cat.indexOf(filter) === -1) return;
-    if (shown >= 8) return;
+function renderProducts(filter){
+  var grid=document.getElementById('prodGrid');
+  grid.innerHTML='';
+  var shown=0;
+  PRODUCTS.forEach(function(p){
+    if(filter&&filter!=='all'&&p.cat.indexOf(filter)===-1)return;
+    if(shown>=8)return;
     shown++;
-    
-    var isWished = wishlist.indexOf(p.id) !== -1;
-    var div = document.createElement('div');
-    div.className = 'pc';
-    div.setAttribute('data-cat', p.cat);
-    
-    // Build product HTML with video/image support
-    var mediaHTML = '';
-    
-    // Add color background
-    mediaHTML += '<div class="pi-in" style="background:' + p.bg + ';"></div>';
-    
-    // Add image if provided
-    if (p.img && p.img.trim()) {
-      mediaHTML += '<img class="pi-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.style.display=\'none\'">';
-    }
-    
-    // Add video if provided
-    if (p.video && p.video.trim()) {
-      mediaHTML += '<video class="pi-video" muted playsinline loop preload="none" onerror="this.style.display=\'none\'"><source src="' + p.video + '" type="video/mp4"></video>';
-    }
-    
-    div.innerHTML = '<div class="pi" onclick="openModal(' + p.id + ')">' +
-      mediaHTML +
-      '<span class="pb ' + p.badgeClass + '">' + p.badge + '</span></div>' +
-      '<div class="pinfo"><div class="pname">' + p.name + '</div><div class="ptype">' + p.type + '</div>' +
-      '<div class="ppr"><span class="pprice">' + p.price + '</span>' +
-      '<button class="pw' + (isWished ? ' liked' : '') + '" onclick="toggleWish(' + p.id + ',this)" aria-label="Wishlist">' +
-      '<svg width="13" height="13" viewBox="0 0 24 24" fill="' + (isWished ? '#D42B2B' : 'none') + '" stroke="' + (isWished ? '#D42B2B' : 'currentColor') + '" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>' +
+    var isWished=wishlist.indexOf(p.id)!==-1;
+    var div=document.createElement('div');
+    div.className='pc';
+    div.setAttribute('data-cat',p.cat);
+    var mediaHTML='<div class="pi-in" style="background:'+p.bg+';"></div>';
+    if(p.img&&p.img.trim())mediaHTML+='<img class="pi-img" src="'+p.img+'" alt="'+p.name+'" onerror="this.style.display=\'none\'">';
+    if(p.video&&p.video.trim())mediaHTML+='<video class="pi-video" muted playsinline loop preload="none" onerror="this.style.display=\'none\'"><source src="'+p.video+'" type="video/mp4"></video>';
+    div.innerHTML='<div class="pi" onclick="openModal('+p.id+')">'+mediaHTML+'<span class="pb '+p.badgeClass+'">'+p.badge+'</span></div>'+
+      '<div class="pinfo"><div class="pname">'+p.name+'</div><div class="ptype">'+p.type+'</div>'+
+      '<div class="ppr"><span class="pprice">'+p.price+'</span>'+
+      '<button class="pw'+(isWished?' liked':'')+'" onclick="toggleWish('+p.id+',this)" aria-label="Wishlist">'+
+      '<svg width="13" height="13" viewBox="0 0 24 24" fill="'+(isWished?'#D42B2B':'none')+'" stroke="'+(isWished?'#D42B2B':'currentColor')+'" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>'+
       '</button></div></div>';
-    
     grid.appendChild(div);
   });
-  
-  // Initialize video handlers for product cards
   initProductVideos();
 }
 
-function initProductVideos() {
-  var isMobile = !window.matchMedia('(pointer:fine)').matches;
-  
-  document.querySelectorAll('.pc').forEach(function(card) {
-    var video = card.querySelector('.pi-video');
-    if (!video) return;
-    
-    if (isMobile) {
-      // Mobile: play on touch
-      card.addEventListener('touchstart', function() {
-        video.play().catch(function() {});
-      }, {passive: true});
-    } else {
-      // Desktop: play on hover
-      card.addEventListener('mouseenter', function() {
-        video.play().catch(function() {});
-      });
-      card.addEventListener('mouseleave', function() {
-        video.pause();
-        video.currentTime = 0;
-      });
+function initProductVideos(){
+  var isMobile=!window.matchMedia('(pointer:fine)').matches;
+  document.querySelectorAll('.pc').forEach(function(card){
+    var video=card.querySelector('.pi-video');
+    if(!video)return;
+    if(isMobile){
+      card.addEventListener('touchstart',function(){video.play().catch(function(){});},{passive:true});
+    }else{
+      card.addEventListener('mouseenter',function(){video.play().catch(function(){});});
+      card.addEventListener('mouseleave',function(){video.pause();video.currentTime=0;});
     }
   });
 }
 
 renderProducts('all');
 
-function toggleWish(id, btn) {
-  var idx = wishlist.indexOf(id);
-  if (idx === -1) {
-    wishlist.push(id);
-    showToast('Added to wishlist ♡');
-  } else {
-    wishlist.splice(idx, 1);
-    showToast('Removed from wishlist');
-  }
-  localStorage.setItem('samala_wish', JSON.stringify(wishlist));
+function toggleWish(id,btn){
+  var idx=wishlist.indexOf(id);
+  if(idx===-1){wishlist.push(id);showToast('Added to wishlist ♡');}
+  else{wishlist.splice(idx,1);showToast('Removed from wishlist');}
+  localStorage.setItem('samala_wish',JSON.stringify(wishlist));
   btn.classList.toggle('liked');
-  var svg = btn.querySelector('svg');
-  if (btn.classList.contains('liked')) {
-    svg.setAttribute('fill', '#D42B2B');
-    svg.setAttribute('stroke', '#D42B2B');
-  } else {
-    svg.setAttribute('fill', 'none');
-    svg.setAttribute('stroke', 'currentColor');
-  }
+  var svg=btn.querySelector('svg');
+  if(btn.classList.contains('liked')){svg.setAttribute('fill','#D42B2B');svg.setAttribute('stroke','#D42B2B');}
+  else{svg.setAttribute('fill','none');svg.setAttribute('stroke','currentColor');}
 }
 
-function openModal(id) {
-  var p = PRODUCTS.find(function(x) { return x.id === id; });
-  if (!p) return;
-  currentProduct = p;
-  
-  var bg = document.getElementById('pmImgBg');
-  bg.style.cssText = 'background:' + p.bg + ';width:100%;height:100%;min-height:480px;position:relative;';
-  
-  // Add image/video to modal
-  var oldMedia = bg.querySelectorAll('img, video');
-  oldMedia.forEach(function(el) { el.remove(); });
-  
-  if (p.img && p.img.trim()) {
-    var im = document.createElement('img');
-    im.src = p.img;
-    im.alt = p.name;
-    im.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
-    im.onerror = function() { this.remove(); };
-    bg.appendChild(im);
-  }
-  
-  if (p.video && p.video.trim()) {
-    var vid = document.createElement('video');
-    vid.muted = true;
-    vid.loop = true;
-    vid.playsInline = true;
-    vid.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;';
-    var src = document.createElement('source');
-    src.src = p.video;
-    src.type = 'video/mp4';
-    vid.appendChild(src);
-    vid.onerror = function() { this.remove(); };
-    bg.appendChild(vid);
-    vid.play().catch(function() {});
-  }
-  
-  document.getElementById('pmBadge').className = 'pm-badge ' + p.badgeClass;
-  document.getElementById('pmBadge').innerText = p.badge;
-  document.getElementById('pmCat').innerText = p.cat.split(' ').map(function(s) {
-    return s.charAt(0).toUpperCase() + s.slice(1);
-  }).join(' · ');
-  document.getElementById('pmName').innerText = p.name;
-  document.getElementById('pmType').innerText = p.type;
-  document.getElementById('pmPrice').innerText = p.price;
-  document.getElementById('pmDesc').innerText = p.desc;
-  
-  var wb = document.getElementById('pmWishBtn');
-  if (wishlist.indexOf(p.id) !== -1) {
-    wb.classList.add('liked');
-    wb.innerText = '♥ Wishlisted';
-  } else {
-    wb.classList.remove('liked');
-    wb.innerText = '♡ Wishlist';
-  }
-  
+function openModal(id){
+  var p=PRODUCTS.find(function(x){return x.id===id;});
+  if(!p)return;
+  currentProduct=p;
+  var bg=document.getElementById('pmImgBg');
+  bg.style.cssText='background:'+p.bg+';width:100%;height:100%;min-height:480px;position:relative;';
+  var oldMedia=bg.querySelectorAll('img,video');
+  oldMedia.forEach(function(el){el.remove();});
+  if(p.img&&p.img.trim()){var im=document.createElement('img');im.src=p.img;im.alt=p.name;im.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';im.onerror=function(){this.remove();};bg.appendChild(im);}
+  if(p.video&&p.video.trim()){var vid=document.createElement('video');vid.muted=true;vid.loop=true;vid.playsInline=true;vid.style.cssText='position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;';var src=document.createElement('source');src.src=p.video;src.type='video/mp4';vid.appendChild(src);vid.onerror=function(){this.remove();};bg.appendChild(vid);vid.play().catch(function(){});}
+  document.getElementById('pmBadge').className='pm-badge '+p.badgeClass;
+  document.getElementById('pmBadge').innerText=p.badge;
+  document.getElementById('pmCat').innerText=p.cat.split(' ').map(function(s){return s.charAt(0).toUpperCase()+s.slice(1);}).join(' · ');
+  document.getElementById('pmName').innerText=p.name;
+  document.getElementById('pmType').innerText=p.type;
+  document.getElementById('pmPrice').innerText=p.price;
+  document.getElementById('pmDesc').innerText=p.desc;
+  var wb=document.getElementById('pmWishBtn');
+  if(wishlist.indexOf(p.id)!==-1){wb.classList.add('liked');wb.innerText='♥ Wishlisted';}
+  else{wb.classList.remove('liked');wb.innerText='♡ Wishlist';}
   document.getElementById('prodModal').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  document.body.style.overflow='hidden';
 }
 
-function closeModal() {
-  document.getElementById('prodModal').classList.remove('open');
-  document.body.style.overflow = '';
-  currentProduct = null;
+function closeModal(){document.getElementById('prodModal').classList.remove('open');document.body.style.overflow='';currentProduct=null;}
+
+function toggleModalWish(){
+  if(!currentProduct)return;
+  var id=currentProduct.id;
+  var idx=wishlist.indexOf(id);
+  var wb=document.getElementById('pmWishBtn');
+  if(idx===-1){wishlist.push(id);wb.classList.add('liked');wb.innerText='♥ Wishlisted';showToast('Added to wishlist ♡');}
+  else{wishlist.splice(idx,1);wb.classList.remove('liked');wb.innerText='♡ Wishlist';showToast('Removed from wishlist');}
+  localStorage.setItem('samala_wish',JSON.stringify(wishlist));
 }
 
-function toggleModalWish() {
-  if (!currentProduct) return;
-  var id = currentProduct.id;
-  var idx = wishlist.indexOf(id);
-  var wb = document.getElementById('pmWishBtn');
-  
-  if (idx === -1) {
-    wishlist.push(id);
-    wb.classList.add('liked');
-    wb.innerText = '♥ Wishlisted';
-    showToast('Added to wishlist ♡');
-  } else {
-    wishlist.splice(idx, 1);
-    wb.classList.remove('liked');
-    wb.innerText = '♡ Wishlist';
-    showToast('Removed from wishlist');
-  }
-  localStorage.setItem('samala_wish', JSON.stringify(wishlist));
-}
-
-function addToCartFromModal() {
-  if (!currentProduct) return;
-  var existing = cart.find(function(x) { return x.id === currentProduct.id; });
-  if (existing) {
-    existing.qty++;
-  } else {
-    cart.push({
-      id: currentProduct.id,
-      name: currentProduct.name,
-      price: currentProduct.price,
-      qty: 1
-    });
-  }
-  localStorage.setItem('samala_cart', JSON.stringify(cart));
+function addToCartFromModal(){
+  if(!currentProduct)return;
+  var existing=cart.find(function(x){return x.id===currentProduct.id;});
+  if(existing)existing.qty++;
+  else cart.push({id:currentProduct.id,name:currentProduct.name,price:currentProduct.price,qty:1});
+  localStorage.setItem('samala_cart',JSON.stringify(cart));
   showToast('Added to cart 🛍️');
 }
 
-function shareProduct() {
-  if (navigator.share && currentProduct) {
-    navigator.share({
-      title: currentProduct.name,
-      text: 'Check out ' + currentProduct.name + ' at Samala Cloth Stores!',
-      url: window.location.href
-    });
-  } else {
-    showToast('Link copied!');
-  }
+function shareProduct(){
+  if(navigator.share&&currentProduct){navigator.share({title:currentProduct.name,text:'Check out '+currentProduct.name+' at Samala Cloth Stores!',url:window.location.href});}
+  else{showToast('Link copied!');}
 }
 
-function showToast(msg) {
-  var t = document.getElementById('toast');
-  t.innerText = msg;
-  t.classList.add('show');
-  setTimeout(function() {
-    t.classList.remove('show');
-  }, 2500);
+function showToast(msg){
+  var t=document.getElementById('toast');
+  t.innerText=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2500);
 }
 
-// LOADER
-window.addEventListener('load', function() {
-  setTimeout(function() {
-    var l = document.getElementById('loader');
-    if (l) l.classList.add('out');
-  }, 1800);
+window.addEventListener('load',function(){
+  setTimeout(function(){var l=document.getElementById('loader');if(l)l.classList.add('out');},1800);
 });
 
-// CURSOR
-(function() {
-  if (!window.matchMedia('(pointer:fine)').matches) return;
-  var cur = document.getElementById('cur'),
-      cr = document.getElementById('cr');
-  if (!cur || !cr) return;
-  var mx = 0, my = 0, rx = 0, ry = 0;
-  
-  document.addEventListener('mousemove', function(e) {
-    mx = e.clientX;
-    my = e.clientY;
-    cur.style.left = (mx - 7) + 'px';
-    cur.style.top = (my - 7) + 'px';
-  });
-  
-  (function loop() {
-    rx += (mx - rx - 21) * .12;
-    ry += (my - ry - 21) * .12;
-    cr.style.left = rx + 'px';
-    cr.style.top = ry + 'px';
-    requestAnimationFrame(loop);
-  })();
-  
-  document.querySelectorAll('a,button,.cc,.pc,.lb,.ig,.strip').forEach(function(el) {
-    el.addEventListener('mouseenter', function() {
-      cur.style.transform = 'scale(2.4)';
-      cr.style.transform = 'scale(1.6)';
-    });
-    el.addEventListener('mouseleave', function() {
-      cur.style.transform = 'scale(1)';
-      cr.style.transform = 'scale(1)';
-    });
+(function(){
+  if(!window.matchMedia('(pointer:fine)').matches)return;
+  var cur=document.getElementById('cur'),cr=document.getElementById('cr');
+  if(!cur||!cr)return;
+  var mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;cur.style.left=(mx-7)+'px';cur.style.top=(my-7)+'px';});
+  (function loop(){rx+=(mx-rx-21)*.12;ry+=(my-ry-21)*.12;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
+  document.querySelectorAll('a,button,.cc,.pc,.lb,.ig,.strip').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.style.transform='scale(2.4)';cr.style.transform='scale(1.6)';});
+    el.addEventListener('mouseleave',function(){cur.style.transform='scale(1)';cr.style.transform='scale(1)';});
   });
 })();
 
-// ══════════════════════════════════════════════════════════════════
-// VIDEO HANDLERS FOR SECTIONS - ALL VIDEOS AUTOPLAY NOW
-// ══════════════════════════════════════════════════════════════════
-
-// HERO VIDEO STRIPS - AUTOPLAY ON LOAD
-(function() {
-  document.querySelectorAll('#strips .strip').forEach(function(strip) {
-    var vid = strip.querySelector('video');
-    if (!vid) return;
-
-    vid.pause();
-    vid.currentTime = 0;
-
-    strip.addEventListener('mouseenter', function() {
-      vid.play().catch(function() {});
-    });
-    strip.addEventListener('mouseleave', function() {
-      vid.pause();
-      vid.currentTime = 0;
-    });
+(function(){
+  document.querySelectorAll('#strips .strip').forEach(function(strip){
+    var vid=strip.querySelector('video');
+    if(!vid)return;
+    vid.pause();vid.currentTime=0;
+    strip.addEventListener('mouseenter',function(){vid.play().catch(function(){});});
+    strip.addEventListener('mouseleave',function(){vid.pause();vid.currentTime=0;});
   });
 })();
 
-// CATEGORY CARDS VIDEO
-(function() {
-  var isMobile = !window.matchMedia('(pointer:fine)').matches;
-  
-  document.querySelectorAll('.cc').forEach(function(card) {
-    var video = card.querySelector('.cc-bg-video');
-    if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
-    
-    if (isMobile) {
-      // Mobile: play automatically
-      video.play().catch(function() {});
-    } else {
-      // Desktop: play on hover
-      card.addEventListener('mouseenter', function() {
-        video.play().catch(function() {});
-      });
-      card.addEventListener('mouseleave', function() {
-        video.pause();
-        video.currentTime = 0;
-      });
-    }
+(function(){
+  var isMobile=!window.matchMedia('(pointer:fine)').matches;
+  document.querySelectorAll('.cc').forEach(function(card){
+    var video=card.querySelector('.cc-bg-video');
+    if(!video||!video.querySelector('source')||!video.querySelector('source').getAttribute('src'))return;
+    if(isMobile)video.play().catch(function(){});
+    else{card.addEventListener('mouseenter',function(){video.play().catch(function(){});});card.addEventListener('mouseleave',function(){video.pause();video.currentTime=0;});}
   });
 })();
 
-// LOOKBOOK VIDEO
-(function() {
-  var isMobile = !window.matchMedia('(pointer:fine)').matches;
-  
-  document.querySelectorAll('.lb').forEach(function(look) {
-    var video = look.querySelector('.lb-bg-video');
-    if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
-    
-    if (isMobile) {
-      video.play().catch(function() {});
-    } else {
-      look.addEventListener('mouseenter', function() {
-        video.play().catch(function() {});
-      });
-      look.addEventListener('mouseleave', function() {
-        video.pause();
-        video.currentTime = 0;
-      });
-    }
+(function(){
+  var isMobile=!window.matchMedia('(pointer:fine)').matches;
+  document.querySelectorAll('.lb').forEach(function(look){
+    var video=look.querySelector('.lb-bg-video');
+    if(!video||!video.querySelector('source')||!video.querySelector('source').getAttribute('src'))return;
+    if(isMobile)video.play().catch(function(){});
+    else{look.addEventListener('mouseenter',function(){video.play().catch(function(){});});look.addEventListener('mouseleave',function(){video.pause();video.currentTime=0;});}
   });
 })();
 
-// OUR CRAFT FEATURED CARD VIDEO
-(function() {
-  var isMobile = !window.matchMedia('(pointer:fine)').matches;
-  var card = document.querySelector('.hl-card');
-  var video = card ? card.querySelector('.hl-card-video') : null;
-  
-  if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
-  
-  if (isMobile) {
-    video.play().catch(function() {});
-  } else {
-    card.addEventListener('mouseenter', function() {
-      video.play().catch(function() {});
-    });
-    card.addEventListener('mouseleave', function() {
-      video.pause();
-      video.currentTime = 0;
-    });
-  }
+(function(){
+  var isMobile=!window.matchMedia('(pointer:fine)').matches;
+  var card=document.querySelector('.hl-card');
+  var video=card?card.querySelector('.hl-card-video'):null;
+  if(!video||!video.querySelector('source')||!video.querySelector('source').getAttribute('src'))return;
+  if(isMobile)video.play().catch(function(){});
+  else{card.addEventListener('mouseenter',function(){video.play().catch(function(){});});card.addEventListener('mouseleave',function(){video.pause();video.currentTime=0;});}
 })();
 
-// NAV + PROGRESS
-var navEl = document.getElementById('nav'),
-    progEl = document.getElementById('prog');
-    
-window.addEventListener('scroll', function() {
-  if (navEl) navEl.classList.toggle('solid', window.scrollY > 60);
-  if (progEl) {
-    var pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-    progEl.style.width = Math.min(pct, 100) + '%';
-  }
-}, {passive: true});
+var navEl=document.getElementById('nav'),progEl=document.getElementById('prog');
+window.addEventListener('scroll',function(){
+  if(navEl)navEl.classList.toggle('solid',window.scrollY>60);
+  if(progEl){var pct=(window.scrollY/(document.body.scrollHeight-window.innerHeight))*100;progEl.style.width=Math.min(pct,100)+'%';}
+},{passive:true});
 
-// HAMBURGER
-var ham = document.getElementById('ham'),
-    mobMenu = document.getElementById('mobMenu'),
-    mobOverlay = document.getElementById('mobOverlay');
-
-function closeMenu() {
-  if (!ham || !mobMenu || !mobOverlay) return;
-  ham.classList.remove('open');
-  mobMenu.classList.remove('open');
-  mobOverlay.classList.remove('open');
-  document.body.style.overflow = '';
+var ham=document.getElementById('ham'),mobMenu=document.getElementById('mobMenu'),mobOverlay=document.getElementById('mobOverlay');
+function closeMenu(){if(!ham||!mobMenu||!mobOverlay)return;ham.classList.remove('open');mobMenu.classList.remove('open');mobOverlay.classList.remove('open');document.body.style.overflow='';}
+if(ham&&mobMenu&&mobOverlay){
+  ham.addEventListener('click',function(){var o=!mobMenu.classList.contains('open');ham.classList.toggle('open');mobMenu.classList.toggle('open');mobOverlay.classList.toggle('open');document.body.style.overflow=o?'hidden':'';});
+  mobOverlay.addEventListener('click',closeMenu);
 }
+document.querySelectorAll('.mob-link').forEach(function(a){a.addEventListener('click',closeMenu);});
 
-if (ham && mobMenu && mobOverlay) {
-  ham.addEventListener('click', function() {
-    var o = !mobMenu.classList.contains('open');
-    ham.classList.toggle('open');
-    mobMenu.classList.toggle('open');
-    mobOverlay.classList.toggle('open');
-    document.body.style.overflow = o ? 'hidden' : '';
-  });
-  mobOverlay.addEventListener('click', closeMenu);
-}
-
-document.querySelectorAll('.mob-link').forEach(function(a) {
-  a.addEventListener('click', closeMenu);
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){var id=a.getAttribute('href');if(!id||id==='#')return;var t=document.querySelector(id);if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});
 });
 
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(function(a) {
-  a.addEventListener('click', function(e) {
-    var id = a.getAttribute('href');
-    if (!id || id === '#') return;
-    var t = document.querySelector(id);
-    if (t) {
-      e.preventDefault();
-      t.scrollIntoView({behavior: 'smooth'});
-    }
-  });
+if('IntersectionObserver' in window){
+  var obs=new IntersectionObserver(function(entries){entries.forEach(function(entry,i){if(entry.isIntersecting){setTimeout(function(){entry.target.classList.add('go');},i*70);obs.unobserve(entry.target);}});},{threshold:.08});
+  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){obs.observe(el);});
+}else{document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el){el.classList.add('go');});}
+
+document.querySelectorAll('.fl').forEach(function(btn){
+  btn.addEventListener('click',function(){document.querySelectorAll('.fl').forEach(function(b){b.classList.remove('on');});btn.classList.add('on');renderProducts(btn.getAttribute('data-filter')||'all');});
 });
 
-// REVEAL ANIMATIONS
-if ('IntersectionObserver' in window) {
-  var obs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry, i) {
-      if (entry.isIntersecting) {
-        setTimeout(function() {
-          entry.target.classList.add('go');
-        }, i * 70);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, {threshold: .08});
-  
-  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el) {
-    obs.observe(el);
-  });
-} else {
-  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el) {
-    el.classList.add('go');
-  });
-}
-
-// PRODUCT FILTERS
-document.querySelectorAll('.fl').forEach(function(btn) {
-  btn.addEventListener('click', function() {
-    document.querySelectorAll('.fl').forEach(function(b) {
-      b.classList.remove('on');
-    });
-    btn.classList.add('on');
-    renderProducts(btn.getAttribute('data-filter') || 'all');
-  });
-});
-
-// ESC TO CLOSE MODAL
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape') closeModal();
-});
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 </script>
 </body>
 </html>
