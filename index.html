@@ -86,7 +86,7 @@ nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12
 .strip:hover{flex:2.5;}
 .strip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s,transform .6s ease;opacity:1;z-index:1;}
 .strip:hover video{transform:scale(1.04);}
-.strip-fallback{position:absolute;inset:0;width:100%;height:100%;z-index:0;transition:opacity .35s;opacity:0;}
+.strip-fallback{position:absolute;inset:0;width:100%;height:100%;z-index:0;transition:opacity .35s;}
 .strip-lbl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%) rotate(-90deg);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;transition:all .3s;font-family:'DM Sans',sans-serif;font-weight:500;z-index:3;pointer-events:none;}
 .strip:hover .strip-lbl{color:#fff;}
 .strip::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);transition:background .4s;z-index:2;pointer-events:none;}
@@ -276,6 +276,9 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 .fb{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
 .fb p{font-size:.62rem;color:rgba(255,255,255,.32);letter-spacing:.08em;}
 
+#wafab{position:fixed;bottom:28px;right:28px;z-index:9000;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.5);animation:wap 2.5s ease-in-out infinite;}
+@keyframes wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5)}50%{box-shadow:0 4px 32px rgba(37,211,102,.8),0 0 0 9px rgba(37,211,102,.13)}}
+
 .rv{opacity:0;transform:translateY(44px);transition:opacity .7s,transform .7s;}
 .rv.go{opacity:1;transform:none;}
 .rv-l{opacity:0;transform:translateX(-44px);transition:opacity .7s,transform .7s;}
@@ -335,6 +338,7 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   .cc:first-child .cc-bg{height:52vw;min-height:180px;}
   .cc .cc-bg{height:40vw;min-height:150px;}
   .cc-hbtn{display:none;}
+  /* Mobile: show images/videos by default */
   .cc-bg-img,.cc-bg-video{opacity:1;}
   .lb-wrap{flex-direction:column;height:auto;max-height:none;}
   .lb{flex:none;height:60vw;border-right:none;border-bottom:2px solid var(--ink);}
@@ -366,6 +370,7 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   .ft{grid-template-columns:1fr 1fr;gap:28px;}
   .ft-brand{grid-column:span 2;}
   .fb{flex-direction:column;text-align:center;gap:6px;}
+  #wafab{width:52px;height:52px;bottom:20px;right:20px;}
   .pm-box{grid-template-columns:1fr;max-width:96vw;}
   .pm-img{min-height:280px;}
   .pm-img-bg{min-height:280px;}
@@ -448,32 +453,32 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
     <div class="strips" id="strips">
       <div class="strip" data-idx="0">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#D42B2B,#FF6B6B,#FFB3B3);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB17877-402%EF%80%A2416-CREAM-RED_17-07-2025-14-10-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB17877-402%EF%80%A2416-CREAM-RED_17-07-2025-14-10-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Silk</div>
       </div>
       <div class="strip" data-idx="1">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#007A6E,#00B3A4,#7FFFEF);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16556_439-INDIGO%20BLUE_201_05-06-2024-11-43-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16556_439-INDIGO%20BLUE_201_05-06-2024-11-43-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Cotton</div>
       </div>
       <div class="strip" data-idx="2">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#E8A000,#FFB800,#FFE07A);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18223-425-RANI_16-06-2025-17-22-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18223-425-RANI_16-06-2025-17-22-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Zari</div>
       </div>
       <div class="strip" data-idx="3">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#D4006A,#FF2D87,#FFB3D6);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16047_422-WINE_201_03-01-2025-05-20-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16047_422-WINE_201_03-01-2025-05-20-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Bridal</div>
       </div>
       <div class="strip" data-idx="4">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#2B1FD4,#4438FF,#A8A3FF);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18538-419-GAJREE_22-07-2025-13-44-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18538-419-GAJREE_22-07-2025-13-44-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Patola</div>
       </div>
       <div class="strip" data-idx="5">
         <div class="strip-fallback" style="background:linear-gradient(180deg,#006B3C,#00A85A,#80FFB3);"></div>
-        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18565-414-PINK_13-11-2025-06-08-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18565-414-PINK_13-11-2025-06-08-0x900-1500k" muted playsinline loop preload="none"></video>
         <div class="strip-lbl">Casual</div>
       </div>
     </div>
@@ -791,6 +796,10 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
   <div class="fb"><p>© 2025 Samala Cloth Stores · Venkatagiri · All Rights Reserved</p><p>Made with ❤️ for Heritage Sarees</p></div>
 </footer>
 
+<a href="https://wa.me/919876543210?text=Hello%2C%20I%27m%20interested%20in%20your%20sarees%21" target="_blank" id="wafab" aria-label="WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.524 5.825L.055 23.269a.75.75 0 00.921.921l5.444-1.469A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.727 9.727 0 01-4.97-1.364l-.356-.212-3.232.873.873-3.23-.212-.358A9.728 9.728 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+</a>
+
 <div class="prod-modal" id="prodModal">
   <div class="pm-bg" onclick="closeModal()"></div>
   <div class="pm-box">
@@ -822,6 +831,11 @@ footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px so
 <script>
 // ══════════════════════════════════════════════════════════════════
 // PRODUCTS DATA - add img and video URLs here
+// ══════════════════════════════════════════════════════════════════
+// ══════════════════════════════════════════════════════════════════
+// PASTE THIS ENTIRE PRODUCTS ARRAY INTO index.html
+// REPLACE the existing var PRODUCTS = [...] block
+// Products 1-8 shown on homepage, all 24 match shop.html exactly
 // ══════════════════════════════════════════════════════════════════
 var PRODUCTS = [
   {
@@ -1198,25 +1212,37 @@ window.addEventListener('load', function() {
 })();
 
 // ══════════════════════════════════════════════════════════════════
-// VIDEO HANDLERS FOR SECTIONS - ALL VIDEOS AUTOPLAY NOW
+// VIDEO HANDLERS FOR SECTIONS
 // ══════════════════════════════════════════════════════════════════
 
-// HERO VIDEO STRIPS - AUTOPLAY ON LOAD
+// HERO VIDEO STRIPS
 (function() {
+  var isMobile = !window.matchMedia('(pointer:fine)').matches;
+  
   document.querySelectorAll('#strips .strip').forEach(function(strip) {
     var vid = strip.querySelector('video');
+    var fb = strip.querySelector('.strip-fallback');
     if (!vid) return;
-
-    vid.pause();
-    vid.currentTime = 0;
-
-    strip.addEventListener('mouseenter', function() {
+    
+    if (isMobile) {
+      vid.setAttribute('autoplay', '');
       vid.play().catch(function() {});
-    });
-    strip.addEventListener('mouseleave', function() {
-      vid.pause();
-      vid.currentTime = 0;
-    });
+      strip.addEventListener('touchstart', function() {
+        vid.play().catch(function() {});
+      }, {passive: true});
+    } else {
+      strip.addEventListener('mouseenter', function() {
+        vid.play().catch(function() {});
+        vid.style.opacity = '1';
+        if (fb) fb.style.opacity = '0';
+      });
+      strip.addEventListener('mouseleave', function() {
+        vid.pause();
+        vid.currentTime = 0;
+        vid.style.opacity = '0';
+        if (fb) fb.style.opacity = '1';
+      });
+    }
   });
 })();
 
