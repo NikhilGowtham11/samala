@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — Samala Cloth Stores</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=Bebas+Neue&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --w: #FFFFFF;
+      --off: #FDFAF5;
+      --ink: #1A0A00;
+      --ink2: #4A2C10;
+      --red: #D42B2B;
+      --teal: #007A6E;
+      --teal2: #00B3A4;
+      --tur: #E8A000;
+      --tur2: #FFB800;
+      --rose: #D4006A;
+      --ind: #2B1FD4;
+      --grn: #006B3C;
+      --grn2: #00A85A;
+      --bdr: #E8E0D4;
+    }
+
+    *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--off); color: var(--ink); font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+    .cur,.cur-ring { display: none; }
+    @media(pointer:fine) {
+      body { cursor: none; }
+      .cur { display: block; position: fixed; width: 12px; height: 12px; border-radius: 50%; pointer-events: none; z-index: 9999; background: var(--red); transition: transform .12s; top: -20px; left: -20px; }
+      .cur-ring { display: block; position: fixed; width: 36px; height: 36px; border: 2px solid var(--red); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform .4s cubic-bezier(.25,.46,.45,.94); opacity: .4; top: -28px; left: -28px; }
+    }
+
+    .snav { position: sticky; top: 0; z-index: 900; background: var(--w); border-bottom: 3px solid var(--ink); display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; gap: 16px; flex-wrap: wrap; }
+    .snav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .12em; color: var(--ink); text-decoration: none; flex-shrink: 0; }
+    .snav-logo small { display: block; font-family: 'DM Sans', sans-serif; font-size: .44rem; letter-spacing: .24em; font-weight: 300; color: var(--ink2); }
+    .snav-search { flex: 1; min-width: 200px; max-width: 480px; position: relative; }
+    .snav-search input { width: 100%; padding: 10px 16px 10px 40px; border: 2px solid var(--bdr); background: var(--off); font-family: 'DM Sans', sans-serif; font-size: .82rem; color: var(--ink); outline: none; transition: border-color .2s; }
+    .snav-search input:focus { border-color: var(--ink); }
+    .snav-search svg { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--ink2); pointer-events: none; }
+    .snav-right { display: flex; align-items: center; gap: 10px; }
+    .snav-icon-btn { position: relative; width: 40px; height: 40px; border: 2px solid var(--bdr); background: var(--w); display: flex; align-items: center; justify-content: center; color: var(--ink2); transition: all .2s; cursor: pointer; }
+    .snav-icon-btn:hover { border-color: var(--ink); color: var(--ink); }
+    .badge { position: absolute; top: -6px; right: -6px; width: 18px; height: 18px; background: var(--red); color: #fff; border-radius: 50%; font-size: .5rem; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+    .snav-login-btn { display: flex; align-items: center; gap: 6px; background: var(--ink); color: #fff; font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 10px 18px; border: 2px solid var(--ink); cursor: pointer; transition: all .2s; white-space: nowrap; }
+    .snav-login-btn:hover { background: transparent; color: var(--ink); }
+    .back-home { display: flex; align-items: center; gap: 6px; font-size: .62rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--ink2); text-decoration: none; transition: color .2s; }
+    .back-home:hover { color: var(--red); }
+
+    .shop-hero { background: var(--ink); padding: 32px 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; border-bottom: 3px solid var(--tur2); }
+    .sh-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2.4rem,5vw,4.5rem); letter-spacing: .04em; color: #fff; line-height: 1; }
+    .sh-title span { color: var(--tur2); }
+    .sh-sub { font-size: .78rem; color: rgba(255,255,255,.5); margin-top: 4px; font-weight: 300; }
+    .sh-cats { display: flex; gap: 8px; flex-wrap: wrap; }
+    .sh-cat { font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .12em; padding: 8px 18px; border: 2px solid rgba(255,255,255,.2); color: rgba(255,255,255,.6); cursor: pointer; transition: all .2s; text-decoration: none; }
+    .sh-cat:hover,.sh-cat.on { border-color: var(--tur2); color: var(--tur2); }
+
+    .filter-bar { background: var(--w); border-bottom: 2px solid var(--bdr); padding: 14px 40px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; position: sticky; top: 72px; z-index: 800; }
+    .fb-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .fb-label { font-size: .6rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--ink2); white-space: nowrap; }
+    .fchip { font-size: .6rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: 6px 14px; border: 2px solid var(--bdr); background: transparent; color: var(--ink2); cursor: pointer; transition: all .2s; font-family: 'DM Sans', sans-serif; }
+    .fchip:hover,.fchip.on { border-color: var(--ink); background: var(--ink); color: #fff; }
+    .fb-right { display: flex; align-items: center; gap: 10px; }
+    .sort-sel { font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 500; padding: 8px 14px; border: 2px solid var(--bdr); background: var(--w); color: var(--ink); outline: none; cursor: pointer; }
+    .results-ct { font-size: .65rem; color: var(--ink2); letter-spacing: .06em; }
+
+    .shop-layout { display: grid; grid-template-columns: 220px 1fr; gap: 0; min-height: 70vh; }
+    .sidebar { background: var(--w); padding: 28px 24px; border-right: 2px solid var(--bdr); position: sticky; top: 140px; align-self: start; }
+    .sb-section { margin-bottom: 28px; padding-bottom: 28px; border-bottom: 1px solid var(--bdr); }
+    .sb-section:last-child { border-bottom: none; margin-bottom: 0; }
+    .sb-title { font-family: 'Bebas Neue', sans-serif; font-size: .85rem; letter-spacing: .2em; color: var(--ink); margin-bottom: 14px; }
+    .sb-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; cursor: pointer; }
+    .sb-item input[type=checkbox] { accent-color: var(--red); width: 14px; height: 14px; }
+    .sb-item label { font-size: .75rem; color: var(--ink2); cursor: pointer; transition: color .2s; }
+    .sb-item:hover label { color: var(--ink); }
+    .price-range { width: 100%; margin: 10px 0; }
+    .price-range input[type=range] { width: 100%; accent-color: var(--red); }
+    .price-val { font-size: .7rem; color: var(--ink2); display: flex; justify-content: space-between; }
+    .color-dots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .cdot { width: 26px; height: 26px; border-radius: 50%; cursor: pointer; border: 3px solid transparent; transition: border-color .2s; }
+    .cdot.on,.cdot:hover { border-color: var(--ink); }
+
+    .shop-main { padding: 28px 32px; }
+    .shop-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+
+    /* ── PRODUCT CARD — FIXED: contain fit + proper bg ── */
+    .spc { background: var(--w); position: relative; overflow: hidden; border: 2px solid var(--w); transition: border-color .25s, transform .25s; cursor: pointer; }
+    .spc:hover { border-color: var(--ink); transform: translateY(-3px); }
+    .spi { height: 300px; position: relative; overflow: hidden; background: var(--off); }
+    .spi-bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+
+    /* FIX 1: object-fit: contain so full image is visible */
+    .spi-img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; z-index: 1; transition: transform .5s ease, opacity .3s; opacity: 1; }
+    .spi-img2 { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; z-index: 2; transition: transform .5s ease, opacity .4s; opacity: 0; }
+    .spc:hover .spi-img { transform: scale(1.04); }
+    .spc:hover .spi-img2 { opacity: 1; transform: scale(1.04); }
+    .spc:hover .spi-bg { transform: scale(1.04); }
+
+    /* Card image dots indicator */
+    .spi-dots { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 5px; z-index: 5; opacity: 0; transition: opacity .2s; }
+    .spc:hover .spi-dots { opacity: 1; }
+    .spi-dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); border: 1.5px solid rgba(255,255,255,.8); }
+    .spi-dot.on { background: #fff; }
+
+    .spbadge { position: absolute; top: 10px; left: 10px; font-size: .5rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; padding: 4px 10px; z-index: 4; }
+    .spbr { background: var(--rose); color: #fff; }
+    .spn { background: var(--teal); color: #fff; }
+    .sps { background: var(--red); color: #fff; }
+    .sph { background: var(--tur2); color: var(--ink); }
+
+    .sp-overlay { position: absolute; inset: 0; background: rgba(26,10,0,.55); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; transition: opacity .3s; z-index: 5; padding: 16px; }
+    .spc:hover .sp-overlay { opacity: 1; }
+    .sp-ov-btn { width: 100%; padding: 10px; font-family: 'Bebas Neue', sans-serif; font-size: .9rem; letter-spacing: .12em; border: none; cursor: pointer; transition: all .2s; }
+    .sp-ov-buy { background: var(--tur2); color: var(--ink); }
+    .sp-ov-buy:hover { background: #fff; }
+    .sp-ov-cart { background: rgba(255,255,255,.15); color: #fff; border: 2px solid rgba(255,255,255,.4) !important; }
+    .sp-ov-cart:hover { background: #fff; color: var(--ink); }
+
+    .spinfo { padding: 14px 14px 16px; }
+    .spname { font-family: 'Playfair Display', serif; font-size: .95rem; font-weight: 700; color: var(--ink); margin-bottom: 2px; }
+    .sptype { font-size: .6rem; color: var(--ink2); letter-spacing: .07em; margin-bottom: 8px; }
+    .sppr { display: flex; justify-content: space-between; align-items: center; }
+    .spprice { font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; letter-spacing: .05em; color: var(--ink); }
+    .spwish { width: 28px; height: 28px; border: 2px solid var(--bdr); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .2s; color: var(--ink2); }
+    .spwish:hover,.spwish.liked { border-color: var(--red); color: var(--red); }
+
+    /* ── PRODUCT MODAL — FIXED: contain + dot gallery ── */
+    .pm-overlay { position: fixed; inset: 0; z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: all .3s; }
+    .pm-overlay.open { opacity: 1; visibility: visible; }
+    .pm-backdrop { position: absolute; inset: 0; background: rgba(26,10,0,.75); backdrop-filter: blur(8px); }
+    .pm-box { position: relative; background: var(--w); width: 100%; max-width: 900px; max-height: 90vh; overflow-y: auto; display: grid; grid-template-columns: 1fr 1fr; border: 3px solid var(--ink); animation: pmIn .35s cubic-bezier(.34,1.56,.64,1); }
+    @keyframes pmIn { from { transform: scale(.88) translateY(24px); opacity: 0 } to { transform: scale(1) translateY(0); opacity: 1 } }
+
+    .pm-img { min-height: 500px; position: relative; overflow: hidden; background: var(--off); }
+    .pm-img-bg { width: 100%; min-height: 500px; position: relative; }
+
+    /* FIX 2: Modal images — contain so full garment visible */
+    .pm-img-main { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; z-index: 1; transition: opacity .35s; }
+    .pm-img-hover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: center; z-index: 2; opacity: 0; transition: opacity .35s; pointer-events: none; }
+    .pm-img-hover.show { opacity: 1; }
+
+    /* Modal image dot nav */
+    .pm-img-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .pm-img-dot { width: 10px; height: 10px; border-radius: 50%; background: rgba(255,255,255,.4); cursor: pointer; border: 2px solid rgba(255,255,255,.75); transition: background .2s, transform .2s; }
+    .pm-img-dot.on { background: #fff; transform: scale(1.2); }
+    .pm-img-dot:hover { background: rgba(255,255,255,.8); }
+
+    /* Modal image arrow nav */
+    .pm-img-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 10; width: 36px; height: 36px; background: rgba(26,10,0,.55); color: #fff; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: background .2s; }
+    .pm-img-arrow:hover { background: var(--ink); }
+    .pm-img-arrow.prev { left: 10px; }
+    .pm-img-arrow.next { right: 10px; }
+
+    .pm-close { position: absolute; top: 14px; right: 14px; width: 34px; height: 34px; background: var(--ink); color: #fff; border: none; font-size: 1.1rem; cursor: pointer; z-index: 10; display: flex; align-items: center; justify-content: center; }
+    .pm-info { padding: 36px 32px; display: flex; flex-direction: column; }
+    .pm-badge2 { display: inline-block; font-size: .5rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; padding: 4px 12px; margin-bottom: 12px; }
+    .pm-h { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; letter-spacing: .03em; line-height: 1; color: var(--ink); margin-bottom: 4px; }
+    .pm-sub { font-size: .75rem; color: var(--ink2); margin-bottom: 16px; }
+    .pm-price2 { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; letter-spacing: .05em; color: var(--red); margin-bottom: 12px; }
+    .pm-oldprice { font-size: .85rem; color: var(--ink2); text-decoration: line-through; margin-left: 8px; }
+    .pm-stars { color: var(--tur); font-size: .85rem; margin-bottom: 16px; }
+    .pm-desc { font-size: .8rem; color: var(--ink2); line-height: 1.8; margin-bottom: 20px; font-weight: 300; }
+    .pm-detail-row { display: flex; gap: 8px; margin-bottom: 6px; }
+    .pm-dl { font-size: .65rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink2); min-width: 80px; }
+    .pm-dv { font-size: .75rem; color: var(--ink); }
+    .pm-divider { border: none; border-top: 1px solid var(--bdr); margin: 18px 0; }
+    .pm-actions { display: flex; flex-direction: column; gap: 8px; }
+    .pm-qty { display: flex; align-items: center; gap: 0; margin-bottom: 8px; border: 2px solid var(--bdr); width: fit-content; }
+    .pm-qty button { width: 34px; height: 34px; border: none; background: var(--off); font-size: 1.1rem; cursor: pointer; color: var(--ink); transition: background .2s; }
+    .pm-qty button:hover { background: var(--bdr); }
+    .pm-qty span { width: 40px; text-align: center; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; }
+    .pm-abtn { padding: 14px; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .14em; border: 2px solid; cursor: pointer; text-align: center; transition: all .2s; }
+    .pm-buy2 { background: var(--red); color: #fff; border-color: var(--red); }
+    .pm-buy2:hover { background: transparent; color: var(--red); }
+    .pm-addcart { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .pm-addcart:hover { background: transparent; color: var(--ink); }
+    .pm-wa2 { background: var(--grn); color: #fff; border-color: var(--grn); text-decoration: none; display: block; }
+    .pm-wa2:hover { background: transparent; color: var(--grn); }
+    .pm-row2 { display: flex; gap: 8px; }
+    .pm-wish2 { flex: 1; padding: 10px; border: 2px solid var(--bdr); background: transparent; font-family: 'DM Sans', sans-serif; font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
+    .pm-wish2:hover,.pm-wish2.liked { border-color: var(--red); color: var(--red); }
+    .pm-share2 { flex: 1; padding: 10px; border: 2px solid var(--bdr); background: transparent; font-family: 'DM Sans', sans-serif; font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: all .2s; }
+    .pm-share2:hover { border-color: var(--ink); background: var(--ink); color: #fff; }
+
+    /* ── CART PANEL ── */
+    .cart-panel { position: fixed; top: 0; right: -440px; width: 420px; height: 100%; background: var(--w); z-index: 9500; border-left: 3px solid var(--ink); transition: right .35s cubic-bezier(.25,.46,.45,.94); display: flex; flex-direction: column; overflow: hidden; }
+    .cart-panel.open { right: 0; }
+    .cp-head { padding: 20px 24px; border-bottom: 2px solid var(--bdr); display: flex; justify-content: space-between; align-items: center; background: var(--ink); color: #fff; flex-shrink: 0; }
+    .cp-title { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; letter-spacing: .1em; }
+    .cp-close { background: transparent; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; }
+    .cp-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+    .cp-empty { text-align: center; padding: 60px 20px; color: var(--ink2); }
+    .cp-empty svg { width: 56px; margin-bottom: 16px; opacity: .3; }
+    .cp-empty p { font-size: .82rem; }
+    .cart-item { display: flex; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--bdr); }
+    .ci-img { width: 72px; height: 88px; flex-shrink: 0; border: 2px solid var(--bdr); object-fit: contain; background: var(--off); }
+    .ci-info { flex: 1; }
+    .ci-name { font-family: 'Playfair Display', serif; font-size: .92rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+    .ci-type { font-size: .6rem; color: var(--ink2); margin-bottom: 8px; }
+    .ci-row { display: flex; justify-content: space-between; align-items: center; }
+    .ci-price { font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; color: var(--ink); }
+    .ci-qty { display: flex; align-items: center; gap: 0; border: 1px solid var(--bdr); }
+    .ci-qty button { width: 26px; height: 26px; border: none; background: var(--off); cursor: pointer; font-size: .9rem; color: var(--ink); }
+    .ci-qty span { width: 30px; text-align: center; font-size: .75rem; }
+    .ci-del { background: transparent; border: none; color: var(--ink2); cursor: pointer; font-size: .8rem; padding: 4px; transition: color .2s; }
+    .ci-del:hover { color: var(--red); }
+    .cp-foot { padding: 20px 24px; border-top: 2px solid var(--bdr); background: var(--off); flex-shrink: 0; }
+    .cp-total { display: flex; justify-content: space-between; margin-bottom: 16px; }
+    .cp-total-l { font-size: .75rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--ink2); }
+    .cp-total-v { font-family: 'Bebas Neue', sans-serif; font-size: 1.5rem; color: var(--ink); }
+    .cp-checkout { width: 100%; padding: 16px; background: var(--red); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .14em; border: 2px solid var(--red); cursor: pointer; transition: all .2s; }
+    .cp-checkout:hover { background: transparent; color: var(--red); }
+    .cp-wa-order { width: 100%; padding: 12px; background: var(--grn); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .1em; border: none; cursor: pointer; margin-top: 6px; transition: background .2s; }
+    .cp-wa-order:hover { background: var(--grn2); }
+    .overlay-bg { position: fixed; inset: 0; background: rgba(26,10,0,.5); z-index: 9400; opacity: 0; visibility: hidden; transition: all .3s; }
+    .overlay-bg.open { opacity: 1; visibility: visible; }
+
+    /* ── WISHLIST PANEL ── */
+    .wish-panel { position: fixed; top: 0; right: -440px; width: 420px; height: 100%; background: var(--w); z-index: 9500; border-left: 3px solid var(--ink); transition: right .35s; display: flex; flex-direction: column; }
+    .wish-panel.open { right: 0; }
+
+    /* ── AUTH MODAL ── */
+    .auth-modal { position: fixed; inset: 0; z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 20px; opacity: 0; visibility: hidden; transition: all .3s; }
+    .auth-modal.open { opacity: 1; visibility: visible; }
+    .auth-bg { position: absolute; inset: 0; background: rgba(26,10,0,.8); backdrop-filter: blur(8px); }
+    .auth-box { position: relative; background: var(--w); width: 100%; max-width: 440px; border: 3px solid var(--ink); padding: 40px; animation: pmIn .3s ease; }
+    .auth-logo { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; letter-spacing: .12em; color: var(--ink); text-align: center; margin-bottom: 6px; }
+    .auth-sub { font-size: .65rem; letter-spacing: .22em; text-transform: uppercase; color: var(--ink2); text-align: center; margin-bottom: 28px; }
+    .auth-tabs { display: flex; gap: 0; margin-bottom: 28px; border-bottom: 2px solid var(--bdr); }
+    .auth-tab { flex: 1; padding: 12px; background: transparent; border: none; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .12em; color: var(--ink2); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all .2s; }
+    .auth-tab.on { color: var(--ink); border-bottom-color: var(--red); }
+    .auth-form { display: none; }
+    .auth-form.on { display: block; }
+    .auth-field { margin-bottom: 16px; }
+    .auth-field label { display: block; font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--ink2); margin-bottom: 6px; }
+    .auth-field input { width: 100%; padding: 12px 14px; border: 2px solid var(--bdr); background: var(--off); font-family: 'DM Sans', sans-serif; font-size: .85rem; color: var(--ink); outline: none; transition: border-color .2s; }
+    .auth-field input:focus { border-color: var(--ink); }
+    .auth-submit { width: 100%; padding: 14px; background: var(--ink); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1.1rem; letter-spacing: .14em; border: 2px solid var(--ink); cursor: pointer; margin-top: 8px; transition: all .2s; }
+    .auth-submit:hover { background: var(--red); border-color: var(--red); }
+    .auth-or { text-align: center; font-size: .65rem; color: var(--ink2); margin: 16px 0; position: relative; }
+    .auth-or::before,.auth-or::after { content: ''; position: absolute; top: 50%; width: 38%; height: 1px; background: var(--bdr); }
+    .auth-or::before { left: 0; }
+    .auth-or::after { right: 0; }
+    .auth-wa { width: 100%; padding: 12px; background: var(--grn); color: #fff; font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .1em; border: none; cursor: pointer; transition: background .2s; }
+    .auth-wa:hover { background: var(--grn2); }
+    .auth-close { position: absolute; top: 14px; right: 14px; width: 32px; height: 32px; background: var(--off); border: 2px solid var(--bdr); display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: .9rem; color: var(--ink2); transition: all .2s; }
+    .auth-close:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+    .auth-note { font-size: .65rem; color: var(--ink2); text-align: center; margin-top: 14px; }
+    .auth-note a { color: var(--red); text-decoration: none; }
+    .acc-welcome { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-style: italic; margin-bottom: 20px; color: var(--ink); }
+    .acc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+    .acc-card { background: var(--off); padding: 18px; border: 2px solid var(--bdr); text-align: center; cursor: pointer; transition: all .2s; }
+    .acc-card:hover { border-color: var(--ink); background: var(--w); }
+    .acc-card svg { display: block; margin: 0 auto 8px; }
+    .acc-card span { font-size: .62rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--ink2); }
+    .acc-logout { width: 100%; padding: 12px; background: transparent; border: 2px solid var(--bdr); font-family: 'DM Sans', sans-serif; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; cursor: pointer; color: var(--ink2); transition: all .2s; }
+    .acc-logout:hover { border-color: var(--red); color: var(--red); }
+
+    .toast { position: fixed; bottom: 80px; right: 28px; z-index: 99999; background: var(--ink); color: #fff; padding: 12px 20px; font-size: .72rem; font-weight: 500; letter-spacing: .06em; opacity: 0; transform: translateY(10px); transition: all .3s; pointer-events: none; max-width: 260px; }
+    .toast.show { opacity: 1; transform: none; }
+    .no-results { text-align: center; padding: 80px 20px; color: var(--ink2); grid-column: 1/-1; }
+    .no-results h3 { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: .08em; margin-bottom: 8px; }
+    .no-results p { font-size: .8rem; }
+    .shop-footer { background: var(--ink); color: rgba(255,255,255,.5); text-align: center; padding: 20px; font-size: .65rem; letter-spacing: .08em; border-top: 4px solid var(--tur2); }
+
+    @media(max-width:900px) {
+      .shop-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; border-right: none; border-bottom: 2px solid var(--bdr); display: flex; flex-wrap: wrap; gap: 12px; padding: 20px; }
+      .sb-section { margin: 0; padding: 0; border: none; }
+      .shop-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:600px) {
+      .snav { padding: 12px 16px; }
+      .filter-bar { padding: 12px 16px; top: 62px; }
+      .shop-hero { padding: 24px 16px; }
+      .shop-main { padding: 16px; }
+      .shop-grid { grid-template-columns: 1fr 1fr; gap: 3px; }
+      .spi { height: 220px; }
+      .pm-box { grid-template-columns: 1fr; }
+      .pm-img { min-height: 300px; }
+      .pm-img-bg { min-height: 300px; }
+      .pm-info { padding: 20px 16px; }
+      .cart-panel,.wish-panel { width: 100%; right: -100%; }
+      .auth-box { padding: 28px 20px; }
+      .snav-search { min-width: 140px; }
+      .acc-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="cur" id="cur"></div>
+  <div class="cur-ring" id="cr"></div>
+
+  <nav class="snav">
+    <a href="index.html" class="back-home">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back
+    </a>
+    <a href="index.html" class="snav-logo">SAMALA <small>Cloth Stores · Venkatagiri</small></a>
+    <div class="snav-search">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+      <input type="text" id="searchInput" placeholder="Search sarees, silk, cotton..." oninput="filterProducts()">
+    </div>
+    <div class="snav-right">
+      <button class="snav-icon-btn" onclick="openWishPanel()" title="Wishlist">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+        <span class="badge" id="wishBadge">0</span>
+      </button>
+      <button class="snav-icon-btn" onclick="openCart()" title="Cart">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+        <span class="badge" id="cartBadge">0</span>
+      </button>
+      <button class="snav-login-btn" id="authBtn" onclick="openAuth()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span id="authBtnTxt">Login</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="shop-hero">
+    <div>
+      <div class="sh-title">SAMALA <span>STORE</span></div>
+      <div class="sh-sub">500+ Designs · Pure Silk · Handloom · Venkatagiri</div>
+    </div>
+    <div class="sh-cats">
+      <a class="sh-cat on" href="#" onclick="setCatFilter('all',this)">All</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('silk',this)">Silk</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('cotton',this)">Cotton</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('bridal',this)">Bridal</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('zari',this)">Zari</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('patola',this)">Patola</a>
+      <a class="sh-cat" href="#" onclick="setCatFilter('occasion',this)">Occasion</a>
+    </div>
+  </div>
+
+  <div class="filter-bar">
+    <div class="fb-left">
+      <span class="fb-label">Filter:</span>
+      <button class="fchip on" data-f="all" onclick="setChipFilter('all',this)">All</button>
+      <button class="fchip" data-f="new" onclick="setChipFilter('new',this)">New Arrivals</button>
+      <button class="fchip" data-f="sale" onclick="setChipFilter('sale',this)">On Sale</button>
+      <button class="fchip" data-f="bestseller" onclick="setChipFilter('bestseller',this)">Bestsellers</button>
+    </div>
+    <div class="fb-right">
+      <span class="results-ct" id="resultsCt">24 products</span>
+      <select class="sort-sel" onchange="sortProducts(this.value)">
+        <option value="default">Sort: Featured</option>
+        <option value="price-asc">Price: Low to High</option>
+        <option value="price-desc">Price: High to Low</option>
+        <option value="name">Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="shop-layout">
+    <div class="sidebar">
+      <div class="sb-section">
+        <div class="sb-title">Categories</div>
+        <div class="sb-item"><input type="checkbox" id="cs1" onchange="filterProducts()"><label for="cs1">Silk Sarees</label></div>
+        <div class="sb-item"><input type="checkbox" id="cs2" onchange="filterProducts()"><label for="cs2">Cotton Sarees</label></div>
+        <div class="sb-item"><input type="checkbox" id="cs3" onchange="filterProducts()"><label for="cs3">Bridal Collection</label></div>
+        <div class="sb-item"><input type="checkbox" id="cs4" onchange="filterProducts()"><label for="cs4">Zari Work</label></div>
+        <div class="sb-item"><input type="checkbox" id="cs5" onchange="filterProducts()"><label for="cs5">Patola</label></div>
+        <div class="sb-item"><input type="checkbox" id="cs6" onchange="filterProducts()"><label for="cs6">Occasion Wear</label></div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Price Range</div>
+        <div class="price-range">
+          <input type="range" min="1000" max="50000" value="50000" step="500" id="priceRange" oninput="updatePriceLabel(this.value);filterProducts()">
+          <div class="price-val"><span>₹1,000</span><span id="priceLabel">₹50,000</span></div>
+        </div>
+      </div>
+      <div class="sb-section">
+        <div class="sb-title">Colour</div>
+        <div class="color-dots">
+          <div class="cdot" style="background:#D42B2B;" title="Red" onclick="toggleColor('red',this)"></div>
+          <div class="cdot" style="background:#007A6E;" title="Teal" onclick="toggleColor('teal',this)"></div>
+          <div class="cdot" style="background:#E8A000;" title="Gold" onclick="toggleColor('gold',this)"></div>
+          <div class="cdot" style="background:#D4006A;" title="Rose" onclick="toggleColor('rose',this)"></div>
+          <div class="cdot" style="background:#2B1FD4;" title="Indigo" onclick="toggleColor('indigo',this)"></div>
+          <div class="cdot" style="background:#006B3C;" title="Green" onclick="toggleColor('green',this)"></div>
+          <div class="cdot" style="background:#FF8C00;" title="Orange" onclick="toggleColor('orange',this)"></div>
+          <div class="cdot" style="background:#1A1A1A;" title="Black" onclick="toggleColor('black',this)"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shop-main">
+      <div class="shop-grid" id="shopGrid"></div>
+    </div>
+  </div>
+
+  <div class="shop-footer">© 2025 Samala Cloth Stores · Venkatagiri · All Rights Reserved</div>
+
+  <!-- PRODUCT MODAL — with dot image gallery -->
+  <div class="pm-overlay" id="shopModal">
+    <div class="pm-backdrop" onclick="closeShopModal()"></div>
+    <div class="pm-box">
+      <div class="pm-img" id="smImgSection">
+        <div class="pm-img-bg" id="smImgBg" style="min-height:500px;position:relative;">
+          <img class="pm-img-main" id="smImgMain" src="" alt="" onerror="this.style.display='none'">
+          <img class="pm-img-hover" id="smImgHover" src="" alt="" onerror="this.style.display='none'">
+        </div>
+        <!-- Dot navigation — only shows when 2 images exist -->
+        <div class="pm-img-dots" id="smDots" style="display:none;">
+          <div class="pm-img-dot on" onclick="switchModalImg(0)"></div>
+          <div class="pm-img-dot" onclick="switchModalImg(1)"></div>
+        </div>
+        <!-- Arrow navigation -->
+        <button class="pm-img-arrow prev" id="smPrev" onclick="switchModalImg(-1,'rel')" style="display:none;">‹</button>
+        <button class="pm-img-arrow next" id="smNext" onclick="switchModalImg(1,'rel')" style="display:none;">›</button>
+        <button class="pm-close" onclick="closeShopModal()">✕</button>
+      </div>
+      <div class="pm-info">
+        <span class="pm-badge2" id="smBadge"></span>
+        <div class="pm-h" id="smName"></div>
+        <div class="pm-sub" id="smType"></div>
+        <div><span class="pm-price2" id="smPrice"></span><span class="pm-oldprice" id="smOldPrice"></span></div>
+        <div class="pm-stars">★★★★★ <span style="color:var(--ink2);font-size:.7rem;">(4.9 · 128 reviews)</span></div>
+        <div class="pm-desc" id="smDesc"></div>
+        <div class="pm-detail-row"><span class="pm-dl">Fabric</span><span class="pm-dv" id="smFabric"></span></div>
+        <div class="pm-detail-row"><span class="pm-dl">Origin</span><span class="pm-dv">Venkatagiri, Andhra Pradesh</span></div>
+        <div class="pm-detail-row"><span class="pm-dl">Care</span><span class="pm-dv">Dry clean recommended</span></div>
+        <hr class="pm-divider">
+        <div class="pm-qty">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="smQty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+        <div class="pm-actions">
+          <button class="pm-abtn pm-buy2" id="smBuyBtn">Buy Now via WhatsApp</button>
+          <button class="pm-abtn pm-addcart" onclick="addToCartModal()">Add to Cart</button>
+          <a class="pm-abtn pm-wa2" href="https://wa.me/919876543210" target="_blank">Enquire on WhatsApp</a>
+        </div>
+        <div class="pm-row2" style="margin-top:8px;">
+          <button class="pm-wish2" id="smWishBtn" onclick="toggleModalWish2()">♡ Wishlist</button>
+          <button class="pm-share2" onclick="shareProduct2()">↗ Share</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CART PANEL -->
+  <div class="overlay-bg" id="cartOverlay" onclick="closeCart()"></div>
+  <div class="cart-panel" id="cartPanel">
+    <div class="cp-head">
+      <div class="cp-title">Your Cart 🛍️</div>
+      <button class="cp-close" onclick="closeCart()">✕</button>
+    </div>
+    <div class="cp-body" id="cartBody"></div>
+    <div class="cp-foot" id="cartFoot" style="display:none;">
+      <div class="cp-total">
+        <span class="cp-total-l">Total</span>
+        <span class="cp-total-v" id="cartTotal">₹0</span>
+      </div>
+      <button class="cp-checkout" onclick="checkoutWhatsApp()">Checkout via WhatsApp</button>
+      <button class="cp-wa-order" onclick="checkoutWhatsApp()">💬 Order on WhatsApp</button>
+    </div>
+  </div>
+
+  <!-- WISHLIST PANEL -->
+  <div class="overlay-bg" id="wishOverlay" onclick="closeWishPanel()"></div>
+  <div class="wish-panel" id="wishPanel">
+    <div class="cp-head">
+      <div class="cp-title">Wishlist ♡</div>
+      <button class="cp-close" onclick="closeWishPanel()">✕</button>
+    </div>
+    <div class="cp-body" id="wishBody"></div>
+  </div>
+
+  <!-- AUTH MODAL -->
+  <div class="auth-modal" id="authModal">
+    <div class="auth-bg" onclick="closeAuth()"></div>
+    <div class="auth-box">
+      <button class="auth-close" onclick="closeAuth()">✕</button>
+      <div class="auth-logo">SAMALA</div>
+      <div class="auth-sub">Cloth Stores · Venkatagiri</div>
+      <div id="authLoggedOut">
+        <div class="auth-tabs">
+          <button class="auth-tab on" onclick="switchTab('login')">Login</button>
+          <button class="auth-tab" onclick="switchTab('register')">Register</button>
+        </div>
+        <div class="auth-form on" id="loginForm">
+          <div class="auth-field"><label>Phone / Email</label><input type="text" id="loginPhone" placeholder="+91 98765 43210"></div>
+          <div class="auth-field"><label>Password</label><input type="password" id="loginPass" placeholder="Enter password"></div>
+          <button class="auth-submit" onclick="doLogin()">Login to My Account</button>
+          <div class="auth-or">or</div>
+          <button class="auth-wa" onclick="loginViaWA()">💬 Continue with WhatsApp OTP</button>
+          <div class="auth-note">Forgot password? <a href="#">Reset here</a></div>
+        </div>
+        <div class="auth-form" id="registerForm">
+          <div class="auth-field"><label>Full Name</label><input type="text" id="regName" placeholder="Your full name"></div>
+          <div class="auth-field"><label>Phone Number</label><input type="text" id="regPhone" placeholder="+91 98765 43210"></div>
+          <div class="auth-field"><label>Email</label><input type="email" id="regEmail" placeholder="your@email.com"></div>
+          <div class="auth-field"><label>Password</label><input type="password" id="regPass" placeholder="Create password"></div>
+          <button class="auth-submit" onclick="doRegister()">Create Account</button>
+          <div class="auth-or">or</div>
+          <button class="auth-wa" onclick="loginViaWA()">💬 Register with WhatsApp</button>
+        </div>
+      </div>
+      <div id="authLoggedIn" style="display:none;">
+        <div class="acc-welcome" id="accWelcome">Welcome back!</div>
+        <div class="acc-grid">
+          <div class="acc-card" onclick="showToast('Orders coming soon!')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink2)" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><span>My Orders</span></div>
+          <div class="acc-card" onclick="closeAuth();openWishPanel()"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink2)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><span>Wishlist</span></div>
+          <div class="acc-card" onclick="showToast('Addresses coming soon!')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink2)" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg><span>Addresses</span></div>
+          <div class="acc-card" onclick="showToast('Profile coming soon!')"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--ink2)" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profile</span></div>
+        </div>
+        <button class="acc-logout" onclick="doLogout()">Sign Out</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+  var ALL_PRODUCTS = [
+    {
+      id: 1, name: 'Venkatagiri Silk', type: 'Pure Handloom · Crimson', cat: 'bridal silk', tags: ['bridal','bestseller'],
+      badge: 'Bridal', badgeClass: 'spbr', price: 4500, priceStr: '₹4,500',
+      desc: 'A stunning crimson Venkatagiri silk saree with intricate zari border. Perfect for weddings and grand occasions.',
+      fabric: 'Pure Silk', bg: 'linear-gradient(150deg,#5A0F1C,#D42B2B,#FF9999)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/LB9405_407-MAROON_28-02-2026-14-23:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/LB9405-407-MAROON+(1)_20-01-2025-00-35:650x900?&dpr=on,2'
+    },
+    {
+      id: 2, name: 'Teal Cotton Weave', type: 'Handloom Cotton · Teal', cat: 'cotton', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 2800, priceStr: '₹2,800',
+      desc: 'Fresh handloom cotton saree in soothing teal. Ideal for daily wear and casual occasions.',
+      fabric: 'Pure Cotton', bg: 'linear-gradient(150deg,#003D36,#007A6E,#80FFEF)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/UL5110V-407-MAROON1_22-07-2025-13-30:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/UL5110V-407-MAROON3_22-07-2025-13-30:650x900?&dpr=on,2'
+    },
+    {
+      id: 3, name: 'Golden Zari Weave', type: 'Pure Zari · Amber Gold', cat: 'zari', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 12000, priceStr: '₹12,000',
+      desc: 'Premium pure zari saree in radiant amber gold. The hallmark of traditional craftsmanship.',
+      fabric: 'Silk with Zari', bg: 'linear-gradient(150deg,#7A5200,#E8A000,#FFDB80)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/UL5003VD_443-415-DUSTY+PINK_101.19559_03-09-2024-23-25:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/UL5003VD_443-415-DUSTY+PINK-LIGHT+PINK_301.19585_03-09-2024-23-28:650x900?&dpr=on,2'
+    },
+    {
+      id: 4, name: 'Rose Kanjivaram', type: 'Pure Silk · Deep Rose', cat: 'bridal silk', tags: ['bridal'],
+      badge: 'Bridal', badgeClass: 'spbr', price: 18500, priceStr: '₹18,500',
+      desc: 'Exquisite Kanjivaram silk in deep rose with gold zari motifs. The ultimate bridal choice.',
+      fabric: 'Kanjivaram Silk', bg: 'linear-gradient(150deg,#6B0035,#D4006A,#FFB3D6)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/I03_1_27-12-2022-10-08:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/I04_5_27-12-2022-10-07:650x900'
+    },
+    {
+      id: 5, name: 'Midnight Patola', type: 'Double Ikat · Indigo', cat: 'silk patola', tags: ['sale'],
+      badge: 'Sale', badgeClass: 'sps', price: 15000, priceStr: '₹15,000',
+      desc: "Rare double ikat Patola saree in midnight indigo. A collector's piece from master weavers.",
+      fabric: 'Double Ikat Silk', bg: 'linear-gradient(150deg,#150D6B,#2B1FD4,#A8A3FF)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB19121-433-RAMA+GREEN-1-101_04-02-2026-08-09:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB19121-433-RAMA+GREEN-5-701_04-02-2026-08-10:650x900'
+    },
+    {
+      id: 6, name: 'Emerald Tissue', type: 'Tissue Silk · Forest Green', cat: 'silk cotton', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 6500, priceStr: '₹6,500',
+      desc: 'Lightweight tissue silk in forest green with subtle shimmer. Elegant for festive occasions.',
+      fabric: 'Tissue Silk', bg: 'linear-gradient(150deg,#003020,#006B3C,#80FFB3)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB18675-436-404-SEA+GREEN-FAWN-101_28-10-2025-07-43:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB18675-436-404-SEA+GREEN-FAWN-301_28-10-2025-07-43:650x900?&dpr=on,2'
+    },
+    {
+      id: 7, name: 'Rust Kanchi', type: 'Kanjivaram · Rust Orange', cat: 'bridal silk', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 9800, priceStr: '₹9,800',
+      desc: 'Rich rust orange Kanjivaram with traditional temple border. Timeless and magnificent.',
+      fabric: 'Kanjivaram Silk', bg: 'linear-gradient(150deg,#4A1A00,#B84000,#FFAA80)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB16818_427-GREEN_101.21368_04-09-2024-20-59:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB16818_427-GREEN_301.21396_04-09-2024-21-02:650x900?&dpr=on,2'
+    },
+    {
+      id: 8, name: 'Lime Banarasi', type: 'Banarasi · Lime Gold', cat: 'zari silk', tags: ['sale'],
+      badge: 'Sale', badgeClass: 'sps', price: 7200, priceStr: '₹7,200',
+      desc: 'Contemporary Banarasi weave in lime gold with modern geometric patterns.',
+      fabric: 'Banarasi Silk', bg: 'linear-gradient(150deg,#1A1A00,#4A4A00,#DDDD80)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB15967_436-SEA+GREEN_101.7457_26-12-2024-16-36:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB15967_436-SEA+GREEN_301.7475_26-12-2024-16-37:650x900?&dpr=on,2'
+    },
+    {
+      id: 9, name: 'Royal Blue Dharmavaram', type: 'Dharmavaram Silk · Royal Blue', cat: 'silk bridal', tags: ['bridal','new'],
+      badge: 'New', badgeClass: 'spn', price: 22000, priceStr: '₹22,000',
+      desc: 'Majestic Dharmavaram silk in royal blue with traditional gold border. Royalty redefined.',
+      fabric: 'Dharmavaram Silk', bg: 'linear-gradient(150deg,#001B5E,#0033CC,#99B3FF)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/PSB006_439-INDIGO+BLUE_101.4904_24-12-2024-10-47:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/PSB006_439-INDIGO+BLUE_301.4910_24-12-2024-10-48:650x900?&dpr=on,2'
+    },
+    {
+      id: 10, name: 'Ivory Cotton Handloom', type: 'Venkatagiri Cotton · Ivory', cat: 'cotton', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 3200, priceStr: '₹3,200',
+      desc: 'Classic ivory Venkatagiri cotton with subtle checks. Timeless daily elegance.',
+      fabric: 'Handloom Cotton', bg: 'linear-gradient(150deg,#F5F0E8,#E8D5B0,#C8A87A)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/PSB006_422-WINE_444.0948_17-03-2025-11-08:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/PSB006_422-WINE_301.0955_17-03-2025-11-09:650x900?&dpr=on,2'
+    },
+    {
+      id: 11, name: 'Magenta Kanchi', type: 'Kanjivaram Silk · Magenta', cat: 'bridal silk occasion', tags: ['bridal'],
+      badge: 'Bridal', badgeClass: 'spbr', price: 16800, priceStr: '₹16,800',
+      desc: 'Vibrant magenta Kanjivaram with contrast green border. A festive showstopper.',
+      fabric: 'Kanjivaram Silk', bg: 'linear-gradient(150deg,#6B0040,#CC0073,#FF80C0)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SKT5088-441-D.+PURPLE3_22-07-2025-10-28:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SKT5088-441-D.+PURPLE4_22-07-2025-10-28:650x900?&dpr=on,2'
+    },
+    {
+      id: 12, name: 'Peacock Patola', type: 'Patola · Peacock Blue', cat: 'silk patola occasion', tags: ['bestseller','new'],
+      badge: 'New', badgeClass: 'spn', price: 28000, priceStr: '₹28,000',
+      desc: 'Stunning peacock-motif Patola saree in rich blue-green. A masterwork of Indian weaving.',
+      fabric: 'Patola Silk', bg: 'linear-gradient(150deg,#003344,#006680,#00C8C0)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/MOIW238_405-BROWN_301.29133_04-03-2025-22-33__27-02-2026-05-08:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/MOIW238_405-BROWN_301.29133_04-03-2025-22-33__27-02-2026-05-08:650x900?&dpr=on,2'
+    },
+    {
+      id: 13, name: 'Terracotta Ikat', type: 'Ikat Cotton · Terracotta', cat: 'cotton occasion', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 4100, priceStr: '₹4,100',
+      desc: 'Earthy terracotta ikat cotton with folk-inspired patterns. Bohemian and beautiful.',
+      fabric: 'Ikat Cotton', bg: 'linear-gradient(150deg,#5C2000,#B84000,#F08040)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/MOIW238_409-MEHANDI_444.16311_09-02-2025-22-09:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/MOIW238_409-MEHANDI_301.16324_09-02-2025-22-10:650x900?&dpr=on,2'
+    },
+    {
+      id: 14, name: 'Silver Tissue Zari', type: 'Tissue Zari · Silver', cat: 'zari silk occasion', tags: ['sale'],
+      badge: 'Sale', badgeClass: 'sps', price: 8900, priceStr: '₹8,900',
+      desc: 'Shimmering silver tissue with pure zari work. Perfect for evening events and receptions.',
+      fabric: 'Silver Tissue', bg: 'linear-gradient(150deg,#404040,#909090,#D0D0D0)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SAS8284-427-GREEN1_22-07-2025-13-44:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SAS8284-427-GREEN4_22-07-2025-13-40:650x900?&dpr=on,2'
+    },
+    {
+      id: 15, name: 'Forest Green Silk', type: 'Mysore Silk · Forest Green', cat: 'silk', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 11500, priceStr: '₹11,500',
+      desc: 'Lustrous Mysore silk in rich forest green. Understated luxury for the discerning woman.',
+      fabric: 'Mysore Silk', bg: 'linear-gradient(150deg,#0A2E1A,#155C34,#40B070)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/NMSAS6795_426-T.BLUE_101.18377_03-09-2024-17-27:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/NMSAS6795_426-T.BLUE_301.18393_03-09-2024-17-28:650x900?&dpr=on,2'
+    },
+    {
+      id: 16, name: 'Peachy Linen Cotton', type: 'Linen Cotton · Peach', cat: 'cotton', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 2400, priceStr: '₹2,400',
+      desc: 'Breathable linen-cotton blend in soft peach. Ideal for summer events and casual outings.',
+      fabric: 'Linen Cotton', bg: 'linear-gradient(150deg,#5C2A00,#CC6622,#FFBB88)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/NMSAS6795_414-PINK_101.5701_24-12-2024-15-54:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/NMSAS6795_414-PINK_301.5706_24-12-2024-15-54:650x900?&dpr=on,2'
+    },
+    {
+      id: 17, name: 'Navy Kanchi Gold', type: 'Kanjivaram · Navy & Gold', cat: 'bridal silk', tags: ['bridal','bestseller'],
+      badge: 'Bridal', badgeClass: 'spbr', price: 24500, priceStr: '₹24,500',
+      desc: 'Classic navy Kanjivaram with heavy gold zari border. The epitome of wedding grandeur.',
+      fabric: 'Kanjivaram Silk', bg: 'linear-gradient(150deg,#000033,#001880,#8899CC)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/NMGA2198_425-RANI_444.35940_23-10-2024-22-24:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/NMGA2198_425-RANI_301.35943_23-10-2024-22-24:650x900?&dpr=on,2'
+    },
+    {
+      id: 18, name: 'Coral Chanderi', type: 'Chanderi Silk · Coral', cat: 'silk occasion', tags: ['sale'],
+      badge: 'Sale', badgeClass: 'sps', price: 5600, priceStr: '₹5,600',
+      desc: 'Delicate Chanderi silk in warm coral with gold bootis. Light and effortlessly elegant.',
+      fabric: 'Chanderi Silk', bg: 'linear-gradient(150deg,#7A1F00,#D45030,#FF9060)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/NMSKT0093_414-PINK_101.23920_16-09-2024-12-19:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/NMSKT0093_414-PINK_301.23936_16-09-2024-12-20:650x900?&dpr=on,2'
+    },
+    {
+      id: 19, name: 'Purple Jamdani', type: 'Jamdani Weave · Purple', cat: 'cotton silk', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 7800, priceStr: '₹7,800',
+      desc: 'Intricate Jamdani weave in rich purple. Each motif is hand-woven with extraordinary skill.',
+      fabric: 'Jamdani Cotton-Silk', bg: 'linear-gradient(150deg,#2A004A,#6600AA,#CC80FF)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB17877-402%EF%80%A2416-CREAM-RED1_22-07-2025-10-07:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB17877-402%EF%80%A2416-CREAM-RED4_22-07-2025-10-08:650x900?&dpr=on,2'
+    },
+    {
+      id: 20, name: 'Mustard Pochampally', type: 'Pochampally Ikat · Mustard', cat: 'cotton silk', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 5200, priceStr: '₹5,200',
+      desc: 'Authentic Pochampally ikat in golden mustard. A Telangana heritage brought to life.',
+      fabric: 'Pochampally Cotton-Silk', bg: 'linear-gradient(150deg,#4A3000,#887000,#CCAA00)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB17394_422-WINE_444.5932_25-12-2024-16-27:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB17394_422-WINE_301.5937_25-12-2024-16-27:650x900?&dpr=on,2'
+    },
+    {
+      id: 21, name: 'Blush Kanjivaram', type: 'Kanjivaram Silk · Blush Pink', cat: 'bridal silk', tags: ['bridal'],
+      badge: 'Bridal', badgeClass: 'spbr', price: 19800, priceStr: '₹19,800',
+      desc: 'Soft blush pink Kanjivaram with pearl-white border. Bridal grace in every thread.',
+      fabric: 'Kanjivaram Silk', bg: 'linear-gradient(150deg,#5A2230,#CC5577,#FFB0C0)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB16047-416-RED1_12-06-2025-19-07:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB16047-416-RED3_18-06-2025-07-32:650x900?&dpr=on,2'
+    },
+    {
+      id: 22, name: 'Black Banarasi', type: 'Banarasi Silk · Black Gold', cat: 'zari silk occasion', tags: ['bestseller'],
+      badge: 'Bestseller', badgeClass: 'sph', price: 13500, priceStr: '₹13,500',
+      desc: 'Sophisticated black Banarasi with gold jaal weave. Power, elegance, and tradition.',
+      fabric: 'Banarasi Silk', bg: 'linear-gradient(150deg,#0A0A00,#2A2A10,#5A5A20)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB17854-434-LIGHT+BLUE-101_28-10-2025-10-58:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB17854-434-LIGHT+BLUE-301_28-10-2025-16-29:650x900?&dpr=on,2'
+    },
+    {
+      id: 23, name: 'Turquoise Dupion', type: 'Dupion Silk · Turquoise', cat: 'silk', tags: ['new','sale'],
+      badge: 'Sale', badgeClass: 'sps', price: 7000, priceStr: '₹7,000',
+      desc: 'Vibrant dupion silk in electric turquoise. Raw texture meets vivid colour brilliance.',
+      fabric: 'Dupion Silk', bg: 'linear-gradient(150deg,#003A3A,#007A88,#60E0E0)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB17854_409-MEHANDI_101.15719_09-02-2025-19-01:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB17854_409-MEHANDI_301.15737_09-02-2025-19-03:650x900?&dpr=on,2'
+    },
+    {
+      id: 24, name: 'Crimson Gadwal', type: 'Gadwal Silk · Crimson', cat: 'silk occasion', tags: ['new'],
+      badge: 'New', badgeClass: 'spn', price: 9200, priceStr: '₹9,200',
+      desc: 'Classic Gadwal silk in deep crimson with cotton body and pure silk border. A Telugu treasure.',
+      fabric: 'Gadwal Silk', bg: 'linear-gradient(150deg,#4A0000,#990000,#EE5555)',
+      img: 'https://manyavar.scene7.com/is/image/manyavar/SB17811_409-MEHANDI_101.7006_25-12-2024-20-43:650x900?&dpr=on,2',
+      img2: 'https://manyavar.scene7.com/is/image/manyavar/SB17811_409-MEHANDI_301.7023_25-12-2024-20-44:650x900?&dpr=on,2'
+    }
+  ];
+
+  var wishlist = JSON.parse(localStorage.getItem('samala_wish') || '[]');
+  var cart = JSON.parse(localStorage.getItem('samala_cart') || '[]');
+  var currentUser = JSON.parse(localStorage.getItem('samala_user') || 'null');
+  var currentProd = null;
+  var currentQty = 1;
+  var activeFilter = 'all';
+  var activeChip = 'all';
+  var activeColors = [];
+  var currentSort = 'default';
+  var modalImgIndex = 0; // 0 = main img, 1 = hover img
+
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var cat = params.get('cat');
+    if (cat) {
+      activeFilter = cat;
+      document.querySelectorAll('.sh-cat').forEach(function(a) {
+        a.classList.remove('on');
+        if (a.getAttribute('onclick') && a.getAttribute('onclick').indexOf("'" + cat + "'") !== -1) a.classList.add('on');
+      });
+    }
+    if (params.get('login') === '1') setTimeout(openAuth, 800);
+  })();
+
+  function getFilteredProducts() {
+    var search = document.getElementById('searchInput').value.toLowerCase();
+    var maxPrice = parseInt(document.getElementById('priceRange').value) || 50000;
+    return ALL_PRODUCTS.filter(function(p) {
+      if (activeFilter !== 'all' && p.cat.indexOf(activeFilter) === -1) return false;
+      if (activeChip !== 'all' && p.tags.indexOf(activeChip) === -1) return false;
+      if (p.price > maxPrice) return false;
+      if (search && p.name.toLowerCase().indexOf(search) === -1 && p.type.toLowerCase().indexOf(search) === -1 && p.cat.toLowerCase().indexOf(search) === -1) return false;
+      return true;
+    });
+  }
+
+  function sortProds(arr) {
+    var a2 = arr.slice();
+    if (currentSort === 'price-asc') a2.sort(function(a,b){ return a.price - b.price; });
+    else if (currentSort === 'price-desc') a2.sort(function(a,b){ return b.price - a.price; });
+    else if (currentSort === 'name') a2.sort(function(a,b){ return a.name.localeCompare(b.name); });
+    return a2;
+  }
+
+  function renderShopGrid() {
+    var grid = document.getElementById('shopGrid');
+    var prods = sortProds(getFilteredProducts());
+    document.getElementById('resultsCt').innerText = prods.length + ' product' + (prods.length !== 1 ? 's' : '');
+    grid.innerHTML = '';
+    if (prods.length === 0) {
+      grid.innerHTML = '<div class="no-results"><h3>No Sarees Found</h3><p>Try adjusting your filters or search term.</p></div>';
+      return;
+    }
+    prods.forEach(function(p) {
+      var isWish = wishlist.indexOf(p.id) !== -1;
+      var div = document.createElement('div');
+      div.className = 'spc';
+
+      var imgHTML = '';
+      if (p.img) {
+        imgHTML += '<img class="spi-img" src="' + p.img + '" alt="' + p.name + '" loading="lazy" onerror="this.style.display=\'none\'">';
+      }
+      if (p.img2) {
+        imgHTML += '<img class="spi-img2" src="' + p.img2 + '" alt="' + p.name + '" loading="lazy" onerror="this.style.display=\'none\'">';
+      }
+
+      // Show dots indicator only if 2 images
+      var dotsHTML = (p.img && p.img2)
+        ? '<div class="spi-dots"><div class="spi-dot on"></div><div class="spi-dot"></div></div>'
+        : '';
+
+      div.innerHTML =
+        '<div class="spi" onclick="openShopModal(' + p.id + ')">' +
+          '<div class="spi-bg" style="background:' + p.bg + ';"></div>' +
+          imgHTML +
+          dotsHTML +
+          '<span class="spbadge ' + p.badgeClass + '">' + p.badge + '</span>' +
+          '<div class="sp-overlay">' +
+            '<button class="sp-ov-btn sp-ov-buy" onclick="event.stopPropagation();quickBuy(' + p.id + ')">Buy Now</button>' +
+            '<button class="sp-ov-btn sp-ov-cart" onclick="event.stopPropagation();quickCart(' + p.id + ')">Add to Cart</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="spinfo">' +
+          '<div class="spname">' + p.name + '</div>' +
+          '<div class="sptype">' + p.type + '</div>' +
+          '<div class="sppr">' +
+            '<span class="spprice">' + p.priceStr + '</span>' +
+            '<button class="spwish' + (isWish ? ' liked' : '') + '" onclick="toggleWish(' + p.id + ',this)">' +
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="' + (isWish ? '#D42B2B' : 'none') + '" stroke="' + (isWish ? '#D42B2B' : 'currentColor') + '" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>' +
+            '</button>' +
+          '</div>' +
+        '</div>';
+      grid.appendChild(div);
+    });
+    updateBadges();
+  }
+
+  // ── MODAL IMAGE GALLERY ──
+  // switchModalImg(idx) → go to exact index 0 or 1
+  // switchModalImg(delta, 'rel') → relative navigation
+  function switchModalImg(idx, mode) {
+    if (!currentProd) return;
+    var imgs = [currentProd.img, currentProd.img2].filter(function(x){ return x && x.trim(); });
+    if (imgs.length < 2) return;
+
+    if (mode === 'rel') {
+      modalImgIndex = (modalImgIndex + idx + imgs.length) % imgs.length;
+    } else {
+      modalImgIndex = idx;
+    }
+
+    var mainEl = document.getElementById('smImgMain');
+    var hoverEl = document.getElementById('smImgHover');
+
+    if (modalImgIndex === 0) {
+      hoverEl.classList.remove('show');
+    } else {
+      hoverEl.classList.add('show');
+    }
+
+    // Update dots
+    var dots = document.querySelectorAll('#smDots .pm-img-dot');
+    dots.forEach(function(d, i) { d.classList.toggle('on', i === modalImgIndex); });
+  }
+
+  function openShopModal(id) {
+    var p = ALL_PRODUCTS.find(function(x){ return x.id === id; });
+    if (!p) return;
+    currentProd = p;
+    currentQty = 1;
+    modalImgIndex = 0;
+
+    var bg = document.getElementById('smImgBg');
+    bg.style.cssText = 'background:' + p.bg + ';width:100%;min-height:500px;position:relative;overflow:hidden;';
+
+    var mainImg = document.getElementById('smImgMain');
+    var hoverImg = document.getElementById('smImgHover');
+
+    // Reset state
+    hoverImg.classList.remove('show');
+
+    if (p.img) { mainImg.src = p.img; mainImg.style.display = 'block'; }
+    else { mainImg.style.display = 'none'; }
+
+    if (p.img2) { hoverImg.src = p.img2; hoverImg.style.display = 'block'; }
+    else { hoverImg.style.display = 'none'; }
+
+    // Show/hide nav controls based on whether 2nd image exists
+    var has2 = !!(p.img && p.img2 && p.img2.trim());
+    var dotsEl = document.getElementById('smDots');
+    var prevEl = document.getElementById('smPrev');
+    var nextEl = document.getElementById('smNext');
+
+    dotsEl.style.display = has2 ? 'flex' : 'none';
+    prevEl.style.display = has2 ? 'flex' : 'none';
+    nextEl.style.display = has2 ? 'flex' : 'none';
+
+    // Reset dots
+    document.querySelectorAll('#smDots .pm-img-dot').forEach(function(d, i) {
+      d.classList.toggle('on', i === 0);
+    });
+
+    var badge = document.getElementById('smBadge');
+    badge.className = 'pm-badge2 ' + p.badgeClass;
+    badge.innerText = p.badge;
+    document.getElementById('smName').innerText = p.name;
+    document.getElementById('smType').innerText = p.type;
+    document.getElementById('smPrice').innerText = p.priceStr;
+    document.getElementById('smOldPrice').innerText = p.tags.indexOf('sale') !== -1 ? '₹' + Math.round(p.price * 1.2).toLocaleString('en-IN') : '';
+    document.getElementById('smDesc').innerText = p.desc;
+    document.getElementById('smFabric').innerText = p.fabric;
+    document.getElementById('smQty').innerText = 1;
+
+    var wb = document.getElementById('smWishBtn');
+    if (wishlist.indexOf(p.id) !== -1) { wb.classList.add('liked'); wb.innerText = '♥ Wishlisted'; }
+    else { wb.classList.remove('liked'); wb.innerText = '♡ Wishlist'; }
+
+    document.getElementById('smBuyBtn').onclick = function() {
+      window.open('https://wa.me/919876543210?text=I want to buy: ' + encodeURIComponent(p.name + ' (' + p.priceStr + ')'), '_blank');
+    };
+    document.getElementById('shopModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeShopModal() {
+    document.getElementById('shopModal').classList.remove('open');
+    document.body.style.overflow = '';
+    currentProd = null;
+    currentQty = 1;
+    modalImgIndex = 0;
+  }
+
+  function filterProducts() { renderShopGrid(); }
+  function sortProducts(val) { currentSort = val; renderShopGrid(); }
+  function setCatFilter(cat, el) {
+    event.preventDefault();
+    activeFilter = cat;
+    document.querySelectorAll('.sh-cat').forEach(function(a){ a.classList.remove('on'); });
+    el.classList.add('on');
+    renderShopGrid();
+  }
+  function setChipFilter(chip, el) {
+    activeChip = chip;
+    document.querySelectorAll('.fchip').forEach(function(b){ b.classList.remove('on'); });
+    el.classList.add('on');
+    renderShopGrid();
+  }
+  function updatePriceLabel(v) { document.getElementById('priceLabel').innerText = '₹' + parseInt(v).toLocaleString('en-IN'); }
+  function toggleColor(color, el) { el.classList.toggle('on'); filterProducts(); }
+
+  function toggleWish(id, btn) {
+    var idx = wishlist.indexOf(id);
+    if (idx === -1) { wishlist.push(id); showToast('Added to wishlist ♡'); }
+    else { wishlist.splice(idx, 1); showToast('Removed from wishlist'); }
+    localStorage.setItem('samala_wish', JSON.stringify(wishlist));
+    var svg = btn.querySelector('svg');
+    btn.classList.toggle('liked');
+    if (btn.classList.contains('liked')) { svg.setAttribute('fill','#D42B2B'); svg.setAttribute('stroke','#D42B2B'); }
+    else { svg.setAttribute('fill','none'); svg.setAttribute('stroke','currentColor'); }
+    updateBadges();
+  }
+
+  function quickCart(id) {
+    var p = ALL_PRODUCTS.find(function(x){ return x.id === id; });
+    if (!p) return;
+    addToCart(p, 1);
+  }
+  function quickBuy(id) {
+    var p = ALL_PRODUCTS.find(function(x){ return x.id === id; });
+    if (!p) return;
+    window.open('https://wa.me/919876543210?text=I want to buy: ' + encodeURIComponent(p.name + ' (' + p.priceStr + ')'), '_blank');
+  }
+  function addToCart(p, qty) {
+    var existing = cart.find(function(x){ return x.id === p.id; });
+    if (existing) { existing.qty += qty; }
+    else { cart.push({ id: p.id, name: p.name, type: p.type, price: p.price, priceStr: p.priceStr, bg: p.bg, img: p.img || '', qty: qty }); }
+    localStorage.setItem('samala_cart', JSON.stringify(cart));
+    updateBadges();
+    showToast('Added to cart 🛍️');
+  }
+  function addToCartModal() { if (!currentProd) return; addToCart(currentProd, currentQty); closeShopModal(); }
+  function changeQty(d) { currentQty = Math.max(1, currentQty + d); document.getElementById('smQty').innerText = currentQty; }
+
+  function openCart() {
+    renderCart();
+    document.getElementById('cartPanel').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeCart() {
+    document.getElementById('cartPanel').classList.remove('open');
+    document.getElementById('cartOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function renderCart() {
+    var body = document.getElementById('cartBody');
+    var foot = document.getElementById('cartFoot');
+    if (cart.length === 0) {
+      body.innerHTML = '<div class="cp-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg><p>Your cart is empty.<br>Explore our beautiful sarees!</p></div>';
+      foot.style.display = 'none'; return;
+    }
+    foot.style.display = 'block';
+    var total = 0;
+    body.innerHTML = '';
+    cart.forEach(function(item, idx) {
+      total += item.price * item.qty;
+      var div = document.createElement('div');
+      div.className = 'cart-item';
+      var imgEl = item.img
+        ? '<img class="ci-img" src="' + item.img + '" alt="' + item.name + '" onerror="this.style.background=\'var(--bdr)\';this.removeAttribute(\'src\')">'
+        : '<div class="ci-img" style="background:' + item.bg + ';"></div>';
+      div.innerHTML = imgEl +
+        '<div class="ci-info">' +
+          '<div class="ci-name">' + item.name + '</div>' +
+          '<div class="ci-type">' + item.type + '</div>' +
+          '<div class="ci-row">' +
+            '<span class="ci-price">' + item.priceStr + '</span>' +
+            '<div class="ci-qty">' +
+              '<button onclick="updateCartQty(' + idx + ',-1)">−</button>' +
+              '<span>' + item.qty + '</span>' +
+              '<button onclick="updateCartQty(' + idx + ',1)">+</button>' +
+            '</div>' +
+            '<button class="ci-del" onclick="removeCartItem(' + idx + ')">✕</button>' +
+          '</div>' +
+        '</div>';
+      body.appendChild(div);
+    });
+    document.getElementById('cartTotal').innerText = '₹' + total.toLocaleString('en-IN');
+  }
+  function updateCartQty(idx, d) { cart[idx].qty = Math.max(1, cart[idx].qty + d); localStorage.setItem('samala_cart', JSON.stringify(cart)); updateBadges(); renderCart(); }
+  function removeCartItem(idx) { cart.splice(idx, 1); localStorage.setItem('samala_cart', JSON.stringify(cart)); updateBadges(); renderCart(); }
+  function checkoutWhatsApp() {
+    var msg = 'Hello! I want to order:\n\n';
+    var total = 0;
+    cart.forEach(function(item){ msg += '• ' + item.name + ' x' + item.qty + ' = ' + item.priceStr + '\n'; total += item.price * item.qty; });
+    msg += '\nTotal: ₹' + total.toLocaleString('en-IN');
+    window.open('https://wa.me/919876543210?text=' + encodeURIComponent(msg), '_blank');
+  }
+  function updateBadges() {
+    var cartQty = cart.reduce(function(a,b){ return a + b.qty; }, 0);
+    document.getElementById('cartBadge').innerText = cartQty;
+    document.getElementById('wishBadge').innerText = wishlist.length;
+  }
+
+  function openWishPanel() {
+    renderWishPanel();
+    document.getElementById('wishPanel').classList.add('open');
+    document.getElementById('wishOverlay').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeWishPanel() {
+    document.getElementById('wishPanel').classList.remove('open');
+    document.getElementById('wishOverlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function renderWishPanel() {
+    var body = document.getElementById('wishBody');
+    var items = ALL_PRODUCTS.filter(function(p){ return wishlist.indexOf(p.id) !== -1; });
+    if (items.length === 0) { body.innerHTML = '<div class="cp-empty"><p>No wishlisted items yet.<br>Click ♡ on any saree!</p></div>'; return; }
+    body.innerHTML = '';
+    items.forEach(function(p) {
+      var div = document.createElement('div');
+      div.className = 'cart-item';
+      var imgEl = p.img
+        ? '<img class="ci-img" src="' + p.img + '" alt="' + p.name + '" style="cursor:pointer;" onclick="closeWishPanel();openShopModal(' + p.id + ')" onerror="this.style.background=\'var(--bdr)\'">'
+        : '<div class="ci-img" style="background:' + p.bg + ';cursor:pointer;" onclick="closeWishPanel();openShopModal(' + p.id + ')"></div>';
+      div.innerHTML = imgEl +
+        '<div class="ci-info">' +
+          '<div class="ci-name">' + p.name + '</div>' +
+          '<div class="ci-type">' + p.type + '</div>' +
+          '<div class="ci-row">' +
+            '<span class="ci-price">' + p.priceStr + '</span>' +
+            '<button class="ci-del" onclick="removeFromWish(' + p.id + ')">✕</button>' +
+          '</div>' +
+          '<button style="margin-top:6px;width:100%;padding:8px;background:var(--ink);color:#fff;border:none;font-family:Bebas Neue,sans-serif;font-size:.85rem;letter-spacing:.1em;cursor:pointer;" onclick="quickCart(' + p.id + ');showToast(\'Added to cart!\')">Add to Cart</button>' +
+        '</div>';
+      body.appendChild(div);
+    });
+  }
+  function removeFromWish(id) {
+    var idx = wishlist.indexOf(id);
+    if (idx !== -1) { wishlist.splice(idx, 1); localStorage.setItem('samala_wish', JSON.stringify(wishlist)); }
+    updateBadges(); renderWishPanel();
+  }
+
+  function toggleModalWish2() {
+    if (!currentProd) return;
+    var id = currentProd.id;
+    var idx = wishlist.indexOf(id);
+    var wb = document.getElementById('smWishBtn');
+    if (idx === -1) { wishlist.push(id); wb.classList.add('liked'); wb.innerText = '♥ Wishlisted'; showToast('Added to wishlist ♡'); }
+    else { wishlist.splice(idx, 1); wb.classList.remove('liked'); wb.innerText = '♡ Wishlist'; showToast('Removed from wishlist'); }
+    localStorage.setItem('samala_wish', JSON.stringify(wishlist));
+    updateBadges();
+  }
+  function shareProduct2() {
+    if (navigator.share && currentProd) { navigator.share({ title: currentProd.name, text: 'Beautiful ' + currentProd.name + ' at Samala Cloth Stores!', url: window.location.href }); }
+    else { showToast('Link copied!'); }
+  }
+
+  function openAuth() { document.getElementById('authModal').classList.add('open'); document.body.style.overflow = 'hidden'; updateAuthUI(); }
+  function closeAuth() { document.getElementById('authModal').classList.remove('open'); document.body.style.overflow = ''; }
+  function switchTab(tab) {
+    document.querySelectorAll('.auth-tab').forEach(function(t){ t.classList.remove('on'); });
+    document.querySelectorAll('.auth-form').forEach(function(f){ f.classList.remove('on'); });
+    event.target.classList.add('on');
+    document.getElementById(tab + 'Form').classList.add('on');
+  }
+  function doLogin() {
+    var phone = document.getElementById('loginPhone').value;
+    var pass = document.getElementById('loginPass').value;
+    if (!phone || !pass) { showToast('Please fill all fields'); return; }
+    currentUser = { name: phone, phone: phone };
+    localStorage.setItem('samala_user', JSON.stringify(currentUser));
+    showToast('Welcome back! 🎉');
+    updateAuthUI();
+  }
+  function doRegister() {
+    var name = document.getElementById('regName').value;
+    var phone = document.getElementById('regPhone').value;
+    var email = document.getElementById('regEmail').value;
+    var pass = document.getElementById('regPass').value;
+    if (!name || !phone || !email || !pass) { showToast('Please fill all fields'); return; }
+    currentUser = { name: name, phone: phone, email: email };
+    localStorage.setItem('samala_user', JSON.stringify(currentUser));
+    showToast('Account created! Welcome ' + name + ' 🎉');
+    updateAuthUI();
+  }
+  function loginViaWA() {
+    window.open('https://wa.me/919876543210?text=Please send me OTP to login to Samala Cloth Stores', '_blank');
+    showToast('OTP sent via WhatsApp!');
+  }
+  function doLogout() {
+    currentUser = null;
+    localStorage.removeItem('samala_user');
+    showToast('Signed out successfully');
+    updateAuthUI();
+    closeAuth();
+  }
+  function updateAuthUI() {
+    var loggedOut = document.getElementById('authLoggedOut');
+    var loggedIn = document.getElementById('authLoggedIn');
+    var btnTxt = document.getElementById('authBtnTxt');
+    if (currentUser) {
+      loggedOut.style.display = 'none';
+      loggedIn.style.display = 'block';
+      document.getElementById('accWelcome').innerText = 'Welcome, ' + currentUser.name + '!';
+      btnTxt.innerText = currentUser.name.split(' ')[0] || 'Account';
+    } else {
+      loggedOut.style.display = 'block';
+      loggedIn.style.display = 'none';
+      btnTxt.innerText = 'Login';
+    }
+  }
+
+  function showToast(msg) { var t = document.getElementById('toast'); t.innerText = msg; t.classList.add('show'); setTimeout(function(){ t.classList.remove('show'); }, 2500); }
+
+  (function() {
+    if (!window.matchMedia('(pointer:fine)').matches) return;
+    var cur = document.getElementById('cur'), cr = document.getElementById('cr');
+    if (!cur || !cr) return;
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', function(e){ mx = e.clientX; my = e.clientY; cur.style.left = (mx-6)+'px'; cur.style.top = (my-6)+'px'; });
+    (function loop(){ rx += (mx-rx-18)*.12; ry += (my-ry-18)*.12; cr.style.left = rx+'px'; cr.style.top = ry+'px'; requestAnimationFrame(loop); })();
+  })();
+
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { closeShopModal(); closeCart(); closeWishPanel(); closeAuth(); } });
+
+  updateAuthUI();
+  updateBadges();
+  renderShopGrid();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samala Cloth Stores — Venkatagiri Sarees</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--w:#FFFFFF;--off:#FDFAF5;--ink:#1A0A00;--ink2:#4A2C10;--red:#D42B2B;--teal:#007A6E;--teal2:#00B3A4;--tur:#E8A000;--tur2:#FFB800;--rose:#D4006A;--rose2:#FF2D87;--ind:#2B1FD4;--grn:#006B3C;--grn2:#00A85A;--bdr:#E8E0D4;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--w);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+.cur,.cur-ring{display:none;}
+@media(pointer:fine){
+  body{cursor:none;}
+  .cur{display:block;position:fixed;width:14px;height:14px;border-radius:50%;pointer-events:none;z-index:9999;mix-blend-mode:multiply;transition:transform .12s;top:-20px;left:-20px;background:#1A0A00;}
+  .cur-ring{display:block;position:fixed;width:42px;height:42px;border:2px solid #1A0A00;border-radius:50%;pointer-events:none;z-index:9998;transition:transform .4s cubic-bezier(.25,.46,.45,.94);opacity:.4;top:-30px;left:-30px;}
+  a,button,.cc,.pc,.lb,.ig,.strip{cursor:none;}
+}
+#loader{position:fixed;inset:0;background:var(--w);z-index:10000;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .6s,visibility .6s;}
+#loader.out{opacity:0;visibility:hidden;pointer-events:none;}
+.l-rings{position:relative;width:110px;height:110px;margin-bottom:24px;}
+.l-rings div{position:absolute;border-radius:50%;animation:rp 1.6s ease-in-out infinite;}
+.l-rings div:nth-child(1){inset:0;border:3px solid var(--red);}
+.l-rings div:nth-child(2){inset:13px;border:3px solid var(--tur);animation-delay:.2s;}
+.l-rings div:nth-child(3){inset:26px;border:3px solid var(--teal);animation-delay:.4s;}
+.l-rings div:nth-child(4){inset:39px;border:3px solid var(--rose);animation-delay:.6s;}
+.l-dot{position:absolute;inset:50px;border-radius:50%;background:var(--ink);animation:dp 1.6s ease-in-out infinite;}
+@keyframes rp{0%,100%{opacity:.2;transform:scale(.95)}50%{opacity:1;transform:scale(1.05)}}
+@keyframes dp{0%,100%{transform:scale(.8)}50%{transform:scale(1.2)}}
+.l-brand{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;letter-spacing:.2em;color:var(--ink);}
+.l-sub{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink2);margin-top:6px;font-weight:300;}
+.l-dots{display:flex;gap:8px;margin-top:20px;}
+.l-dots span{width:8px;height:8px;border-radius:50%;animation:db 1.2s ease-in-out infinite;}
+.l-dots span:nth-child(1){background:var(--red);}
+.l-dots span:nth-child(2){background:var(--tur);animation-delay:.15s;}
+.l-dots span:nth-child(3){background:var(--teal);animation-delay:.3s;}
+.l-dots span:nth-child(4){background:var(--rose);animation-delay:.45s;}
+.l-dots span:nth-child(5){background:var(--ind);animation-delay:.6s;}
+@keyframes db{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;transition:all .4s;}
+nav.solid{background:rgba(255,255,255,.97);backdrop-filter:blur(20px);padding:12px 40px;border-bottom:2px solid var(--ink);box-shadow:0 4px 20px rgba(26,10,0,.08);}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.12em;color:var(--ink);text-decoration:none;line-height:1;}
+.logo small{display:block;font-family:'DM Sans',sans-serif;font-size:.48rem;letter-spacing:.28em;font-weight:300;color:var(--ink2);text-transform:uppercase;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;position:relative;padding-bottom:4px;}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--red);transition:width .3s;}
+.nav-links a:hover::after{width:100%;}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.wa-btn{display:flex;align-items:center;gap:7px;background:var(--grn);color:#fff;font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:9px 16px;border-radius:2px;transition:background .2s;white-space:nowrap;}
+.wa-btn:hover{background:var(--grn2);}
+.nav-login-btn{display:flex;align-items:center;gap:6px;background:var(--ink);color:#fff;font-size:.65rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;padding:9px 16px;border-radius:2px;transition:background .2s;white-space:nowrap;border:none;}
+.nav-login-btn:hover{background:var(--red);}
+.ham{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;z-index:1100;}
+.ham span{width:24px;height:2px;background:var(--ink);border-radius:2px;transition:all .3s;display:block;}
+.ham.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.ham.open span:nth-child(2){opacity:0;}
+.ham.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{position:fixed;top:0;right:-100%;width:80%;max-width:300px;height:100%;background:var(--w);z-index:1050;padding:80px 28px 40px;display:flex;flex-direction:column;transition:right .35s cubic-bezier(.25,.46,.45,.94);box-shadow:-8px 0 40px rgba(26,10,0,.15);overflow-y:auto;}
+.mob-menu.open{right:0;}
+.mob-menu a{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:.1em;color:var(--ink);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--bdr);display:block;transition:color .2s;}
+.mob-menu a:hover{color:var(--red);}
+.mob-wa{margin-top:28px!important;background:var(--grn)!important;color:#fff!important;padding:14px 20px!important;text-align:center;border-bottom:none!important;font-size:1rem!important;border-radius:2px;}
+.mob-overlay{position:fixed;inset:0;background:rgba(26,10,0,.5);z-index:1040;opacity:0;visibility:hidden;transition:all .3s;}
+.mob-overlay.open{opacity:1;visibility:visible;}
+.prog{position:fixed;top:0;left:0;height:3px;z-index:9999;background:var(--red);width:0;transition:width .1s;}
+#hero{min-height:100svh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+.hero-l{background:var(--off);display:flex;flex-direction:column;justify-content:center;padding:110px 44px 60px 56px;position:relative;z-index:2;}
+.h-tag{display:inline-flex;align-items:center;gap:8px;background:var(--tur2);color:var(--ink);font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;padding:6px 12px;margin-bottom:20px;width:fit-content;}
+.h-tag::before{content:'✦';}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,6.5vw,7.5rem);line-height:.9;color:var(--ink);letter-spacing:.02em;margin-bottom:6px;}
+.h1-red{color:var(--red);display:block;}
+.h1-teal{color:var(--teal);display:block;}
+.hero-sub{font-family:'Playfair Display',serif;font-size:clamp(.9rem,1.4vw,1.1rem);font-style:italic;color:var(--ink2);line-height:1.7;max-width:360px;margin:18px 0 32px;}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;}
+.btn-r{background:var(--red);color:#fff;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:13px 28px;text-decoration:none;transition:all .25s;display:inline-block;border:2px solid var(--red);}
+.btn-r:hover{background:transparent;color:var(--red);}
+.btn-o{background:transparent;color:var(--ink);font-size:.68rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;padding:13px 28px;text-decoration:none;border:2px solid var(--ink);transition:all .25s;display:inline-block;}
+.btn-o:hover{background:var(--ink);color:#fff;}
+.hero-stats{display:flex;gap:24px;margin-top:40px;padding-top:24px;border-top:1px solid var(--bdr);flex-wrap:wrap;}
+.hs-n{font-family:'Bebas Neue',sans-serif;font-size:1.9rem;color:var(--ink);line-height:1;letter-spacing:.05em;}
+.hs-l{font-size:.58rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2);margin-top:3px;}
+.hero-r{position:relative;overflow:hidden;}
+.strips{display:flex;height:100%;}
+.strip{flex:1;position:relative;overflow:hidden;transition:flex .55s cubic-bezier(.25,.46,.45,.94);}
+.strip:hover{flex:2.5;}
+.strip video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s,transform .6s ease;opacity:1;z-index:1;}
+.strip:hover video{transform:scale(1.04);}
+.strip-fallback{position:absolute;inset:0;width:100%;height:100%;z-index:0;transition:opacity .35s;opacity:0;}
+.strip-lbl{position:absolute;bottom:24px;left:50%;transform:translateX(-50%) rotate(-90deg);font-size:.5rem;letter-spacing:.38em;text-transform:uppercase;color:rgba(255,255,255,.55);white-space:nowrap;transition:all .3s;font-family:'DM Sans',sans-serif;font-weight:500;z-index:3;pointer-events:none;}
+.strip:hover .strip-lbl{color:#fff;}
+.strip::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.28);transition:background .4s;z-index:2;pointer-events:none;}
+.strip:hover::after{background:rgba(0,0,0,0);}
+.ticker{padding:12px 0;overflow:hidden;border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);background:var(--ink);}
+.t-track{display:flex;width:max-content;animation:tm 22s linear infinite;}
+.ticker:hover .t-track{animation-play-state:paused;}
+.t-item{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.15em;color:#fff;padding:0 26px;display:flex;align-items:center;gap:12px;white-space:nowrap;}
+.t-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+@keyframes tm{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.sec-eye{font-size:.6rem;font-weight:600;letter-spacing:.38em;text-transform:uppercase;color:var(--red);margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.sec-eye::after{content:'';flex:1;height:2px;background:var(--red);max-width:48px;}
+.sec-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.4rem,4.5vw,4.8rem);line-height:.95;letter-spacing:.02em;color:var(--ink);margin-bottom:44px;}
+.sec-h2 span{color:var(--teal);}
+#coll{padding:72px 56px;}
+.coll-hdr{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;}
+.coll-hdr .sec-h2{margin-bottom:0;}
+.cg{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:460px 240px;gap:10px;}
+.cc{position:relative;overflow:hidden;border:2px solid transparent;transition:border-color .3s;cursor:pointer;}
+.cc:hover{border-color:var(--ink);}
+.cc:first-child{grid-row:span 2;}
+
+/* ═══ ENHANCED: Category cards with video/image support ═══ */
+.cc-bg{width:100%;height:100%;transition:transform .5s ease;position:relative;}
+.cc-bg-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.cc-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:block;opacity:1;transition:opacity .4s;z-index:1;}
+.cc-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .4s;z-index:2;}
+.cc:hover .cc-bg-img,
+.cc:hover .cc-bg-video{opacity:1;}
+.cc:hover .cc-bg{transform:scale(1.04);}
+
+.cc-info{position:absolute;bottom:0;left:0;right:0;padding:24px 20px 20px;background:linear-gradient(to top,rgba(26,10,0,.78),transparent);z-index:3;}
+.cc-tag{font-size:.52rem;letter-spacing:.32em;text-transform:uppercase;font-weight:600;margin-bottom:5px;}
+.cc-name{font-family:'Bebas Neue',sans-serif;font-size:1.7rem;letter-spacing:.05em;color:#fff;line-height:1;}
+.cc-cnt{font-size:.62rem;color:rgba(255,255,255,.6);margin-top:3px;}
+.cc-hbtn{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) scale(0);background:#fff;color:var(--ink);font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:11px 22px;white-space:nowrap;transition:transform .3s cubic-bezier(.34,1.56,.64,1);text-decoration:none;display:block;z-index:4;}
+.cc:hover .cc-hbtn{transform:translate(-50%,-50%) scale(1);}
+
+#look{background:var(--off);border-top:3px solid var(--ink);border-bottom:3px solid var(--ink);}
+.lb-wrap{display:flex;height:60vw;max-height:620px;min-height:320px;}
+.lb{flex:1;position:relative;overflow:hidden;border-right:2px solid var(--ink);transition:flex .55s cubic-bezier(.25,.46,.45,.94);}
+.lb:last-child{border-right:none;}
+.lb:hover{flex:3;}
+
+/* ═══ ENHANCED: Lookbook with video/image support ═══ */
+.lb-bg{width:100%;height:100%;transition:transform .6s ease;position:relative;}
+.lb-bg-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.lb-bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1;transition:opacity .4s;z-index:1;}
+.lb-bg-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
+.lb:hover .lb-bg-img,
+.lb:hover .lb-bg-video{opacity:1;}
+.lb:hover .lb-bg{transform:scale(1.05);}
+
+.lb-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 20px;background:linear-gradient(to top,rgba(26,10,0,.82),transparent 58%);opacity:0;transition:opacity .3s;z-index:3;}
+.lb:hover .lb-ov{opacity:1;}
+.lb-nm{font-family:'Playfair Display',serif;font-size:clamp(1rem,2vw,1.5rem);font-style:italic;color:#fff;line-height:1.25;}
+.lb-tp{font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;margin-top:5px;}
+.lb-n{position:absolute;top:16px;left:16px;font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.05em;color:rgba(255,255,255,.18);line-height:1;transition:color .3s;z-index:3;}
+.lb:hover .lb-n{color:rgba(255,255,255,.42);}
+
+#hl{padding:72px 56px;background:var(--w);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.hl-l .sec-h2{margin-bottom:32px;}
+.ci{display:flex;gap:20px;align-items:flex-start;padding:24px 0;border-bottom:1px solid var(--bdr);transition:padding-left .3s;}
+.ci:first-child{border-top:1px solid var(--bdr);}
+.ci:hover{padding-left:10px;}
+.cin{font-family:'Bebas Neue',sans-serif;font-size:3rem;line-height:1;letter-spacing:.05em;min-width:56px;}
+.ci:nth-child(1) .cin{color:var(--red);}
+.ci:nth-child(2) .cin{color:var(--teal);}
+.ci:nth-child(3) .cin{color:var(--tur);}
+.ci:nth-child(4) .cin{color:var(--rose);}
+.cb h3{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;margin-bottom:5px;color:var(--ink);}
+.cb p{font-size:.82rem;color:var(--ink2);line-height:1.75;font-weight:300;}
+.hl-r{position:relative;height:560px;}
+
+/* ═══ ENHANCED: Featured card with video/image support ═══ */
+.hl-card{width:100%;height:100%;position:relative;overflow:hidden;border:3px solid var(--ink);}
+.hl-card-bg{position:relative;width:100%;height:100%;}
+.hl-card-color{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+.hl-card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .4s;z-index:1;}
+.hl-card-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
+.hl-card:hover .hl-card-img,
+.hl-card:hover .hl-card-video{opacity:1;}
+
+.hl-c{position:absolute;top:0;left:0;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.1em;padding:9px 18px;z-index:3;}
+.hl-bb{position:absolute;bottom:0;left:0;right:0;background:var(--ink);color:#fff;padding:18px 24px;display:flex;justify-content:space-between;align-items:center;z-index:3;}
+.hl-bb h4{font-family:'Playfair Display',serif;font-size:1.2rem;font-style:italic;}
+.hl-bb span{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;letter-spacing:.05em;color:var(--tur2);}
+
+#story{background:var(--ink);color:#fff;padding:100px 56px;position:relative;overflow:hidden;}
+.s-bg{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:20vw;letter-spacing:.05em;color:rgba(255,255,255,.03);white-space:nowrap;pointer-events:none;user-select:none;}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:2;}
+.sl .sec-eye{color:var(--tur2);}
+.sl .sec-eye::after{background:var(--tur2);}
+.sl .sec-h2{color:#fff;}
+.sl .sec-h2 span{color:var(--tur2);}
+.sb{font-size:.9rem;line-height:1.9;font-weight:300;color:rgba(255,255,255,.68);margin-bottom:18px;}
+.sq{font-family:'Playfair Display',serif;font-size:1.25rem;font-style:italic;color:var(--tur2);border-left:4px solid var(--tur2);padding-left:20px;line-height:1.65;margin:28px 0;}
+.s-tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:28px;}
+.s-tag{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:7px 14px;border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.55);transition:all .2s;}
+.s-tag:hover{border-color:var(--tur2);color:var(--tur2);}
+.sr{position:relative;}
+.s-bn{font-family:'Bebas Neue',sans-serif;font-size:10rem;line-height:1;letter-spacing:.02em;color:var(--tur2);opacity:.14;position:absolute;top:-24px;right:-16px;pointer-events:none;}
+.ssg{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.ss{background:rgba(255,255,255,.04);padding:32px 26px;border:1px solid rgba(255,255,255,.08);transition:background .2s;}
+.ss:hover{background:rgba(255,255,255,.09);}
+.ss-n{font-family:'Bebas Neue',sans-serif;font-size:3.6rem;letter-spacing:.05em;line-height:1;display:block;margin-bottom:7px;}
+.ss:nth-child(1) .ss-n{color:#FF4444;}
+.ss:nth-child(2) .ss-n{color:var(--teal2);}
+.ss:nth-child(3) .ss-n{color:var(--tur2);}
+.ss:nth-child(4) .ss-n{color:var(--rose2);}
+.ss-l{font-size:.68rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.48);}
+
+#prod{padding:72px 56px;background:var(--off);}
+.pt{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;flex-wrap:wrap;gap:16px;}
+.pt .sec-h2{margin-bottom:0;}
+.pt-right{display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+.fls{display:flex;gap:5px;flex-wrap:wrap;}
+.fl{font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:8px 18px;border:2px solid var(--bdr);background:transparent;color:var(--ink2);font-family:'DM Sans',sans-serif;transition:all .2s;}
+.fl.on,.fl:hover{border-color:var(--ink);background:var(--ink);color:#fff;}
+.view-all-btn{display:inline-flex;align-items:center;gap:7px;background:var(--teal);color:#fff;font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;padding:10px 20px;transition:background .2s;border:2px solid var(--teal);}
+.view-all-btn:hover{background:transparent;color:var(--teal);}
+.pg{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;}
+.pc{background:var(--w);position:relative;overflow:hidden;border:2px solid var(--w);transition:border-color .2s;cursor:pointer;}
+.pc.hidden{display:none;}
+.pc:hover{border-color:var(--ink);}
+.pi{height:320px;position:relative;overflow:hidden;}
+
+/* ═══ ENHANCED: Product cards with video/image support ═══ */
+.pi-in{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s ease;z-index:0;}
+.pi-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:1;transition:opacity .4s;z-index:1;}
+.pi-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .4s;z-index:2;}
+.pc:hover .pi-in,
+.pc:hover .pi-img,
+.pc:hover .pi-video{transform:scale(1.06);}
+.pc:hover .pi-img,
+.pc:hover .pi-video{opacity:1;}
+
+.pb{position:absolute;top:10px;left:10px;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:4px 9px;z-index:3;}
+.pn{background:var(--teal);color:#fff;}
+.ps{background:var(--red);color:#fff;}
+.pbr{background:var(--rose);color:#fff;}
+.ph{background:var(--tur2);color:var(--ink);}
+.pinfo{padding:14px 16px 18px;}
+.pname{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:2px;}
+.ptype{font-size:.62rem;color:var(--ink2);letter-spacing:.08em;margin-bottom:9px;}
+.ppr{display:flex;justify-content:space-between;align-items:center;}
+.pprice{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:.05em;color:var(--ink);}
+.pw{width:30px;height:30px;border:2px solid var(--bdr);background:transparent;display:flex;align-items:center;justify-content:center;transition:all .2s;color:var(--ink2);}
+.pw.liked{border-color:var(--red);color:var(--red);background:rgba(212,43,43,.08);}
+.pw:hover{border-color:var(--red);color:var(--red);}
+
+#insta{padding:72px 56px;background:var(--w);border-top:3px solid var(--ink);}
+.it{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;flex-wrap:wrap;gap:16px;}
+.ig2{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+.ig{position:relative;aspect-ratio:1;overflow:hidden;}
+.ig-in{width:100%;height:100%;transition:transform .4s;}
+.ig:hover .ig-in{transform:scale(1.08);}
+.ig-hov{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;background:rgba(255,255,255,.85);opacity:0;transition:opacity .3s;}
+.ig:hover .ig-hov{opacity:1;}
+.ig-hov svg{width:22px;color:var(--ink);}
+.ig-hov span{font-size:.58rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);}
+
+#contact{display:grid;grid-template-columns:1fr 1fr;border-top:3px solid var(--ink);}
+.cl{padding:72px 56px;background:var(--tur2);display:flex;flex-direction:column;justify-content:center;}
+.cl .sec-eye{color:var(--ink);}
+.cl .sec-eye::after{background:var(--ink);}
+.cl .sec-h2{color:var(--ink);}
+.cl .sec-h2 span{color:var(--w);}
+.cd{display:flex;gap:14px;align-items:flex-start;margin-bottom:24px;padding-bottom:24px;border-bottom:2px solid rgba(26,10,0,.15);}
+.cd:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.ci2{width:42px;height:42px;flex-shrink:0;background:var(--ink);color:var(--tur2);display:flex;align-items:center;justify-content:center;}
+.ct h4{font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.2em;color:var(--ink);margin-bottom:4px;}
+.ct p{font-size:.8rem;color:rgba(26,10,0,.7);line-height:1.65;}
+.cmap{position:relative;min-height:460px;}
+.cmap iframe{width:100%;height:100%;min-height:460px;border:none;display:block;}
+.map-lbl{position:absolute;top:16px;left:16px;z-index:10;background:var(--ink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:.85rem;letter-spacing:.1em;padding:9px 18px;}
+
+footer{background:var(--ink);color:#fff;padding:56px 56px 28px;border-top:4px solid var(--tur2);}
+.ft{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.ft-brand .logo{color:var(--tur2);font-size:1.8rem;display:block;margin-bottom:14px;}
+.ft-brand p{font-size:.78rem;color:rgba(255,255,255,.48);line-height:1.8;font-weight:300;}
+.ftc h5{font-family:'Bebas Neue',sans-serif;font-size:.95rem;letter-spacing:.2em;color:var(--tur2);margin-bottom:18px;}
+.ftc ul{list-style:none;}
+.ftc li{margin-bottom:9px;}
+.ftc a{font-size:.78rem;color:rgba(255,255,255,.48);text-decoration:none;transition:color .2s;}
+.ftc a:hover{color:#fff;}
+.fb{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.fb p{font-size:.62rem;color:rgba(255,255,255,.32);letter-spacing:.08em;}
+
+.rv{opacity:0;transform:translateY(44px);transition:opacity .7s,transform .7s;}
+.rv.go{opacity:1;transform:none;}
+.rv-l{opacity:0;transform:translateX(-44px);transition:opacity .7s,transform .7s;}
+.rv-l.go{opacity:1;transform:none;}
+.rv-r{opacity:0;transform:translateX(44px);transition:opacity .7s,transform .7s;}
+.rv-r.go{opacity:1;transform:none;}
+
+.prod-modal{position:fixed;inset:0;z-index:8000;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:all .3s;}
+.prod-modal.open{opacity:1;visibility:visible;}
+.pm-bg{position:absolute;inset:0;background:rgba(26,10,0,.7);backdrop-filter:blur(6px);}
+.pm-box{position:relative;background:var(--w);width:100%;max-width:900px;max-height:90vh;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;border:3px solid var(--ink);animation:pmIn .35s cubic-bezier(.34,1.56,.64,1);}
+@keyframes pmIn{from{transform:scale(.88) translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.pm-img{min-height:480px;position:relative;}
+.pm-img-bg{width:100%;height:100%;min-height:480px;}
+.pm-badge{position:absolute;top:16px;left:16px;font-size:.52rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;z-index:2;}
+.pm-close{position:absolute;top:16px;right:16px;width:36px;height:36px;background:var(--ink);color:#fff;border:none;font-size:1.2rem;display:flex;align-items:center;justify-content:center;z-index:10;}
+.pm-info{padding:36px 32px;display:flex;flex-direction:column;justify-content:center;}
+.pm-cat{font-size:.58rem;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--teal);margin-bottom:8px;}
+.pm-name{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;letter-spacing:.03em;line-height:1;color:var(--ink);margin-bottom:4px;}
+.pm-type{font-size:.78rem;color:var(--ink2);margin-bottom:20px;}
+.pm-price{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.05em;color:var(--ink);margin-bottom:24px;}
+.pm-desc{font-size:.82rem;color:var(--ink2);line-height:1.8;margin-bottom:24px;font-weight:300;}
+.pm-btns{display:flex;flex-direction:column;gap:8px;}
+.pm-btn-buy{background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;padding:14px;border:2px solid var(--red);text-align:center;transition:all .2s;cursor:pointer;}
+.pm-btn-buy:hover{background:transparent;color:var(--red);}
+.pm-btn-cart{background:var(--ink);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;padding:14px;border:2px solid var(--ink);text-align:center;transition:all .2s;cursor:pointer;}
+.pm-btn-cart:hover{background:transparent;color:var(--ink);}
+.pm-btn-wa{background:var(--grn);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;padding:14px;border:2px solid var(--grn);text-align:center;transition:all .2s;cursor:pointer;text-decoration:none;display:block;}
+.pm-btn-wa:hover{background:transparent;color:var(--grn);}
+.pm-row{display:flex;gap:10px;margin-top:4px;}
+.pm-wish{flex:1;background:transparent;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px;border:2px solid var(--bdr);text-align:center;transition:all .2s;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;}
+.pm-wish:hover,.pm-wish.liked{border-color:var(--red);color:var(--red);}
+.pm-share{flex:1;background:transparent;color:var(--ink);font-family:'DM Sans',sans-serif;font-size:.65rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:10px;border:2px solid var(--bdr);text-align:center;transition:all .2s;cursor:pointer;}
+.pm-share:hover{border-color:var(--ink);background:var(--ink);color:#fff;}
+.toast{position:fixed;bottom:90px;right:28px;z-index:9500;background:var(--ink);color:#fff;padding:12px 20px;font-size:.72rem;font-weight:500;letter-spacing:.06em;opacity:0;transform:translateY(10px);transition:all .3s;pointer-events:none;max-width:240px;}
+.toast.show{opacity:1;transform:none;}
+
+@media(max-width:768px){
+  .nav-links,.wa-btn,.nav-login-btn{display:none;}
+  .ham{display:flex;}
+  nav{padding:16px 20px;}
+  nav.solid{padding:12px 20px;}
+  #hero{grid-template-columns:1fr;min-height:auto;}
+  .hero-l{padding:90px 24px 40px;order:1;}
+  .hero-h1{font-size:clamp(3.2rem,14vw,5.5rem);}
+  .hero-sub{font-size:.95rem;max-width:100%;}
+  .hero-stats{gap:20px;}
+  .hero-r{order:2;height:56vw;min-height:200px;}
+  .strip{flex:1;}
+  .strip video{opacity:1;}
+  .strip-fallback{opacity:0;}
+  .strip-lbl{display:none;}
+  #coll{padding:48px 20px;}
+  .coll-hdr{flex-direction:column;align-items:flex-start;gap:16px;}
+  .cg{grid-template-columns:1fr 1fr;grid-template-rows:auto;gap:8px;}
+  .cc:first-child{grid-row:span 1;grid-column:span 2;}
+  .cc:first-child .cc-bg{height:52vw;min-height:180px;}
+  .cc .cc-bg{height:40vw;min-height:150px;}
+  .cc-hbtn{display:none;}
+  .cc-bg-img,.cc-bg-video{opacity:1;}
+  .lb-wrap{flex-direction:column;height:auto;max-height:none;}
+  .lb{flex:none;height:60vw;border-right:none;border-bottom:2px solid var(--ink);}
+  .lb:last-child{border-bottom:none;}
+  .lb-ov{opacity:1;}
+  .lb-bg-img,.lb-bg-video{opacity:1;}
+  #hl{grid-template-columns:1fr;gap:40px;padding:48px 20px;}
+  .hl-r{height:auto;}
+  .hl-card{height:72vw;min-height:260px;}
+  .hl-card-img,.hl-card-video{opacity:1;}
+  #story{padding:56px 20px;}
+  .sg{grid-template-columns:1fr;gap:40px;}
+  .s-bg,.s-bn{display:none;}
+  .ssg{grid-template-columns:1fr 1fr;}
+  .ss{padding:22px 18px;}
+  #prod{padding:48px 20px;}
+  .pt{flex-direction:column;align-items:flex-start;}
+  .pg{grid-template-columns:1fr 1fr;gap:2px;}
+  .pi{height:44vw;min-height:160px;}
+  .pi-img,.pi-video{opacity:1;}
+  #insta{padding:48px 20px;}
+  .ig2{grid-template-columns:repeat(3,1fr);gap:3px;}
+  .it{flex-direction:column;align-items:flex-start;}
+  #contact{grid-template-columns:1fr;}
+  .cl{padding:48px 20px;}
+  .cmap{min-height:320px;}
+  .cmap iframe{min-height:320px;}
+  footer{padding:40px 20px 24px;}
+  .ft{grid-template-columns:1fr 1fr;gap:28px;}
+  .ft-brand{grid-column:span 2;}
+  .fb{flex-direction:column;text-align:center;gap:6px;}
+  .pm-box{grid-template-columns:1fr;max-width:96vw;}
+  .pm-img{min-height:280px;}
+  .pm-img-bg{min-height:280px;}
+  .pm-info{padding:24px 20px;}
+}
+@media(max-width:420px){
+  .hero-h1{font-size:clamp(2.8rem,16vw,4rem);}
+  .pg{grid-template-columns:1fr;}
+  .pi{height:68vw;}
+  .ig2{grid-template-columns:repeat(2,1fr);}
+  .ft{grid-template-columns:1fr;}
+  .ft-brand{grid-column:span 1;}
+  .ssg{grid-template-columns:1fr;}
+  .cg{grid-template-columns:1fr;}
+  .cc:first-child{grid-column:span 1;}
+  .cc .cc-bg,.cc:first-child .cc-bg{height:58vw;}
+}
+</style>
+</head>
+<body>
+<div class="cur" id="cur"></div>
+<div class="cur-ring" id="cr"></div>
+<div class="prog" id="prog"></div>
+
+<div id="loader">
+  <div class="l-rings"><div></div><div></div><div></div><div></div><div class="l-dot"></div></div>
+  <div class="l-brand">SAMALA</div>
+  <div class="l-sub">Cloth Stores · Venkatagiri · Since Generations</div>
+  <div class="l-dots"><span></span><span></span><span></span><span></span><span></span></div>
+</div>
+
+<nav id="nav">
+  <a href="#" class="logo">SAMALA <small>Cloth Stores · Venkatagiri</small></a>
+  <ul class="nav-links">
+    <li><a href="#coll">Collections</a></li>
+    <li><a href="#look">Lookbook</a></li>
+    <li><a href="#story">Heritage</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="#contact">Visit</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="https://wa.me/919876543210" class="wa-btn" target="_blank">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.524 5.825L.055 23.269a.75.75 0 00.921.921l5.444-1.469A11.932 11.932 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.727 9.727 0 01-4.97-1.364l-.356-.212-3.232.873.873-3.23-.212-.358A9.728 9.728 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+      WhatsApp
+    </a>
+    <button class="nav-login-btn" onclick="window.location.href='shop.html?login=1'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      My Account
+    </button>
+    <button class="ham" id="ham" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mob-overlay" id="mobOverlay"></div>
+<div class="mob-menu" id="mobMenu">
+  <a href="#coll" class="mob-link">Collections</a>
+  <a href="#look" class="mob-link">Lookbook</a>
+  <a href="#story" class="mob-link">Heritage</a>
+  <a href="shop.html" class="mob-link">Shop</a>
+  <a href="#contact" class="mob-link">Visit Us</a>
+  <a href="https://wa.me/919876543210" class="mob-wa mob-link" target="_blank">💬 WhatsApp Us</a>
+</div>
+
+<section id="hero">
+  <div class="hero-l">
+    <div class="h-tag">New Festive Collection 2025</div>
+    <h1 class="hero-h1">WHERE<br><span class="h1-red">SILK</span><span class="h1-teal">SPEAKS</span></h1>
+    <p class="hero-sub">Venkatagiri's most beloved saree store — where every drape carries the soul of our weavers and the joy of celebration.</p>
+    <div class="hero-btns">
+      <a href="shop.html" class="btn-r">Explore Collection</a>
+      <a href="#look" class="btn-o">View Lookbook</a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hs-n">500+</div><div class="hs-l">Designs</div></div>
+      <div><div class="hs-n">10K+</div><div class="hs-l">Families</div></div>
+      <div><div class="hs-n">3Gen</div><div class="hs-l">Legacy</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="strips" id="strips">
+      <div class="strip" data-idx="0">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#D42B2B,#FF6B6B,#FFB3B3);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB17877-402%EF%80%A2416-CREAM-RED_17-07-2025-14-10-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Silk</div>
+      </div>
+      <div class="strip" data-idx="1">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#007A6E,#00B3A4,#7FFFEF);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16556_439-INDIGO%20BLUE_201_05-06-2024-11-43-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Cotton</div>
+      </div>
+      <div class="strip" data-idx="2">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#E8A000,#FFB800,#FFE07A);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18223-425-RANI_16-06-2025-17-22-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Zari</div>
+      </div>
+      <div class="strip" data-idx="3">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#D4006A,#FF2D87,#FFB3D6);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB16047_422-WINE_201_03-01-2025-05-20-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Bridal</div>
+      </div>
+      <div class="strip" data-idx="4">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#2B1FD4,#4438FF,#A8A3FF);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18538-419-GAJREE_22-07-2025-13-44-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Patola</div>
+      </div>
+      <div class="strip" data-idx="5">
+        <div class="strip-fallback" style="background:linear-gradient(180deg,#006B3C,#00A85A,#80FFB3);"></div>
+        <video src="https://manyavar.scene7.com/is/content/manyavar/SB18565-414-PINK_13-11-2025-06-08-0x900-1500k" muted playsinline loop preload="metadata" autoplay></video>
+        <div class="strip-lbl">Casual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="t-track">
+    <span class="t-item"><span class="t-dot" style="background:#D42B2B;"></span>Venkatagiri Silk</span>
+    <span class="t-item"><span class="t-dot" style="background:#E8A000;"></span>Pure Handloom</span>
+    <span class="t-item"><span class="t-dot" style="background:#D4006A;"></span>Kanjivaram Silk</span>
+    <span class="t-item"><span class="t-dot" style="background:#2B1FD4;"></span>Zari Weaving</span>
+    <span class="t-item"><span class="t-dot" style="background:#006B3C;"></span>Cotton Elegance</span>
+    <span class="t-item"><span class="t-dot" style="background:#D42B2B;"></span>Venkatagiri Silk</span>
+    <span class="t-item"><span class="t-dot" style="background:#E8A000;"></span>Pure Handloom</span>
+    <span class="t-item"><span class="t-dot" style="background:#007A6E;"></span>Bridal Collections</span>
+    <span class="t-item"><span class="t-dot" style="background:#D4006A;"></span>Kanjivaram Silk</span>
+    <span class="t-item"><span class="t-dot" style="background:#2B1FD4;"></span>Zari Weaving</span>
+    <span class="t-item"><span class="t-dot" style="background:#006B3C;"></span>Cotton Elegance</span>
+  </div>
+</div>
+
+<!-- ══════════════ POINT 1: COLLECTIONS with VIDEO/IMAGE support ══════════════ -->
+<section id="coll">
+  <div class="coll-hdr rv">
+    <div><div class="sec-eye">Curated Collections</div><div class="sec-h2">SHOP BY<br><span>CATEGORY</span></div></div>
+  </div>
+  <div class="cg rv">
+
+    <!-- CATEGORY 1: Bridal Silks -->
+    <div class="cc" data-cat="bridal">
+      <div class="cc-bg" style="height:100%;">
+        <!-- Color fallback (shows if no image/video) -->
+        <div class="cc-bg-color" style="background:linear-gradient(160deg,#5A0F1C,#D42B2B,#FF8C8C);display:flex;align-items:center;justify-content:center;">
+          <svg width="180" height="260" viewBox="0 0 180 260" fill="none"><path d="M30 240 C30 240 55 175 60 120 C65 65 75 25 90 8 C105 25 115 65 120 120 C125 175 150 240 150 240" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.7)" stroke-width="2"/><ellipse cx="90" cy="130" rx="32" ry="52" fill="rgba(255,255,255,0.07)"/><g fill="rgba(255,255,255,0.8)"><path d="M90 52 L95 66 L110 66 L98 75 L102 89 L90 80 L78 89 L82 75 L70 66 L85 66Z"/></g><rect x="26" y="230" width="128" height="4" fill="rgba(255,255,255,0.55)"/></svg>
+        </div>
+        
+        <!-- // PUT IMAGE URL HERE - will show on hover (desktop) or always (mobile) -->
+        <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18192-414-PINK1_22-07-2025-09-58:650x900?&dpr=on,2" alt="Bridal Silks" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE (.mp4, .webm, etc) - will play on hover (desktop) or always (mobile) -->
+         
+        <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SB18192-414-PINK_17-07-2025-14-43-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="cc-info"><div class="cc-tag" style="color:#FFB3B3;">Bestselling Range</div><div class="cc-name">Bridal Silks</div><div class="cc-cnt">48 exclusive pieces</div></div>
+      <a href="shop.html?cat=bridal" class="cc-hbtn">Shop Now →</a>
+    </div>
+
+    <!-- CATEGORY 2: Cotton Weaves -->
+    <div class="cc" data-cat="cotton">
+      <div class="cc-bg" style="height:100%;">
+        <div class="cc-bg-color" style="background:linear-gradient(160deg,#004A42,#007A6E,#00E5D0);display:flex;align-items:center;justify-content:center;">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" style="opacity:.6"><circle cx="55" cy="55" r="44" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-dasharray="5 4"/><circle cx="55" cy="55" r="28" stroke="rgba(255,255,255,.4)" stroke-width="1.5" fill="rgba(255,255,255,.05)"/><circle cx="55" cy="55" r="11" fill="rgba(255,255,255,.25)"/></svg>
+        </div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/LB9342-412-PEACH-101_27-10-2025-06-37:650x900?&dpr=on,2" alt="Cotton Weaves" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/LB9342-412-PEACH_08-11-2025-06-06-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="cc-info"><div class="cc-tag" style="color:#7FFFEF;">Fresh Arrivals</div><div class="cc-name">Cotton Weaves</div><div class="cc-cnt">36 pieces</div></div>
+      <a href="shop.html?cat=cotton" class="cc-hbtn">Shop Now →</a>
+    </div>
+
+    <!-- CATEGORY 3: Pure Zari -->
+    <div class="cc" data-cat="zari">
+      <div class="cc-bg" style="height:100%;">
+        <div class="cc-bg-color" style="background:linear-gradient(160deg,#7A5200,#E8A000,#FFE08C);display:flex;align-items:center;justify-content:center;">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" style="opacity:.6"><polygon points="55,8 68,40 102,40 76,60 86,92 55,72 24,92 34,60 8,40 42,40" fill="none" stroke="rgba(255,255,255,.6)" stroke-width="2"/></svg>
+        </div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SAS8113_413-PURPLE_101.16112_09-02-2025-21-21:650x900?&dpr=on,2" alt="Pure Zari" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SAS8113_413-PURPLE_201_20-02-2025-10-53-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="cc-info"><div class="cc-tag" style="color:#FFE08C;">Heritage Range</div><div class="cc-name">Pure Zari</div><div class="cc-cnt">24 pieces</div></div>
+      <a href="shop.html?cat=zari" class="cc-hbtn">Shop Now →</a>
+    </div>
+
+    <!-- CATEGORY 4: Occasion Wear -->
+    <div class="cc" data-cat="occasion">
+      <div class="cc-bg" style="height:100%;">
+        <div class="cc-bg-color" style="background:linear-gradient(160deg,#6B0035,#D4006A,#FF80BC);display:flex;align-items:center;justify-content:center;">
+          <svg width="110" height="90" viewBox="0 0 110 90" fill="none" style="opacity:.6"><path d="M12 72 Q55 24 98 72" fill="rgba(255,255,255,.1)" stroke="rgba(255,255,255,.6)" stroke-width="2"/><circle cx="55" cy="36" r="11" fill="rgba(255,255,255,.2)"/></svg>
+        </div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="cc-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SKT5088-426-T.BLUE-101._01-02-2021-17-27-1:650x900?&dpr=on,2" alt="Occasion Wear" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="cc-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SKT5088-426-T.BLUE_13-10-2025-08-55-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="cc-info"><div class="cc-tag" style="color:#FFB3D6;">Festive Edit</div><div class="cc-name">Occasion Wear</div><div class="cc-cnt">52 pieces</div></div>
+      <a href="shop.html?cat=occasion" class="cc-hbtn">Shop Now →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ POINT 2: LOOKBOOK with VIDEO/IMAGE support ══════════════ -->
+<section id="look">
+  <div class="lb-wrap">
+    
+    <!-- LOOKBOOK 1 -->
+    <div class="lb" data-look="1">
+      <div class="lb-bg">
+        <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFE5E5,#D42B2B);position:absolute;inset:0;"></div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/I02_0R5A4453+copy_20-10-2021-20-04:650x900?&dpr=on,2" alt="The Crimson Bride" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+      <div class="lb-n">01</div>
+      <div class="lb-ov"><span class="lb-tp" style="color:#FFB3B3;">Bridal Edit</span><div class="lb-nm">The Crimson<br>Bride</div></div>
+    </div>
+
+    <!-- LOOKBOOK 2 -->
+    <div class="lb" data-look="2">
+      <div class="lb-bg">
+        <div class="lb-bg-color" style="background:linear-gradient(180deg,#E5FFF8,#007A6E);position:absolute;inset:0;"></div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18767-435-BOTTLE+GREEN-1-101_05-02-2026-06-22:650x900?&dpr=on,2" alt="Monsoon Greens" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SB18767-435-BOTTLE%20GREEN_11-02-2026-04-53-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="lb-n">02</div>
+      <div class="lb-ov"><span class="lb-tp" style="color:#7FFFEF;">Festive Cotton</span><div class="lb-nm">Monsoon<br>Greens</div></div>
+    </div>
+
+    <!-- LOOKBOOK 3 -->
+    <div class="lb" data-look="3">
+      <div class="lb-bg">
+        <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFFAE5,#E8A000);position:absolute;inset:0;"></div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB17075_420-423-MUSTARD+YELLOW-LIGHT+YELLOW.22642_18-04-2024-15-50:650x900?&dpr=on,2" alt="Golden Harvest" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SB17075_420-423-MUSTARD%20YELLOW-LIGHT%20YELLOW_25-04-2024-11-33-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="lb-n">03</div>
+      <div class="lb-ov"><span class="lb-tp" style="color:#FFE08C;">Zari Heritage</span><div class="lb-nm">Golden<br>Harvest</div></div>
+    </div>
+
+    <!-- LOOKBOOK 4 -->
+    <div class="lb" data-look="4">
+      <div class="lb-bg">
+        <div class="lb-bg-color" style="background:linear-gradient(180deg,#FFE5F5,#D4006A);position:absolute;inset:0;"></div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SKT4874_418-ORANGE_101.4329_23-12-2024-16-52:650x900?&dpr=on,2" alt="Rose & Jasmine" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SKT4874_418-ORANGE_201_30-12-2024-05-39-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="lb-n">04</div>
+      <div class="lb-ov"><span class="lb-tp" style="color:#FFB3D6;">Sangeet Special</span><div class="lb-nm">Rose &amp; Jasmine</div></div>
+    </div>
+
+    <!-- LOOKBOOK 5 -->
+    <div class="lb" data-look="5">
+      <div class="lb-bg">
+        <div class="lb-bg-color" style="background:linear-gradient(180deg,#F0F0FF,#2B1FD4);position:absolute;inset:0;"></div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="lb-bg-img" src="https://manyavar.scene7.com/is/image/manyavar/SB18442-434-LIGHT+BLUE1_22-07-2025-13-55:650x900?&dpr=on,2" alt="Midnight Indigo" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="lb-bg-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="https://manyavar.scene7.com/is/content/manyavar/SB18442-434-LIGHT%20BLUE_19-07-2025-14-26-0x900-1500k" type="video/mp4">
+        </video>
+      </div>
+      <div class="lb-n">05</div>
+      <div class="lb-ov"><span class="lb-tp" style="color:#C8C5FF;">Patola Silk</span><div class="lb-nm">Midnight<br>Indigo</div></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════ POINT 3: OUR CRAFT with VIDEO/IMAGE support ══════════════ -->
+<section id="hl">
+  <div class="hl-l rv-l">
+    <div class="sec-eye">Why We're Different</div>
+    <div class="sec-h2">OUR<br><span>CRAFT</span></div>
+    <div>
+      <div class="ci"><div class="cin">01</div><div class="cb"><h3>Authentic Handloom</h3><p>Every saree woven by Venkatagiri's master weavers using age-old pit-loom techniques, preserving a 400-year tradition.</p></div></div>
+      <div class="ci"><div class="cin">02</div><div class="cb"><h3>Pure Silk Certified</h3><p>All silk sarees are certified authentic and sourced directly from trusted weavers of Andhra Pradesh.</p></div></div>
+      <div class="ci"><div class="cin">03</div><div class="cb"><h3>3 Generations of Trust</h3><p>Samala family has served Venkatagiri and surrounding districts for three generations with honesty and pride.</p></div></div>
+      <div class="ci"><div class="cin">04</div><div class="cb"><h3>Bridal Consultation</h3><p>Personal styling sessions for brides. We help you choose the saree that tells your story on your most special day.</p></div></div>
+    </div>
+  </div>
+  <div class="hl-r rv-r">
+    <div class="hl-card">
+      <div class="hl-card-bg">
+        <!-- Color fallback -->
+        <div class="hl-card-color" style="background:linear-gradient(160deg,#FFF5E5,#FFD580,#E8A000,#8B5E00);display:flex;align-items:center;justify-content:center;">
+          <svg width="260" height="340" viewBox="0 0 260 340" fill="none"><circle cx="130" cy="170" r="110" fill="none" stroke="rgba(26,10,0,.06)" stroke-width="2"/><circle cx="130" cy="170" r="85" fill="none" stroke="rgba(26,10,0,.08)" stroke-width="1.5"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D42B2B" opacity=".75"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D42B2B" opacity=".75" transform="rotate(45 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#007A6E" opacity=".75" transform="rotate(90 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#007A6E" opacity=".75" transform="rotate(135 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#E8A000" opacity=".75" transform="rotate(180 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#E8A000" opacity=".75" transform="rotate(225 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D4006A" opacity=".75" transform="rotate(270 130 170)"/><ellipse cx="130" cy="64" rx="14" ry="26" fill="#D4006A" opacity=".75" transform="rotate(315 130 170)"/><circle cx="130" cy="170" r="26" fill="white"/><circle cx="130" cy="170" r="17" fill="#E8A000"/><circle cx="130" cy="170" r="8" fill="white"/><circle cx="130" cy="170" r="4" fill="#D42B2B"/></svg>
+        </div>
+        
+        <!-- // PUT IMAGE URL HERE -->
+        <img class="hl-card-img" src="" alt="Featured Saree" onerror="this.style.display='none'">
+        
+        <!-- // PUT VIDEO URL HERE -->
+        <video class="hl-card-video" muted playsinline loop preload="none" onerror="this.style.display='none'">
+          <source src="" type="video/mp4">
+        </video>
+      </div>
+      <div class="hl-c">Featured Pick</div>
+      <div class="hl-bb"><h4>Venkatagiri Masterpiece</h4><span>From ₹3,500</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="s-bg">SAMALA</div>
+  <div class="sg">
+    <div class="sl rv-l">
+      <div class="sec-eye">Our Heritage</div>
+      <div class="sec-h2">A FAMILY'S<br><span>PROMISE</span></div>
+      <p class="sb">Samala Cloth Stores was born from a simple belief — that every woman deserves to wear silk that tells a story. Founded in Venkatagiri, the town that gave the world its most celebrated cotton and silk weaves, we have been the trusted choice of families across Andhra Pradesh for generations.</p>
+      <blockquote class="sq">"In every thread we weave, lives the pride of Venkatagiri and the love we carry for our craft."</blockquote>
+      <p class="sb">From a young bride choosing her wedding silk to a grandmother picking her festival cotton — we have been part of every milestone.</p>
+      <div class="s-tags"><span class="s-tag">Venkatagiri Cotton</span><span class="s-tag">Kanjivaram Silk</span><span class="s-tag">Dharmavaram</span><span class="s-tag">Pure Zari</span><span class="s-tag">Handloom</span><span class="s-tag">Patola</span></div>
+    </div>
+    <div class="sr rv-r">
+      <div class="s-bn">3+</div>
+      <div class="ssg">
+        <div class="ss"><span class="ss-n">500+</span><span class="ss-l">Unique Designs</span></div>
+        <div class="ss"><span class="ss-n">10K+</span><span class="ss-l">Happy Families</span></div>
+        <div class="ss"><span class="ss-n">100%</span><span class="ss-l">Pure Certified</span></div>
+        <div class="ss"><span class="ss-n">3Gen</span><span class="ss-l">Family Legacy</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ POINT 4: PRODUCTS with VIDEO/IMAGE support ══════════════ -->
+<!-- Products are rendered via JavaScript - see PRODUCTS array below -->
+<section id="prod">
+  <div class="pt rv">
+    <div><div class="sec-eye">Our Store</div><div class="sec-h2">SHOP <span>SAREES</span></div></div>
+    <div class="pt-right">
+      <div class="fls">
+        <button class="fl on" data-filter="all">All</button>
+        <button class="fl" data-filter="silk">Silk</button>
+        <button class="fl" data-filter="cotton">Cotton</button>
+        <button class="fl" data-filter="bridal">Bridal</button>
+        <button class="fl" data-filter="zari">Zari</button>
+      </div>
+      <a href="shop.html" class="view-all-btn">View All Store →</a>
+    </div>
+  </div>
+  <div class="pg rv" id="prodGrid"></div>
+</section>
+
+<section id="insta">
+  <div class="it rv">
+    <div><div class="sec-eye">Follow Us</div><div class="sec-h2" style="margin-bottom:0;">@SAMALACLOTH<span>STORES</span></div></div>
+    <a href="#" class="btn-r" style="padding:11px 24px;font-size:.65rem;">Follow on Instagram</a>
+  </div>
+  <div class="ig2 rv">
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#D42B2B,#FF9999);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#007A6E,#7FFFEF);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#E8A000,#FFE07A);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#D4006A,#FFB3D6);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#2B1FD4,#C8C5FF);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+    <div class="ig"><div class="ig-in" style="background:linear-gradient(135deg,#006B3C,#80FFB3);"></div><div class="ig-hov"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.5" fill="currentColor"/></svg><span>View</span></div></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="cl rv-l">
+    <div class="sec-eye">Come Visit</div>
+    <div class="sec-h2">FIND<br><span>US HERE</span></div>
+    <div class="cd"><div class="ci2"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C6.69 2 4 4.69 4 8C4 13 10 18 10 18S16 13 16 8C16 4.69 13.31 2 10 2ZM10 10.5C8.62 10.5 7.5 9.38 7.5 8S8.62 5.5 10 5.5 12.5 6.62 12.5 8 11.38 10.5 10 10.5Z"/></svg></div><div class="ct"><h4>Location</h4><p>Samala Cloth Stores<br>Venkatagiri, Andhra Pradesh — 524 132</p></div></div>
+    <div class="cd"><div class="ci2"><svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor"><path d="M3 4C3 3.45 3.45 3 4 3H7.5L9 7L7 9C7.9 10.82 9.18 12.1 11 13L13 11L17 12.5V16C17 16.55 16.55 17 16 17C8.82 17 3 11.18 3 4Z"/></svg></div><div class="ct"><h4>Phone</h4><p>+91 98765 43210<br>Mon–Sat: 9AM – 8PM · Sun: 10AM – 5PM</p></div></div>
+    <div class="cd"><div class="ci2"><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="16" height="12" rx="2"/><path d="M2 7l10 5 10-5"/></svg></div><div class="ct"><h4>Email</h4><p>info@samalaclothstores.com</p></div></div>
+  </div>
+  <div class="cmap rv-r">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862!2d79.5950649!3d13.9601647!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a4d2586c9b67053%3A0x898ba789075c24a0!2sSamala%20Cloth%20Stores!5e0!3m2!1sen!2sin!4v1" allowfullscreen loading="lazy" title="Samala Cloth Stores"></iframe>
+    <div class="map-lbl">Samala Cloth Stores · Venkatagiri</div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div class="ft-brand"><span class="logo">SAMALA<small>Cloth Stores · Venkatagiri</small></span><p>Curators of Andhra Pradesh's finest handloom tradition. Every saree tells the story of generations of weavers, love, and craft.</p></div>
+    <div class="ftc"><h5>Collections</h5><ul><li><a href="shop.html?cat=bridal">Bridal Silks</a></li><li><a href="shop.html?cat=cotton">Cotton Sarees</a></li><li><a href="shop.html?cat=silk">Kanjivaram</a></li><li><a href="shop.html?cat=zari">Zari Work</a></li><li><a href="shop.html?cat=patola">Patola</a></li></ul></div>
+    <div class="ftc"><h5>Services</h5><ul><li><a href="#">Custom Draping</a></li><li><a href="#">Bridal Trousseau</a></li><li><a href="#">Gift Wrapping</a></li><li><a href="#">Bulk Orders</a></li></ul></div>
+    <div class="ftc"><h5>Connect</h5><ul><li><a href="https://wa.me/919876543210" target="_blank">WhatsApp</a></li><li><a href="#">Instagram</a></li><li><a href="#">Facebook</a></li><li><a href="shop.html">Full Store</a></li></ul></div>
+  </div>
+  <div class="fb"><p>© 2025 Samala Cloth Stores · Venkatagiri · All Rights Reserved</p><p>Made with ❤️ for Heritage Sarees</p></div>
+</footer>
+
+<div class="prod-modal" id="prodModal">
+  <div class="pm-bg" onclick="closeModal()"></div>
+  <div class="pm-box">
+    <div class="pm-img">
+      <div class="pm-img-bg" id="pmImgBg"></div>
+      <span class="pm-badge" id="pmBadge"></span>
+    </div>
+    <div class="pm-info">
+      <button class="pm-close" onclick="closeModal()">✕</button>
+      <div class="pm-cat" id="pmCat"></div>
+      <div class="pm-name" id="pmName"></div>
+      <div class="pm-type" id="pmType"></div>
+      <div class="pm-price" id="pmPrice"></div>
+      <div class="pm-desc" id="pmDesc"></div>
+      <div class="pm-btns">
+        <button class="pm-btn-buy" onclick="showToast('Order placed via WhatsApp!');closeModal();window.open('https://wa.me/919876543210?text=I want to buy: '+encodeURIComponent(document.getElementById('pmName').innerText))">Buy Now via WhatsApp</button>
+        <button class="pm-btn-cart" onclick="addToCartFromModal()">Add to Cart</button>
+        <a class="pm-btn-wa" href="https://wa.me/919876543210" target="_blank">Enquire on WhatsApp</a>
+      </div>
+      <div class="pm-row">
+        <button class="pm-wish" id="pmWishBtn" onclick="toggleModalWish()">♡ Wishlist</button>
+        <button class="pm-share" onclick="shareProduct()">↗ Share</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+// ══════════════════════════════════════════════════════════════════
+// PRODUCTS DATA - add img and video URLs here
+// ══════════════════════════════════════════════════════════════════
+var PRODUCTS = [
+  {
+    id: 1,
+    name: 'Venkatagiri Silk',
+    type: 'Pure Handloom · Crimson',
+    cat: 'bridal silk',
+    badge: 'Bridal',
+    badgeClass: 'pbr',
+    price: '₹4,500',
+    desc: 'A stunning crimson Venkatagiri silk saree with intricate zari border. Perfect for weddings and grand occasions.',
+    bg: 'linear-gradient(150deg,#5A0F1C,#D42B2B,#FF9999)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/LB9405_407-MAROON_28-02-2026-14-23:650x900?&dpr=on,2',
+    video: 'https://manyavar.scene7.com/is/content/manyavar/LB9405-407-MAROON%20(1)_27-01-2025-08-49-0x900-1500k'
+  },
+  {
+    id: 2,
+    name: 'Teal Cotton Weave',
+    type: 'Handloom Cotton · Teal',
+    cat: 'cotton',
+    badge: 'New',
+    badgeClass: 'pn',
+    price: '₹2,800',
+    desc: 'Fresh handloom cotton saree in soothing teal. Ideal for daily wear and casual occasions.',
+    bg: 'linear-gradient(150deg,#003D36,#007A6E,#80FFEF)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/UL5110V-407-MAROON1_22-07-2025-13-30:650x900?&dpr=on,2',
+    video: 'https://manyavar.scene7.com/is/content/manyavar/UL5110V-407-MAROON_19-07-2025-16-16-0x900-1500k'
+  },
+  {
+    id: 3,
+    name: 'Golden Zari Weave',
+    type: 'Pure Zari · Amber Gold',
+    cat: 'zari',
+    badge: 'Bestseller',
+    badgeClass: 'ph',
+    price: '₹12,000',
+    desc: 'Premium pure zari saree in radiant amber gold. The hallmark of traditional craftsmanship.',
+    bg: 'linear-gradient(150deg,#7A5200,#E8A000,#FFDB80)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/UL5003VD_443-415-DUSTY+PINK_101.19559_03-09-2024-23-25:650x900?&dpr=on,2',
+    video: ''
+  },
+  {
+    id: 4,
+    name: 'Rose Kanjivaram',
+    type: 'Pure Silk · Deep Rose',
+    cat: 'bridal silk',
+    badge: 'Bridal',
+    badgeClass: 'pbr',
+    price: '₹18,500',
+    desc: 'Exquisite Kanjivaram silk in deep rose with gold zari motifs. The ultimate bridal choice.',
+    bg: 'linear-gradient(150deg,#6B0035,#D4006A,#FFB3D6)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/I03_1_27-12-2022-10-08:650x900?&dpr=on,2',
+    video: ''
+  },
+  {
+    id: 5,
+    name: 'Midnight Patola',
+    type: 'Double Ikat · Indigo',
+    cat: 'silk',
+    badge: 'Sale',
+    badgeClass: 'ps',
+    price: '₹15,000',
+    desc: "Rare double ikat Patola saree in midnight indigo. A collector's piece from master weavers.",
+    bg: 'linear-gradient(150deg,#150D6B,#2B1FD4,#A8A3FF)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/SB19121-433-RAMA+GREEN-1-101_04-02-2026-08-09:650x900?&dpr=on,2',
+    video: ''
+  },
+  {
+    id: 6,
+    name: 'Emerald Tissue',
+    type: 'Tissue Silk · Forest Green',
+    cat: 'silk cotton',
+    badge: 'New',
+    badgeClass: 'pn',
+    price: '₹6,500',
+    desc: 'Lightweight tissue silk in forest green with subtle shimmer. Elegant for festive occasions.',
+    bg: 'linear-gradient(150deg,#003020,#006B3C,#80FFB3)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/SB18675-436-404-SEA+GREEN-FAWN-101_28-10-2025-07-43:650x900?&dpr=on,2',
+    video: ''
+  },
+  {
+    id: 7,
+    name: 'Rust Kanchi',
+    type: 'Kanjivaram · Rust Orange',
+    cat: 'bridal silk',
+    badge: 'Bestseller',
+    badgeClass: 'ph',
+    price: '₹9,800',
+    desc: 'Rich rust orange Kanjivaram with traditional temple border. Timeless and magnificent.',
+    bg: 'linear-gradient(150deg,#4A1A00,#B84000,#FFAA80)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/SB16818_427-GREEN_101.21368_04-09-2024-20-59:650x900?&dpr=on,2',
+    video: ''
+  },
+  {
+    id: 8,
+    name: 'Lime Banarasi',
+    type: 'Banarasi · Lime Gold',
+    cat: 'zari silk',
+    badge: 'Sale',
+    badgeClass: 'ps',
+    price: '₹7,200',
+    desc: 'Contemporary Banarasi weave in lime gold with modern geometric patterns.',
+    bg: 'linear-gradient(150deg,#1A1A00,#4A4A00,#DDDD80)',
+    img: 'https://manyavar.scene7.com/is/image/manyavar/SB15967_436-SEA+GREEN_101.7457_26-12-2024-16-36:650x900?&dpr=on,2',
+    video: ''
+  }
+];
+
+var wishlist = [];
+try { wishlist = JSON.parse(localStorage.getItem('samala_wish') || '[]'); } catch(e) {}
+var cart = [];
+try { cart = JSON.parse(localStorage.getItem('samala_cart') || '[]'); } catch(e) {}
+var currentProduct = null;
+
+function renderProducts(filter) {
+  var grid = document.getElementById('prodGrid');
+  grid.innerHTML = '';
+  var shown = 0;
+  
+  PRODUCTS.forEach(function(p) {
+    if (filter && filter !== 'all' && p.cat.indexOf(filter) === -1) return;
+    if (shown >= 8) return;
+    shown++;
+    
+    var isWished = wishlist.indexOf(p.id) !== -1;
+    var div = document.createElement('div');
+    div.className = 'pc';
+    div.setAttribute('data-cat', p.cat);
+    
+    // Build product HTML with video/image support
+    var mediaHTML = '';
+    
+    // Add color background
+    mediaHTML += '<div class="pi-in" style="background:' + p.bg + ';"></div>';
+    
+    // Add image if provided
+    if (p.img && p.img.trim()) {
+      mediaHTML += '<img class="pi-img" src="' + p.img + '" alt="' + p.name + '" onerror="this.style.display=\'none\'">';
+    }
+    
+    // Add video if provided
+    if (p.video && p.video.trim()) {
+      mediaHTML += '<video class="pi-video" muted playsinline loop preload="none" onerror="this.style.display=\'none\'"><source src="' + p.video + '" type="video/mp4"></video>';
+    }
+    
+    div.innerHTML = '<div class="pi" onclick="openModal(' + p.id + ')">' +
+      mediaHTML +
+      '<span class="pb ' + p.badgeClass + '">' + p.badge + '</span></div>' +
+      '<div class="pinfo"><div class="pname">' + p.name + '</div><div class="ptype">' + p.type + '</div>' +
+      '<div class="ppr"><span class="pprice">' + p.price + '</span>' +
+      '<button class="pw' + (isWished ? ' liked' : '') + '" onclick="toggleWish(' + p.id + ',this)" aria-label="Wishlist">' +
+      '<svg width="13" height="13" viewBox="0 0 24 24" fill="' + (isWished ? '#D42B2B' : 'none') + '" stroke="' + (isWished ? '#D42B2B' : 'currentColor') + '" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>' +
+      '</button></div></div>';
+    
+    grid.appendChild(div);
+  });
+  
+  // Initialize video handlers for product cards
+  initProductVideos();
+}
+
+function initProductVideos() {
+  var isMobile = !window.matchMedia('(pointer:fine)').matches;
+  
+  document.querySelectorAll('.pc').forEach(function(card) {
+    var video = card.querySelector('.pi-video');
+    if (!video) return;
+    
+    if (isMobile) {
+      // Mobile: play on touch
+      card.addEventListener('touchstart', function() {
+        video.play().catch(function() {});
+      }, {passive: true});
+    } else {
+      // Desktop: play on hover
+      card.addEventListener('mouseenter', function() {
+        video.play().catch(function() {});
+      });
+      card.addEventListener('mouseleave', function() {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+}
+
+renderProducts('all');
+
+function toggleWish(id, btn) {
+  var idx = wishlist.indexOf(id);
+  if (idx === -1) {
+    wishlist.push(id);
+    showToast('Added to wishlist ♡');
+  } else {
+    wishlist.splice(idx, 1);
+    showToast('Removed from wishlist');
+  }
+  localStorage.setItem('samala_wish', JSON.stringify(wishlist));
+  btn.classList.toggle('liked');
+  var svg = btn.querySelector('svg');
+  if (btn.classList.contains('liked')) {
+    svg.setAttribute('fill', '#D42B2B');
+    svg.setAttribute('stroke', '#D42B2B');
+  } else {
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+  }
+}
+
+function openModal(id) {
+  var p = PRODUCTS.find(function(x) { return x.id === id; });
+  if (!p) return;
+  currentProduct = p;
+  
+  var bg = document.getElementById('pmImgBg');
+  bg.style.cssText = 'background:' + p.bg + ';width:100%;height:100%;min-height:480px;position:relative;';
+  
+  // Add image/video to modal
+  var oldMedia = bg.querySelectorAll('img, video');
+  oldMedia.forEach(function(el) { el.remove(); });
+  
+  if (p.img && p.img.trim()) {
+    var im = document.createElement('img');
+    im.src = p.img;
+    im.alt = p.name;
+    im.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    im.onerror = function() { this.remove(); };
+    bg.appendChild(im);
+  }
+  
+  if (p.video && p.video.trim()) {
+    var vid = document.createElement('video');
+    vid.muted = true;
+    vid.loop = true;
+    vid.playsInline = true;
+    vid.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:2;';
+    var src = document.createElement('source');
+    src.src = p.video;
+    src.type = 'video/mp4';
+    vid.appendChild(src);
+    vid.onerror = function() { this.remove(); };
+    bg.appendChild(vid);
+    vid.play().catch(function() {});
+  }
+  
+  document.getElementById('pmBadge').className = 'pm-badge ' + p.badgeClass;
+  document.getElementById('pmBadge').innerText = p.badge;
+  document.getElementById('pmCat').innerText = p.cat.split(' ').map(function(s) {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+  }).join(' · ');
+  document.getElementById('pmName').innerText = p.name;
+  document.getElementById('pmType').innerText = p.type;
+  document.getElementById('pmPrice').innerText = p.price;
+  document.getElementById('pmDesc').innerText = p.desc;
+  
+  var wb = document.getElementById('pmWishBtn');
+  if (wishlist.indexOf(p.id) !== -1) {
+    wb.classList.add('liked');
+    wb.innerText = '♥ Wishlisted';
+  } else {
+    wb.classList.remove('liked');
+    wb.innerText = '♡ Wishlist';
+  }
+  
+  document.getElementById('prodModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('prodModal').classList.remove('open');
+  document.body.style.overflow = '';
+  currentProduct = null;
+}
+
+function toggleModalWish() {
+  if (!currentProduct) return;
+  var id = currentProduct.id;
+  var idx = wishlist.indexOf(id);
+  var wb = document.getElementById('pmWishBtn');
+  
+  if (idx === -1) {
+    wishlist.push(id);
+    wb.classList.add('liked');
+    wb.innerText = '♥ Wishlisted';
+    showToast('Added to wishlist ♡');
+  } else {
+    wishlist.splice(idx, 1);
+    wb.classList.remove('liked');
+    wb.innerText = '♡ Wishlist';
+    showToast('Removed from wishlist');
+  }
+  localStorage.setItem('samala_wish', JSON.stringify(wishlist));
+}
+
+function addToCartFromModal() {
+  if (!currentProduct) return;
+  var existing = cart.find(function(x) { return x.id === currentProduct.id; });
+  if (existing) {
+    existing.qty++;
+  } else {
+    cart.push({
+      id: currentProduct.id,
+      name: currentProduct.name,
+      price: currentProduct.price,
+      qty: 1
+    });
+  }
+  localStorage.setItem('samala_cart', JSON.stringify(cart));
+  showToast('Added to cart 🛍️');
+}
+
+function shareProduct() {
+  if (navigator.share && currentProduct) {
+    navigator.share({
+      title: currentProduct.name,
+      text: 'Check out ' + currentProduct.name + ' at Samala Cloth Stores!',
+      url: window.location.href
+    });
+  } else {
+    showToast('Link copied!');
+  }
+}
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  t.innerText = msg;
+  t.classList.add('show');
+  setTimeout(function() {
+    t.classList.remove('show');
+  }, 2500);
+}
+
+// LOADER
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    var l = document.getElementById('loader');
+    if (l) l.classList.add('out');
+  }, 1800);
+});
+
+// CURSOR
+(function() {
+  if (!window.matchMedia('(pointer:fine)').matches) return;
+  var cur = document.getElementById('cur'),
+      cr = document.getElementById('cr');
+  if (!cur || !cr) return;
+  var mx = 0, my = 0, rx = 0, ry = 0;
+  
+  document.addEventListener('mousemove', function(e) {
+    mx = e.clientX;
+    my = e.clientY;
+    cur.style.left = (mx - 7) + 'px';
+    cur.style.top = (my - 7) + 'px';
+  });
+  
+  (function loop() {
+    rx += (mx - rx - 21) * .12;
+    ry += (my - ry - 21) * .12;
+    cr.style.left = rx + 'px';
+    cr.style.top = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+  
+  document.querySelectorAll('a,button,.cc,.pc,.lb,.ig,.strip').forEach(function(el) {
+    el.addEventListener('mouseenter', function() {
+      cur.style.transform = 'scale(2.4)';
+      cr.style.transform = 'scale(1.6)';
+    });
+    el.addEventListener('mouseleave', function() {
+      cur.style.transform = 'scale(1)';
+      cr.style.transform = 'scale(1)';
+    });
+  });
+})();
+
+// ══════════════════════════════════════════════════════════════════
+// VIDEO HANDLERS FOR SECTIONS - ALL VIDEOS AUTOPLAY NOW
+// ══════════════════════════════════════════════════════════════════
+
+// HERO VIDEO STRIPS - AUTOPLAY ON LOAD
+(function() {
+  document.querySelectorAll('#strips .strip').forEach(function(strip) {
+    var vid = strip.querySelector('video');
+    if (!vid) return;
+
+    vid.pause();
+    vid.currentTime = 0;
+
+    strip.addEventListener('mouseenter', function() {
+      vid.play().catch(function() {});
+    });
+    strip.addEventListener('mouseleave', function() {
+      vid.pause();
+      vid.currentTime = 0;
+    });
+  });
+})();
+
+// CATEGORY CARDS VIDEO
+(function() {
+  var isMobile = !window.matchMedia('(pointer:fine)').matches;
+  
+  document.querySelectorAll('.cc').forEach(function(card) {
+    var video = card.querySelector('.cc-bg-video');
+    if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
+    
+    if (isMobile) {
+      // Mobile: play automatically
+      video.play().catch(function() {});
+    } else {
+      // Desktop: play on hover
+      card.addEventListener('mouseenter', function() {
+        video.play().catch(function() {});
+      });
+      card.addEventListener('mouseleave', function() {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+})();
+
+// LOOKBOOK VIDEO
+(function() {
+  var isMobile = !window.matchMedia('(pointer:fine)').matches;
+  
+  document.querySelectorAll('.lb').forEach(function(look) {
+    var video = look.querySelector('.lb-bg-video');
+    if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
+    
+    if (isMobile) {
+      video.play().catch(function() {});
+    } else {
+      look.addEventListener('mouseenter', function() {
+        video.play().catch(function() {});
+      });
+      look.addEventListener('mouseleave', function() {
+        video.pause();
+        video.currentTime = 0;
+      });
+    }
+  });
+})();
+
+// OUR CRAFT FEATURED CARD VIDEO
+(function() {
+  var isMobile = !window.matchMedia('(pointer:fine)').matches;
+  var card = document.querySelector('.hl-card');
+  var video = card ? card.querySelector('.hl-card-video') : null;
+  
+  if (!video || !video.querySelector('source') || !video.querySelector('source').getAttribute('src')) return;
+  
+  if (isMobile) {
+    video.play().catch(function() {});
+  } else {
+    card.addEventListener('mouseenter', function() {
+      video.play().catch(function() {});
+    });
+    card.addEventListener('mouseleave', function() {
+      video.pause();
+      video.currentTime = 0;
+    });
+  }
+})();
+
+// NAV + PROGRESS
+var navEl = document.getElementById('nav'),
+    progEl = document.getElementById('prog');
+    
+window.addEventListener('scroll', function() {
+  if (navEl) navEl.classList.toggle('solid', window.scrollY > 60);
+  if (progEl) {
+    var pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+    progEl.style.width = Math.min(pct, 100) + '%';
+  }
+}, {passive: true});
+
+// HAMBURGER
+var ham = document.getElementById('ham'),
+    mobMenu = document.getElementById('mobMenu'),
+    mobOverlay = document.getElementById('mobOverlay');
+
+function closeMenu() {
+  if (!ham || !mobMenu || !mobOverlay) return;
+  ham.classList.remove('open');
+  mobMenu.classList.remove('open');
+  mobOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+if (ham && mobMenu && mobOverlay) {
+  ham.addEventListener('click', function() {
+    var o = !mobMenu.classList.contains('open');
+    ham.classList.toggle('open');
+    mobMenu.classList.toggle('open');
+    mobOverlay.classList.toggle('open');
+    document.body.style.overflow = o ? 'hidden' : '';
+  });
+  mobOverlay.addEventListener('click', closeMenu);
+}
+
+document.querySelectorAll('.mob-link').forEach(function(a) {
+  a.addEventListener('click', closeMenu);
+});
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var id = a.getAttribute('href');
+    if (!id || id === '#') return;
+    var t = document.querySelector(id);
+    if (t) {
+      e.preventDefault();
+      t.scrollIntoView({behavior: 'smooth'});
+    }
+  });
+});
+
+// REVEAL ANIMATIONS
+if ('IntersectionObserver' in window) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry, i) {
+      if (entry.isIntersecting) {
+        setTimeout(function() {
+          entry.target.classList.add('go');
+        }, i * 70);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, {threshold: .08});
+  
+  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el) {
+    obs.observe(el);
+  });
+} else {
+  document.querySelectorAll('.rv,.rv-l,.rv-r').forEach(function(el) {
+    el.classList.add('go');
+  });
+}
+
+// PRODUCT FILTERS
+document.querySelectorAll('.fl').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.fl').forEach(function(b) {
+      b.classList.remove('on');
+    });
+    btn.classList.add('on');
+    renderProducts(btn.getAttribute('data-filter') || 'all');
+  });
+});
+
+// ESC TO CLOSE MODAL
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+</script>
+</body>
+</html>
